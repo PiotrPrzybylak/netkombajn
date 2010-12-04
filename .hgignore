@@ -1,0 +1,7 @@
+glob:netkombajn/sklep3-common-web/target/
+glob:netkombajn/sklep3-core/logs/
+glob:netkombajn/sklep3-core/target/
+glob:netkombajn/sklep3-rich-admin/logs/
+glob:netkombajn/sklep3-rich-admin/target/
+glob:netkombajn/sklep3-test/target/
+glob:netkombajn/sklep3-webapp-netkombajn/target/
