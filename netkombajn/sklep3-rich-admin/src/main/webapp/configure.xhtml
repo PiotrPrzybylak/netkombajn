@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s3="http://netolution.pl/jsf/sklep3">	
+	
+	
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+
+<h1>Konfiguracja danych administracyjnych</h1>
+	<div  class="fieldset">	
+		<h:form >
+			<p>
+				<label title="Na ten adres beda wysyłane wszelkie powiadomienia">
+					Twój email:</label>
+				<h:inputText value="#{configurationBacking.configuration.email}" required="true"/>
+			</p>
+			<p>
+				<label title="Czy wysyłac maila na konto administratora gdy zostanie złożone zamówienie">
+						Wysłać mail po zamówieniu:</label>
+				<h:selectBooleanCheckbox value="#{configurationBacking.configuration.sendOrderEmail}"/>
+			</p>
+			<p>
+				<label title="Jaki ma być narzut ceny przy imporcie z hurtowni (procenty)">
+						Narzut przy imporcie cen z hurtowni:</label>
+				<h:inputText value="#{configurationBacking.configuration.profitMargin}" size="3"/>%
+			</p>
+			<p>
+				<label title="ile ma byc wyswietlanych produktów na jednej stronie">
+						Ilość produktów na stronie:</label>
+				<h:inputText value="#{configurationBacking.configuration.productsOnPage}" size="3"/>
+			</p>
+			<p>
+				<label title="ile ma byc wyswietlanych produktów na jednej stronie">
+						Maksymalna ilość pokazywanych hitów/bestsellerów:</label>
+				<h:inputText value="#{configurationBacking.configuration.maxHitsNumber}" size="3"/>
+			</p>			
+			<p>
+				<h:commandButton value="zmień" actionListener="#{configurationBacking.updateConfiguration}"/>
+			</p>
+		</h:form>
+	</div>
+</ui:define>
+</ui:composition>
+</html>

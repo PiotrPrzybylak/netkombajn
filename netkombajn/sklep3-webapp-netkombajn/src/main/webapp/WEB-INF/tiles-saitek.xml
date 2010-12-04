@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+
+<tiles-definitions>
+
+
+	
+	<!--  lAYOUT 3  -->
+	
+
+
+	
+	
+
+	<definition name="general_layout" template="/WEB-INF/jsp/saitek/layout/general_layout.jsp" >
+		<put-attribute name="main" >
+			<definition template="/WEB-INF/jsp/saitek/layout/main2columns.jsp" />
+		</put-attribute>	
+	</definition>
+	
+	<definition name="twoColumnLayoutminCart" extends="general_layout" >
+		<put-attribute name="main" >
+			<definition template="/WEB-INF/jsp/saitek/layout/main2ColumnsMinCart.jsp" />
+		</put-attribute>	
+	</definition>
+
+
+	<definition name="home" extends="general_layout">
+      	<put-attribute name="content" value="/WEB-INF/jsp/saitek/home.jsp" cascade="true"/>
+	</definition>
+
+	
+	
+	<definition name="info"  extends="general_layout"  >
+	  <put-attribute name="content" value="/WEB-INF/jsp/saitek/info.jsp" cascade="true"/>
+	</definition>
+
+	<definition name="text"  extends="general_layout"  >
+	  <put-attribute name="content" value="/WEB-INF/jsp/saitek/text.jsp" cascade="true"/>
+	</definition>
+	
+	<definition name="product"  extends="general_layout"  >
+	  <put-attribute name="content" value="/WEB-INF/jsp/saitek/product.jsp" cascade="true"/>
+	</definition>		
+	
+	<definition name="shoppingCart" extends="twoColumnLayoutminCart">
+      <put-attribute name="content" value="/WEB-INF/jsp/saitek/shoppingCart.jsp" cascade="true"/>
+	</definition>
+				
+	<definition name="shipmentAddress" extends="twoColumnLayoutminCart">
+      <put-attribute name="content" value="/WEB-INF/jsp/saitek/shipmentAddress.jsp" cascade="true"/>
+	</definition>		
+
+	<definition name="simpleCheckout" extends="twoColumnLayoutminCart">
+      <put-attribute name="content" value="/WEB-INF/jsp/saitek/simpleCheckout.jsp" cascade="true"/>
+	</definition>		
+
+	<definition name="shipmentOptions" extends="twoColumnLayoutminCart">
+      <put-attribute name="content" value="/WEB-INF/jsp/saitek/shipmentOptions.jsp" cascade="true"/>
+	</definition>
+	
+	<definition name="paymentOptions" extends="twoColumnLayoutminCart">
+      <put-attribute name="content" value="/WEB-INF/jsp/saitek/paymentOptions.jsp" cascade="true"/>
+	</definition>	
+	
+	<definition name="confirmOrder" extends="twoColumnLayoutminCart">
+      <put-attribute name="content" value="/WEB-INF/jsp/saitek/confirmOrder.jsp" cascade="true"/>
+	</definition>
+	
+	<definition name="thanks" extends="twoColumnLayoutminCart">
+      <put-attribute name="content" value="/WEB-INF/jsp/saitek/thanks.jsp" cascade="true"/>
+	</definition>	
+
+	<definition name="simpleCheckoutThanks" extends="twoColumnLayoutminCart">
+      <put-attribute name="content" value="/WEB-INF/jsp/saitek/simpleCheckoutThanks.jsp" cascade="true"/>
+	</definition>	
+	
+	<definition name="searchResults" extends="general_layout">
+      <put-attribute name="content" value="/WEB-INF/jsp/saitek/searchResults.jsp" cascade="true"/>
+	</definition>	
+	
+	<definition name="categoryProducts" extends="general_layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/saitek/categoryProducts.jsp" cascade="true"/>
+	</definition>
+	
+	<definition name="compositeProductList" extends="general_layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/saitek/composite/compositeProductList.jsp" cascade="true"/>
+	</definition>
+	
+	<definition name="compositeProductDetails" extends="general_layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/saitek/composite/compositeProductDetails.jsp" cascade="true"/>
+	</definition>
+	
+	<definition name="errorMessage" extends="general_layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/saitek/errorMessage.jsp" cascade="true"/>
+	</definition>
+	
+	<definition name="generalError" template="/WEB-INF/jsp/saitek/error.jsp"/>
+		
+	<definition name="revision" extends="general_layout">
+      <put-attribute name="content" value="/WEB-INF/jsp/saitek/revision.jsp" cascade="true"/>
+	</definition>		
+</tiles-definitions>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:z="http://www.qualcomm.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:s3="http://netolution.pl/jsf/sklep3">
+   
+   <f:loadBundle basename="resources.locale.availability" var="bundle"/>
+   
+   
+   <div id="skuWrapper"> 
+   		<div id="skusTable">
+   			<a4j:outputPanel id="editForm" ajaxRendered="true">
+       	
+			      <h:form id="skuEditForm" rendered="#{not empty addProductBacking.editedStockKeepingUnit}">
+			   
+			            <div>
+			            	<div><h:message for="name" styleClass="error"/></div>
+			            	<label>Nazwa wariantu</label>
+			            	<h:inputText id="name" value="#{addProductBacking.editedStockKeepingUnit.name}" required="true"/>
+			            	
+			            </div>
+			            <div>
+			            	<div><h:message for="price" styleClass="error"/></div>
+			            	<label>Cena[PLN]</label>
+			            	
+			            	<h:inputText id="price" value="#{addProductBacking.editedStockKeepingUnit.originalPrice}" required="true">
+			            		<f:converter converterId="productPriceConverter"/>
+			            	</h:inputText>
+			            	
+			            </div>
+			            <div>
+			            	<label>Ilość w magazynie</label>
+			            	<h:inputText id="quantity" value="#{addProductBacking.editedStockKeepingUnit.quantityInStock}"/>
+			            	<h:message for="quantity" styleClass="error"/>
+			            </div>
+			            <div>
+			            	<label>Dostępność</label>
+		                    <h:selectOneMenu value="#{addProductBacking.editedStockKeepingUnit.availability}">
+		             			<f:selectItems value="#{addProductBacking.availabilityStatuses}" />       
+		              		</h:selectOneMenu>
+			            	
+			            </div>
+			            <div>
+			            	<div><h:message for="priority" styleClass="error"/></div>
+			            	<label>Priorytet</label>
+		                   <h:inputText id="priority" value="#{addProductBacking.editedStockKeepingUnit.priority}"/>
+			            	
+			            </div>
+			           	<div id="editManufacturerButton">
+			           		<a4j:commandButton reRender="skus,editForm,mainForm" action="#{addProductBacking.updateSku}" value="zapisz"/>
+			           		<a4j:commandButton reRender="skus,editForm" value="anuluj">
+			           			<f:setPropertyActionListener target="#{addProductBacking.editedStockKeepingUnit}" value="#{null}"/>
+			           		</a4j:commandButton>
+			           	</div>
+			      </h:form>
+			 </a4j:outputPanel>
+      
+   			<h:form>
+	         		<rich:dataTable id="skus" var="sku" value="#{addProductBacking.product.skus}" rows="20" reRender="ds">
+			         <rich:column sortBy="#{sku.name}" > 
+			               <f:facet name="header">
+			                  Nazwa
+			               </f:facet>
+				             #{sku.name} 
+			        </rich:column>
+			         <rich:column sortBy="#{sku.originalPrice}" > 
+			               <f:facet name="header">
+			                  Cena
+			               </f:facet>
+				             #{sku.originalPrice} 
+			        </rich:column>
+			         <rich:column sortBy="#{sku.quantityInStock}" > 
+			               <f:facet name="header">
+			                  Ilość w magazynie
+			               </f:facet>
+				             #{sku.quantityInStock} 
+			        </rich:column>
+			         <rich:column sortBy="#{sku.availability}" > 
+			               <f:facet name="header">
+			                  Dostępność
+			               </f:facet>
+			               #{bundle[sku.availability.literal]} 
+			        </rich:column>
+			         <rich:column sortBy="#{sku.quantityInStock}" > 
+			               <f:facet name="header">
+			                  Priorytet
+			               </f:facet>
+				             #{sku.priority} 
+			        </rich:column>
+			        
+	        		 <rich:column> 
+			               <f:facet name="header">
+			                   Edycja
+			               </f:facet>
+			               <a4j:commandLink reRender="editForm" value="edytuj">
+			               		<f:setPropertyActionListener target="#{addProductBacking.editedStockKeepingUnit}" value="#{sku}"/>
+			               </a4j:commandLink>
+				           
+			        </rich:column>
+			          <rich:column> 
+			               <f:facet name="header">
+			                   Usuń
+			               </f:facet>
+			               
+			               <a4j:commandLink reRender="skus" value="usuń" action="#{addProductBacking.deleteSku}" 
+			               rendered="#{sku!=addProductBacking.product.defaultSku}">
+			               		<f:setPropertyActionListener target="#{addProductBacking.editedStockKeepingUnit}" value="#{sku}"/>
+			               </a4j:commandLink>
+				           
+			        </rich:column>
+		        <f:facet name="footer">
+	               <h:panelGroup>
+		                <rich:datascroller id="ds" maxPages="7"/>
+				   </h:panelGroup>
+	         </f:facet>
+	        </rich:dataTable>
+	</h:form>
+   		
+   		</div>
+   		<div id="newSkuBlock">
+   			<h:form id="skuAddForm">
+			   
+			            <div>
+			            	<div><h:message for="addedName" styleClass="error"/></div>
+			            	<label>Nazwa wariantu</label>
+			            	<h:inputText id="addedName" value="#{addProductBacking.addedStockKeepingUnit.name}" required="true"/>
+			            	
+			            </div>
+			            <div>
+			            	<div><h:message for="addedPrice" styleClass="error"/></div>
+			            	<label>Cena[PLN]</label>
+			            	<h:inputText id="addedPrice" value="#{addProductBacking.addedStockKeepingUnit.originalPrice}" required="true">
+			            		<f:converter converterId="productPriceConverter"/>
+			            	</h:inputText>
+			            	
+			            </div>
+			            <div>
+			            	<label>Ilość w magazynie</label>
+			            	<h:inputText value="#{addProductBacking.addedStockKeepingUnit.quantityInStock}"/>
+			            </div>
+			            <div>
+			            	<label>Dostępność</label>
+		                    <h:selectOneMenu value="#{addProductBacking.addedStockKeepingUnit.availability}">
+		             			<f:selectItems value="#{addProductBacking.availabilityStatuses}" />       
+		              		</h:selectOneMenu>
+			            	
+			            </div>
+			             <div>
+			             	<div><h:message for="priority" styleClass="error"/></div>
+			            	<label>Priorytet</label>
+		                   <h:inputText id="priority" value="#{addProductBacking.addedStockKeepingUnit.priority}"/>
+			            	
+			            </div>
+			           	<div id="editManufacturerButton">
+			           		<a4j:commandButton reRender="skus,skuAddForm" action="#{addProductBacking.addNewSku}" value="Dodaj"/>
+			           	</div>
+			      </h:form>
+   		</div>
+   </div>
+    
+	
+</html>

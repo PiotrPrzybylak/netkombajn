@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+ 
+ 
+  	<changeSet id="0" author="pp">
+		<sqlFile path="baza/database_structure_780.sql" />
+	</changeSet>
+ 
+     <changeSet id="1" author="pp">
+     
+        <createTable tableName="users">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>            
+            <column name="enabled" type="boolean" defaultValue="1">
+                <constraints nullable="false"/>            
+            </column>
+        </createTable>
+        
+        <createTable tableName="authorities">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <modifySql dbms="mysql">
+         		<append value=" ENGINE=InnoDB DEFAULT CHARSET=utf8"/>
+    	</modifySql>  
+    	        
+    </changeSet>
+    
+    <changeSet id="2" author="pp">
+    	<addColumn tableName="configuration">
+		    <column name="developerMode" type="BOOLEAN"/>
+		</addColumn>
+    </changeSet>
+    
+    <changeSet id="3" author="pw">
+   	  <sql>
+   	  	CREATE TABLE `composite_order_items` (
+		  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+		  `composite_product_id` INTEGER UNSIGNED NOT NULL,
+		  `unitPrice` DECIMAL NOT NULL,
+		  `unitWholesaleNetPrice` DECIMAL NOT NULL,
+		  PRIMARY KEY (`id`)
+		)
+		ENGINE = InnoDB DEFAULT CHARSET=utf8;
+   	  </sql>
+     <addForeignKeyConstraint constraintName="fk_composite_order_item_1"
+    		baseTableName="composite_order_items" baseColumnNames="composite_product_id"
+    		referencedTableName="composite_product" referencedColumnNames="id"/>
+    </changeSet>
+    
+    <changeSet id="4" author="pw">
+    	<sql>
+    		ALTER TABLE `order_items` ADD COLUMN `composite_order_item_id` 
+    		INTEGER UNSIGNED AFTER `unitWholesaleNetPrice`
+    	</sql>
+    	<sql>
+    		ALTER TABLE `order_items` ADD CONSTRAINT `FK_order_items_3` FOREIGN KEY `FK_order_items_3` (`composite_order_item_id`)
+			    REFERENCES `composite_order_items` (`id`)
+			    ON DELETE RESTRICT
+			    ON UPDATE RESTRICT;
+    	</sql>
+    </changeSet>
+    
+    <changeSet id="5" author="pp">
+    	<addColumn tableName="configuration" ><column name="analyticsCode" type="char(12)"/></addColumn>
+    </changeSet>
+  
+    <changeSet id="6" author="pp">  
+        <createTable tableName="newsletter_recipients">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>           
+            <column name="registered" type="datetime" >
+                <constraints nullable="false"/>            
+            </column>
+            <column name="confirmed" type="datetime" />
+            <column name="token" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>                
+        </createTable>
+        <modifySql dbms="mysql">
+         		<append value=" ENGINE=InnoDB DEFAULT CHARSET=utf8"/>
+    	</modifySql>               
+	</changeSet>    
+
+    <changeSet id="7" author="pp">
+    	<addColumn tableName="configuration" ><column name="applicationURL" type="varchar(255)"/></addColumn>
+    </changeSet>
+    
+    <changeSet id="8" author="pw">
+    	<sql>
+    		ALTER TABLE `composite_order_items` ADD COLUMN `order_id` INTEGER UNSIGNED AFTER `unitWholesaleNetPrice`,
+			ADD CONSTRAINT `FK_composite_order_items_2` FOREIGN KEY `FK_composite_order_items_2` (`order_id`)
+			    REFERENCES `orders` (`id`)
+			    ON DELETE RESTRICT
+			    ON UPDATE RESTRICT;
+    	</sql>
+    </changeSet>
+
+	 <changeSet id="9" author="pw">  
+	        <createTable tableName="manufacturer">
+	            <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+	            <column name="name" type="varchar(255)">
+	                <constraints nullable="false"/>
+	            </column> 
+	                            
+	        </createTable>  
+	                      
+		</changeSet>    
+		
+	<changeSet author="pw" id="10">
+		
+		<addColumn tableName="products" ><column name="manufacturer_id" type="int"/></addColumn>
+		
+		
+		<addForeignKeyConstraint constraintName="fk_product_manufacturer"
+    		baseTableName="products" baseColumnNames="manufacturer_id"
+    		referencedTableName="manufacturer" referencedColumnNames="id"
+		/>
+	</changeSet>	
+	
+	<changeSet id="11" author="pw">  
+	        <createTable tableName="pictures">
+	            <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+	            <column name="originalName" type="varchar(255)">
+	                <constraints nullable="false"/>
+	            </column> 
+	             <column name="product_id" type="INTEGER UNSIGNED">
+	                <constraints nullable="true"/>
+	            </column>                
+	              <column name="pictureOrder" type="int">
+	                <constraints nullable="false"/>
+	            </column>
+	        </createTable>  
+	        
+	        <addForeignKeyConstraint constraintName="fk_picture_product"
+    		baseTableName="pictures" baseColumnNames="product_id"
+    		referencedTableName="products" referencedColumnNames="id"
+			/>                      
+		</changeSet>    
+		
+		<changeSet id="12" author="pw">  
+	        <createTable tableName="image_formats">
+	            <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+	            <column name="name" type="varchar(255)">
+	                <constraints nullable="false"/>
+	            </column> 
+	             <column name="description" type="text">
+	                <constraints nullable="true"/>
+	            </column>                
+	              <column name="maxHeight" type="int">
+	                <constraints nullable="false"/>
+	            </column>
+	            <column name="maxWidth" type="int">
+	                <constraints nullable="false"/>
+	            </column>
+	        </createTable>  
+	                            
+		</changeSet>
+
+    <changeSet id="13" author="pp">
+    	<addColumn tableName="configuration">
+		    <column name="generatedPicturesFolder" type="varchar(255)"/>
+		</addColumn>
+    </changeSet>
+    
+     <changeSet id="14" author="pw">  
+	        <createTable tableName="designers">
+	            <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+	            <column name="name" type="varchar(255)">
+	                <constraints nullable="false"/>
+	            </column> 
+	        </createTable>  
+	 </changeSet> 
+	 
+	 <changeSet author="pw" id="15">
+		
+		<addColumn tableName="products" ><column name="designer_id" type="int"/></addColumn>
+		
+		
+		<addForeignKeyConstraint constraintName="fk_product_designer"
+    		baseTableName="products" baseColumnNames="designer_id"
+    		referencedTableName="designers" referencedColumnNames="id"
+		/>
+	</changeSet> 		
+	
+	<changeSet author="pp" id="16">		
+		<addColumn tableName="products" ><column name="discountInPercents" type="int"/></addColumn>
+		<addColumn tableName="products" ><column name="onSale" type="boolean" defaultValueBoolean="false"><constraints nullable="false"/></column></addColumn>
+	</changeSet>
+	
+	<changeSet author="pp" id="17">		
+		<createTable tableName="sku">
+	            <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+	            <column name="name" type="varchar(255)">
+	                <constraints nullable="false"/>
+	            </column> 
+	            <column name="availability" type="varchar(255)">
+	                <constraints nullable="false"/>
+	            </column>
+	             <column name="retailGrossPrice" type="DECIMAL">
+	                <constraints nullable="false"/>
+	            </column>
+	             <column name="product_id" type="INTEGER UNSIGNED">
+	                <constraints nullable="true"/>
+	            </column>
+	            <column name="quantityInStock" type="INTEGER UNSIGNED"></column> 
+	        </createTable>
+	        
+	        <addForeignKeyConstraint constraintName="fk_sku_product"
+    		baseTableName="sku" baseColumnNames="product_id"
+    		referencedTableName="products" referencedColumnNames="id"
+			/>  	        
+	</changeSet>
+	
+	<changeSet author="pp" id="18">
+		<dropNotNullConstraint tableName="sku" columnName="availability" columnDataType="varchar(255)"/>
+		<dropNotNullConstraint tableName="products" columnName="retailGrossPrice" columnDataType="DECIMAL"/>	
+	</changeSet>
+	
+	<changeSet author="pw" id="19">
+		<addColumn tableName="order_items" ><column name="sku_id" type="int"/></addColumn>
+		
+		
+		<addForeignKeyConstraint constraintName="fk_orderItem_sku"
+    		baseTableName="order_items" baseColumnNames="sku_id"
+    		referencedTableName="sku" referencedColumnNames="id"
+		/>	
+	</changeSet>
+	
+	<changeSet author="pw" id="20">
+		<addColumn tableName="pictures" >
+			<column name="discriminator" type="varchar(50)"/>
+		</addColumn>	
+	</changeSet>
+	
+	<changeSet author="pw" id="21">
+		<addColumn tableName="manufacturer" >
+			<column name="picture_id" type="int"/>
+		</addColumn>
+		
+		<addForeignKeyConstraint constraintName="fk_manufacturer_picture"
+    		baseTableName="manufacturer" baseColumnNames="picture_id"
+    		referencedTableName="pictures" referencedColumnNames="id"
+		/>	
+	</changeSet>
+	
+	<changeSet author="pw" id="22">	
+		<addDefaultValue tableName="pictures" columnName="pictureOrder" defaultValue="1"/>	
+	</changeSet>
+	
+	
+	<changeSet author="pw" id="23">	
+		<createTable tableName="customer">
+	            <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+	            <column name="name" type="varchar(255)">
+	                <constraints nullable="false"/>
+	            </column> 
+	            <column name="surname" type="varchar(255)">
+	                <constraints nullable="false"/>
+	            </column>
+	             <column name="phoneNumber" type="varchar(20)"/>
+	             
+	             <column name="nip" type="varchar(20)"/>
+	               
+	             <column name="email" type="varchar(255)">
+	                <constraints nullable="false"/>
+	            </column>
+	            
+	             <column name="password" type="varchar(255)"/>
+	      </createTable>
+	</changeSet>
+	
+	<changeSet author="pw" id="24">
+		<addColumn tableName="products" >
+			<column name="default_sku_id" type="int"/>
+		</addColumn>
+		
+		<addForeignKeyConstraint constraintName="fk_product_defaultSku"
+    		baseTableName="products" baseColumnNames="default_sku_id"
+    		referencedTableName="sku" referencedColumnNames="id"
+		/>	
+	</changeSet>
+	
+	<changeSet author="pw" id="25">
+		<addColumn tableName="orders" >
+			<column name="customer_id" type="int"/>
+		</addColumn>
+		
+		<addForeignKeyConstraint constraintName="fk_orders_customer"
+    		baseTableName="orders" baseColumnNames="customer_id"
+    		referencedTableName="customer" referencedColumnNames="id"
+		/>	
+	</changeSet>
+	
+	
+	<changeSet author="pw" id="26">
+		<createTable tableName="addresses">
+	            <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+	            <column name="streetName" type="varchar(255)">
+	                <constraints nullable="false"/>
+	            </column> 
+	            <column name="streetNumber" type="varchar(10)">
+	                <constraints nullable="false"/>
+	            </column>
+	             <column name="flatNumber" type="int"/>
+	            
+	            <column name="postalCode" type="varchar(20)">
+	                <constraints nullable="false"/>
+	            </column>
+	            <column name="city" type="varchar(20)">
+	                <constraints nullable="false"/>
+	            </column>
+	      </createTable>
+	</changeSet>
+	
+	<changeSet author="pw" id="27">
+		<addColumn tableName="customer" >
+			<column name="address_id" type="int"/>
+		</addColumn>
+		
+		<addForeignKeyConstraint constraintName="fk_customer_address"
+    		baseTableName="customer" baseColumnNames="address_id"
+    		referencedTableName="addresses" referencedColumnNames="id"
+		/>
+	</changeSet>
+	
+	<changeSet author="pw" id="28">
+		<addColumn tableName="orders" >
+			<column name="invoice_address_id" type="int"/>
+		</addColumn>
+		
+		<addForeignKeyConstraint constraintName="fk_orders_invoice_address"
+    		baseTableName="orders" baseColumnNames="invoice_address_id"
+    		referencedTableName="addresses" referencedColumnNames="id"
+		/>	
+	</changeSet>
+	
+	<changeSet author="pw" id="29">
+		<dropNotNullConstraint tableName="orders" columnName="street" columnDataType="varchar(45)"/>
+		<dropNotNullConstraint tableName="orders" columnName="city" columnDataType="varchar(45)"/>
+		<dropNotNullConstraint tableName="orders" columnName="postalCode" columnDataType="varchar(45)"/>
+		<dropNotNullConstraint tableName="orders" columnName="firstName" columnDataType="varchar(45)"/>
+		<dropNotNullConstraint tableName="orders" columnName="lastName" columnDataType="varchar(45)"/>
+		<dropNotNullConstraint tableName="orders" columnName="email" columnDataType="varchar(45)"/>
+		<dropNotNullConstraint tableName="orders" columnName="phone" columnDataType="varchar(45)"/>
+		<dropNotNullConstraint tableName="orders" columnName="voivodeship_id" columnDataType="INTEGER"/>
+		<dropNotNullConstraint tableName="orders" columnName="bulletin" columnDataType="TINYINT(1)"/>
+		<dropNotNullConstraint tableName="orders" columnName="customerType" columnDataType="varchar(45)"/>				
+	</changeSet>
+	
+	<changeSet author="pw" id="30">
+		<dropNotNullConstraint tableName="orders" columnName="saleDocument" columnDataType="varchar(45)"/>
+	</changeSet>
+	
+	<changeSet author="pw" id="31">
+		<dropNotNullConstraint tableName="order_items" columnName="product_id" columnDataType="INTEGER UNSIGNED"/>
+	</changeSet>
+	
+	<changeSet author="pw" id="32">
+		<modifyColumn tableName="sku">
+			<column name="retailGrossPrice" type="DECIMAL(10,2)"/>
+		</modifyColumn>
+	</changeSet>
+	
+	<changeSet author="pw" id="33">
+		<createTable tableName="shipment_options">
+	            <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+	            <column name="name" type="varchar(50)">
+	                <constraints nullable="false"/>
+	            </column> 
+	            
+	      </createTable>
+	</changeSet>
+	
+	<changeSet author="pw" id="34">
+		<addColumn tableName="shipment_options" >
+			<column name="cost" type="DECIMAL(10,2)"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="pw" id="35">
+		<addColumn tableName="orders" >
+			<column name="shipment_option_id" type="int"/>
+		</addColumn>
+		
+		<addForeignKeyConstraint constraintName="fk_orders_shipment_option"
+    		baseTableName="orders" baseColumnNames="shipment_option_id"
+    		referencedTableName="shipment_options" referencedColumnNames="id"
+		/>	
+	</changeSet>
+	
+	<changeSet author="pw" id="36">
+		<dropNotNullConstraint tableName="orders" columnName="shipmentOption" columnDataType="varchar(45)"/>
+	</changeSet>
+	
+	<changeSet author="pw" id="37">
+		<addColumn tableName="sku" >
+			<column name="priority" type="int"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="pw" id="38">
+			<createTable tableName="payments">
+				 <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+				<column name="amount" type="decimal(10,2)">
+					<constraints nullable="false"/>
+				</column>
+				<column name="form" type="varchar(50)">
+					<constraints nullable="false"/>
+				</column>
+				<column name="status" type="varchar(50)">
+					<constraints nullable="false"/>
+				</column>
+				<column name="token" type="varchar(40)"/>
+				<column name="order_id" type="INTEGER UNSIGNED"/>
+			</createTable>
+			
+			<addForeignKeyConstraint constraintName="fk_orders_payment"
+    		baseTableName="payments" baseColumnNames="order_id"
+    		referencedTableName="orders" referencedColumnNames="id"
+			/>	
+	</changeSet>
+	
+	<changeSet author="pp" id="39">
+		<addColumn tableName="admin_configuration" >
+			<column name="paymentSystemType" type="varchar(10)"/>
+			<column name="posId" type="varchar(10)"/>
+			<column name="posAuthorizationKey" type="varchar(10)"/>
+			<column name="externalSystemAuthorizationKey" type="varchar(10)"/>
+			<column name="posId2" type="varchar(10)"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="pw" id="40">
+		<dropColumn tableName="orders" columnName="paymentOption"/>
+	</changeSet>	
+	
+	
+	<changeSet author="pw" id="41">
+		<modifyColumn tableName="admin_configuration">
+			<column name="paymentSystemType" type="varchar(20)"/>
+		</modifyColumn>
+	</changeSet>
+	
+	<changeSet author="pw" id="42">
+			<addColumn tableName="admin_configuration" >
+				<column name="maxHitsNumber" type="int"/>
+			</addColumn>
+	</changeSet>
+	
+	<changeSet author="pw" id="43">
+			<createTable tableName="products_linked_categories">
+				 <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+				<column name="product_id" type="INTEGER UNSIGNED">
+					<constraints nullable="false"/>
+				</column>
+				<column name="category_id" type="INTEGER UNSIGNED">
+					<constraints nullable="false"/>
+				</column>
+				
+			</createTable>
+			
+			<addForeignKeyConstraint constraintName="fk_products_linked_categories1"
+    		baseTableName="products_linked_categories" baseColumnNames="product_id"
+    		referencedTableName="products" referencedColumnNames="id"
+			/>	
+			
+			<addForeignKeyConstraint constraintName="fk_products_linked_categories2"
+    		baseTableName="products_linked_categories" baseColumnNames="category_id"
+    		referencedTableName="categories" referencedColumnNames="id"
+			/>	
+	</changeSet>
+
+	<changeSet author="pp" id="44">
+		<modifyColumn tableName="admin_configuration">
+			<column name="posAuthorizationKey" type="varchar(32)"/>
+		</modifyColumn>
+		<modifyColumn tableName="admin_configuration">
+			<column name="externalSystemAuthorizationKey" type="varchar(32)"/>
+		</modifyColumn>
+	</changeSet>
+	
+	<changeSet author="pp" id="45">
+			<createTable tableName="payment_events">
+				 <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+				<column name="params" type="text" />
+				<column name="remoteAddress" type="varchar(32)" />
+            	<column name="timestamp" type="datetime" />				
+			</createTable>
+	</changeSet>
+	
+	<changeSet author="pw" id="46">
+			<createTable tableName="product_family">
+				 <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+				<column name="name" type="varchar(50)" />			
+			</createTable>
+	</changeSet>
+	
+	<changeSet author="pw" id="47">
+			<createTable tableName="products_families_relation">
+				 <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+				<column name="product_id" type="INTEGER UNSIGNED">
+					<constraints nullable="false"/>
+				</column>
+				<column name="product_family_id" type="int">
+					<constraints nullable="false"/>
+				</column>
+				
+			</createTable>
+			
+			<addForeignKeyConstraint constraintName="fk_products_families1"
+    		baseTableName="products_families_relation" baseColumnNames="product_id"
+    		referencedTableName="products" referencedColumnNames="id"
+			/>	
+			
+			<addForeignKeyConstraint constraintName="fk_products_families2"
+    		baseTableName="products_families_relation" baseColumnNames="product_family_id"
+    		referencedTableName="product_family" referencedColumnNames="id"
+			/>	
+	</changeSet>
+	
+	<changeSet author="pp" id="48">
+		<addColumn tableName="orders" >
+			<column name="shipment_address_id" type="int"/>
+		</addColumn>
+		
+		<addForeignKeyConstraint constraintName="fk_orders_shipment_address"
+    		baseTableName="orders" baseColumnNames="shipment_address_id"
+    		referencedTableName="addresses" referencedColumnNames="id"
+		/>	
+	</changeSet>	
+	
+	<changeSet author="pw" id="49">
+		<addColumn tableName="shipment_options">
+		    <column name="useRange" type="BOOLEAN" defaultValueBoolean="false"/>
+		    <column name="minimalOrderPrice" type="DECIMAL(10,2)"/>
+		    <column name="maximalOrderPrice" type="DECIMAL(10,2)"/>
+		</addColumn>
+	</changeSet>	
+	
+	<changeSet author="pw" id="50">
+		<addColumn tableName="shipment_options">
+		    <column name="allowOnlyInstantProducts" type="BOOLEAN" defaultValueBoolean="false"/>
+		</addColumn>
+	</changeSet>	
+	
+	<changeSet author="pw" id="51">
+		<addColumn tableName="orders">
+		    <column name="invoiceCompanyName" type="varchar(100)"/>
+		</addColumn>
+	</changeSet>	
+	
+	<changeSet author="pw" id="52">
+		<addColumn tableName="addresses">
+		    <column name="postalCity" type="varchar(100)"/>
+		</addColumn>
+	</changeSet>	
+	
+	<changeSet author="pp" id="53">
+			<createTable tableName="texts">
+				 <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+				<column name="name" type="varchar(32)" >
+					<constraints nullable="false" unique="true"/>
+				</column>	            
+				<column name="text" type="text" />
+            	<column name="timestamp" type="timestamp" />				
+			</createTable>
+	</changeSet>
+			
+			
+    <changeSet author="pp" id="54">
+    	<addColumn tableName="texts">
+		    <column name="title" type="varchar(255)"/>
+		</addColumn>
+    </changeSet>
+
+    
+    <changeSet author="pp" id="55">
+    	<addColumn tableName="configuration">
+		    <column name="testPaymentEnabled" type="BOOLEAN"/>
+		</addColumn>
+    </changeSet>
+    
+    <changeSet author="pp" id="56">
+    	<addColumn tableName="texts">
+		    <column name="style" type="varchar(255)"/>
+		</addColumn>
+    </changeSet>    
+    
+     <changeSet author="pw" id="57">
+		<addColumn tableName="shipment_options">
+			<column name="code" type="varchar(20)"/>
+		</addColumn>
+	</changeSet>
+	
+    <changeSet author="pp" id="58">
+    	<addColumn tableName="configuration" ><column name="customStyle" type="text"/></addColumn>
+    </changeSet>
+
+    <changeSet author="pp" id="59">
+    	<addColumn tableName="configuration" ><column name="shopName" type="varchar(255)"/></addColumn>
+    </changeSet>
+
+    <changeSet author="pp" id="60">
+    	<addColumn tableName="configuration" ><column name="externalCssFileUrl" type="varchar(255)"/></addColumn>
+    </changeSet>
+
+    <changeSet author="pp" id="61">
+    	<addColumn tableName="configuration" ><column name="indexPath" type="varchar(255)"/></addColumn>
+    </changeSet>
+    <changeSet author="mk" id="62">
+                <addColumn tableName="categories">
+                    <column name="position" type="INTEGER" defaultValueNumeric="100" />
+                </addColumn>
+        </changeSet>
+  <changeSet author="mk" id="63">
+        <addColumn tableName="configuration" ><column name="checkout" type="varchar(255)" defaultValue="simple-checkout.html"/></addColumn>
+    </changeSet>
+    	
+    	
+	<changeSet author="mk" id="64">
+		<addColumn tableName="shipment_options">
+			<column name="paymentFormChoice" type="varchar(30)" >
+			<constraints nullable="false"/>
+			</column>
+		</addColumn>
+	</changeSet>
+	    	
+	<changeSet author="mk" id="65">
+		<modifyColumn  tableName="shipment_options">
+			<column name="code" type="varchar(40)"/>
+		</modifyColumn>
+	</changeSet>
+
+	<changeSet author="mk" id="66">
+		<modifyColumn  tableName="addresses">
+			<column name="flatNumber" type="varchar(10)"/>
+		</modifyColumn>
+	</changeSet>
+	
+	<changeSet author="mk" id="67">
+			<createTable tableName="dynamic_configuration">
+				 <column name="id" type="int" autoIncrement="true">
+	                <constraints primaryKey="true" nullable="false"/>
+	            </column>
+				<column name="name" type="varchar(100)" >
+					<constraints nullable="false" unique="true"/>
+				</column>	            
+				<column name="value" type="varchar(255)" />
+			</createTable>
+	</changeSet>
+	
+	<changeSet author="mk" id="68">
+		<addColumn tableName="shipment_options">
+			<column name="weight" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+		
+</databaseChangeLog>

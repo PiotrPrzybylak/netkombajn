@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:z="http://www.qualcomm.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:s3="http://netolution.pl/jsf/sklep3">
+      
+      <ui:composition>
+
+<h2>Utworzone grupy</h2>
+		
+		<h:messages class="messages"/>
+		
+		<h:form>
+			<rich:dataTable var="group" value="#{compositeBacking.compositeProduct.productGroups}" rows="20">
+        	 <rich:column sortBy="#{group.name}"> 
+        				<f:facet name="header">
+		                   Nazwa
+		               </f:facet>
+		                <h:commandLink action="groupDetails" styleClass="tableLink">#{group.name}
+				            		<f:setPropertyActionListener target="#{compositeBacking.productGroupDetails}" value="#{group}"/>
+				         </h:commandLink>
+		              <rich:toolTip>
+               			<h:panelGroup>
+			                		<div class="detailsPopup">
+			                			<div>Produkty:</div>
+			                			<s3:repeat value="#{group.products}" var="product">
+										 	<t:div><h:outputText value="#{product.name}" rendered="#{product.id!=group.primaryProduct.id}"/></t:div>
+										 	<t:div styleClass="important"><h:outputText value="#{product.name}" 
+										 		rendered="#{product.id==group.primaryProduct.id}"/></t:div>
+										</s3:repeat>
+			                		</div>
+			            		</h:panelGroup>
+               	 	 </rich:toolTip>
+		        </rich:column>
+		         <rich:column sortBy="#{group.priority}"> 
+		               <f:facet name="header">
+		                   Priorytet
+		               </f:facet>
+		              <h:inputText id="detailsPriority" value="#{group.priority}" class="priorityField" validatorMessage="wartość priorytetu musi być większa od zera">
+		            		<f:validateLongRange minimum="0"/>
+		            	</h:inputText>
+		            	<h:commandLink action="compositeNew">
+			                	<t:graphicImage value="../images/disk.png"  border="0" alt=""/>
+			                	<f:setPropertyActionListener target="#{compositeBacking.compositeProductDirty}" value="#{true}"/>
+			                	<f:setPropertyActionListener target="#{compositeBacking.infoMessage}" value="#{null}"/>
+						</h:commandLink> 
+		        </rich:column>
+        		  <rich:column sortBy="#{group.numberOfProducts}"> 
+		               <f:facet name="header">
+		                   Liczba produktów
+		               </f:facet>
+		              #{group.numberOfProducts}
+		        </rich:column>
+		        <rich:column> 
+		               <f:facet name="header">
+		                   Usuń
+		               </f:facet>
+		              <h:commandLink actionListener="#{compositeBacking.removeGroup}" styleClass="tableLink">
+		            		<f:attribute name="group" value="#{group}"/>
+		            		Usuń
+		            	</h:commandLink>
+		        </rich:column>
+		        
+        	</rich:dataTable>
+		</h:form>
+  </ui:composition>
+</html> 

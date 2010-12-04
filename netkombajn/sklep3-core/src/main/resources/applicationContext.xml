@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jndi="http://www.springframework.org/schema/jndi"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-2.0.xsd 
+    http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    http://www.springframework.org/schema/jndi 
+    http://www.springframework.org/schema/jndi/spring-jndi.xsd 
+    http://www.springframework.org/schema/util 
+    http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:application.properties</value>
+		</property>
+		<property name="systemPropertiesModeName">
+			<value>SYSTEM_PROPERTIES_MODE_OVERRIDE</value>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass">
+			<value>${jdbc.driver}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="user">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+		<property name="minPoolSize">
+			<value>4</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>30</value>
+		</property>
+		<property name="checkoutTimeout">
+			<value>20000</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>3600</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>300</value>
+		</property>
+		<property name="automaticTestTable">
+			<value>jdbc_pool_check</value>
+		</property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="eventListeners">
+			<map>
+				<entry key="post-update">
+					<ref bean="postUpdateListener" />
+				</entry>
+			</map>
+		</property>
+
+		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
+		<property name="packagesToScan">
+			<list>
+				<value>pl.netolution.sklep3.domain</value>
+				<value>pl.netolution.sklep3.domain.payment</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.format_sql">
+					true
+				</prop>
+			</props>
+		</property>
+
+	</bean>
+
+	<bean id="postUpdateListener"
+		class="pl.netolution.sklep3.lucene.PostUpdateProductEventListener" />
+
+	<!-- setup transaction manager	-->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--
+		Tells Spring to put transactional advice on any class or method that
+		has an @Transactional annotation on it
+	-->
+	<tx:annotation-driven />
+
+	<bean id="daoBase" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="productDao" class="pl.netolution.sklep3.dao.hibernate.HibernateProductDao"
+		parent="daoBase" />
+	<bean id="orderDao" class="pl.netolution.sklep3.dao.hibernate.HibernateOrderDao"
+		parent="daoBase" />
+	<bean id="categoryDao" class="pl.netolution.sklep3.dao.hibernate.HibernateCategoryDao"
+		parent="daoBase" />
+	<bean id="voivodeshipDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernateVoivodeshipDao"
+		parent="daoBase" />
+	<bean id="adminConfigurationDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernateAdminConfigurationDao"
+		parent="daoBase" />
+	<bean id="importDao" class="pl.netolution.sklep3.dao.hibernate.HibernateImportDao"
+		parent="daoBase" />
+	<bean id="compositeProductDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernateCompositeProductDao"
+		parent="daoBase" />
+	<bean id="productGroupDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernateProductGroupDao"
+		parent="daoBase" />
+	<bean id="newsletterRecipientDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernateNewsletterRecipientDao"
+		parent="daoBase" />
+	<bean id="manufacturerDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernateManufacturerDao"
+		parent="daoBase" />
+	<bean id="pictureDao" class="pl.netolution.sklep3.dao.hibernate.HibernatePictureDao"
+		parent="daoBase" />
+	<bean id="imageFormatDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernateImageFormatDao"
+		parent="daoBase" />
+	<bean id="designerDao" class="pl.netolution.sklep3.dao.hibernate.HibernateDesignerDao"
+		parent="daoBase" />
+	<bean id="skuDao" class="pl.netolution.sklep3.dao.hibernate.HibernateSkuDao"
+		parent="daoBase" />
+	<bean id="customerDao" class="pl.netolution.sklep3.dao.hibernate.HibernateCustomerDao"
+		parent="daoBase" />
+	<bean id="shipmentOptionDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernateShipmentOptionDao"
+		parent="daoBase" />
+	<bean id="paymentDao" class="pl.netolution.sklep3.dao.hibernate.HibernatePaymentDao"
+		parent="daoBase" />
+	<bean id="paymentEventDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernatePaymentEventDao"
+		parent="daoBase" />
+	<bean id="productFamilyDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernateProductFamilyDao"
+		parent="daoBase" />
+	<bean id="textDao" class="pl.netolution.sklep3.dao.hibernate.HibernateTextDao"
+		parent="daoBase" />
+
+	<bean id="shopService" class="pl.netolution.sklep3.service.ShopService">
+		<property name="orderDao" ref="orderDao" />
+		<property name="productDao" ref="productDao" />
+		<property name="configuration" ref="configuration" />
+		<property name="randomService" ref="randomService" />
+		<property name="emailService" ref="emailService" />
+		<property name="categoryDao" ref="categoryDao" />
+		<property name="newsletterRecipientDao" ref="newsletterRecipientDao" />
+		<property name="adminConfigurationDao" ref="adminConfigurationDao" />
+		<property name="shipmentOptionDao" ref="shipmentOptionDao" />
+	</bean>
+
+	<bean id="randomService" class="pl.netolution.sklep3.service.RandomService" />
+
+	<bean id="incomImportService" class="pl.netolution.sklep3.service.imports.IncomImportService">
+		<property name="categoryDao" ref="categoryDao" />
+		<property name="adminConfigurationDao" ref="adminConfigurationDao" />
+		<property name="productDao" ref="productDao" />
+		<property name="emailService" ref="emailService" />
+		<property name="manufacturerDao" ref="manufacturerDao"></property>
+	</bean>
+
+	<bean name="configuration" class="pl.netolution.sklep3.configuration.JdbcConfiguration"
+		init-method="init">
+		<property name="dataSource" ref="dataSource" />
+		<property name="imageFormatDao" ref="imageFormatDao" />
+	</bean>
+
+	<bean name="fileManager" class="pl.netolution.sklep3.service.io.FileManager" />
+
+	<bean name="pictureManager" class="pl.netolution.sklep3.service.PictureManager">
+		<property name="configuration" ref="configuration" />
+		<property name="fileManager" ref="fileManager" />
+		<property name="pictureDao" ref="pictureDao" />
+		<property name="pictureFileNameGenerator" ref="standardPictureFileNameGenerator" />
+		<property name="productDao" ref="productDao"/>
+	</bean>
+
+	<bean name="pictureStructureTransformer"
+		class="pl.netolution.sklep3.service.migration.PictureStructureTransformer">
+		<property name="configuration" ref="configuration" />
+		<property name="pictureDao" ref="pictureDao" />
+		<property name="pictureManager" ref="pictureManager" />
+		<property name="productDao" ref="productDao" />
+	</bean>
+
+	<bean name="standardPictureFileNameGenerator"
+		class="pl.netolution.sklep3.service.pictures.StandardPictureFileNameGenerator" />
+
+
+	<bean name="downloadService" class="pl.netolution.sklep3.service.imports.DownloadService" />
+
+	<bean id="picturesImportService"
+		class="pl.netolution.sklep3.service.imports.PicturesImportService">
+		<property name="downloadService" ref="downloadService" />
+		<property name="pictureManager" ref="pictureManager" />
+		<property name="productDao" ref="productDao" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="localhost" />
+	</bean>
+
+	<bean id="netKombajnMailSender" class="pl.netolution.sklep3.utils.mail.NetKombajnMailSender">
+		<property name="configuration" ref="configuration" />
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+
+	<bean id="emailService" class="pl.netolution.sklep3.service.EmailService">
+		<property name="mailSender" ref="netKombajnMailSender" />
+		<property name="adminConfigurationDao" ref="adminConfigurationDao" />
+		<property name="configuration" ref="configuration" />
+		<property name="textMessageService" ref="textMessageService" />
+	</bean>
+
+	<bean id="productService" class="pl.netolution.sklep3.service.ProductService">
+		<property name="pictureManager" ref="pictureManager" />
+		<property name="productDao" ref="productDao" />
+	</bean>
+
+	<bean id="manufacturerService" class="pl.netolution.sklep3.service.ManufacturerService">
+		<property name="pictureManager" ref="pictureManager" />
+		<property name="manufacturerDao" ref="manufacturerDao" />
+	</bean>
+
+	<bean id="validationService" class="pl.netolution.sklep3.service.ValidationService" />
+
+	<bean id="defaultSkuGenerator"
+		class="pl.netolution.sklep3.service.migration.DefaultSkuGenerator">
+		<property name="productDao" ref="productDao" />
+	</bean>
+
+	<bean id="encryptionService" class="pl.netolution.sklep3.service.EncryptionService" />
+
+	<bean id="externalPaymentSystem"
+		class="pl.netolution.sklep3.service.payment.GeneralExternalPaymentSystem">
+		<property name="paymentDao" ref="paymentDao" />
+		<property name="encryptionService" ref="encryptionService" />
+		<property name="adminConfigurationDao" ref="adminConfigurationDao" />
+		<property name="paymentEventDao" ref="paymentEventDao" />
+	</bean>
+
+	<bean id="paymentService" class="pl.netolution.sklep3.service.PaymentService">
+		<property name="externalPaymentSystem" ref="externalPaymentSystem" />
+		<property name="paymentDao" ref="paymentDao" />
+	</bean>
+
+	<bean id="categoriesMigrationService"
+		class="pl.netolution.sklep3.service.migration.CategoriesMigrationService">
+		<property name="productDao" ref="productDao" />
+	</bean>
+
+	<bean id="textMessageService" class="pl.netolution.sklep3.service.TextMessageService">
+		<property name="textDao" ref="textDao" />
+		<property name="orderEmailsNames">
+			<map>
+				<entry key="DEFAULT_SHIPMENT_OPTION_CODE">
+					<map key-type="pl.netolution.sklep3.domain.enums.PaymentFormType">
+						<entry key="CASH_ON_DELIVERY" value="SIMPLE_ORDER" />
+						<entry key="ONLINE_TRANSFER" value="SIMPLE_ORDER" />
+						<entry key="NORMAL_TRANSFER" value="SIMPLE_ORDER" />
+					</map>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+
+	<bean id="phraseIndexer" class="pl.netolution.sklep3.lucene.PhraseIndexer" >
+		<property name="configuration" ref="configuration" />
+		<property name="productDao" ref="productDao" />
+	</bean>
+	<bean id="phraseSearcher" class="pl.netolution.sklep3.lucene.PhraseSearcher">
+		<property name="configuration" ref="configuration" />
+	</bean>
+
+</beans>

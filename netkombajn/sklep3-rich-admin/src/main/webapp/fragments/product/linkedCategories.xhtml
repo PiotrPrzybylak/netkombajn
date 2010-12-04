@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:z="http://www.qualcomm.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:s3="http://netolution.pl/jsf/sklep3">
+      
+      
+      
+      <h1>Dowiązania do kategorii</h1>
+<div id="categoryWrappper">
+	<div id="categeriesTree">
+		<h:form> 
+			<rich:tree switchType="client"  value="#{categoryBacking.categoriesTreeModel}" var="category">
+	            <rich:treeNode icon="../images/yellow-folder-open.png">
+	             	#{category.name}
+					<a4j:commandLink reRender="linkedCategoriesForm" value=" " styleClass="addLinkedCategory"  actionListener="#{addProductBacking.addLinkedCategory}">
+								<f:attribute name="categoryId" value="#{category.id}"/>
+					</a4j:commandLink>
+	            </rich:treeNode>
+        	</rich:tree>
+		</h:form>
+	</div>
+	<div id="categories">
+		
+			<h2>Produkt jest dowiązany do podanych kategorii:</h2>
+		
+			<h:form id="linkedCategoriesForm">
+				<table class="rich-table">
+					<thead class="rich-table-thead">
+						<tr class="rich-table-subheader ">
+							<th class="rich-table-subheadercell">
+								nazwa
+							</th>
+							<th class="rich-table-subheadercell">
+								Usuń dowiązanie
+							</th>
+						</tr>
+					</thead>
+					<s3:repeat value="#{addProductBacking.product.linkedCategories}" var="linkedCategory">
+						<tr class="rich-table-row">
+							<td class="rich-table-cell">
+								#{linkedCategory.name}
+								<t:div styleClass="mainCategoryInfo" rendered="#{linkedCategory==addProductBacking.product.category}">
+									(kategoria główna) 
+								</t:div>
+							</td>
+							<td class="rich-table-cell">
+								 <a4j:commandLink reRender="linkedCategoriesForm" value="Usuń dowiązanie" actionListener="#{addProductBacking.removeLinkedCategory}" 
+			              			 rendered="#{linkedCategory!=addProductBacking.product.category}">
+			               			<f:attribute name="categoryId" value="#{linkedCategory.id}"/>
+			               		</a4j:commandLink>
+							</td>
+						</tr>
+					</s3:repeat>
+				</table>
+				
+				
+			</h:form>
+	</div>
+</div>
+      
+</html>

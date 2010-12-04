@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+    xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+<h1>Płatności</h1>
+
+	<div id="filterBoxes">
+		<h:form id="filter">
+			<h:selectManyCheckbox id="listBoxes" value="#{orderListBacking.filteredOrderStatuses}">										    
+				 <f:selectItems value="#{orderListBacking.orderStatuses}"/>
+			</h:selectManyCheckbox>
+			<a4j:commandButton value="odświerz" 
+				actionListener="#{orderListBacking.filterOrdersAction}" reRender="orders"/>
+		</h:form>
+	</div>
+
+
+	<h:form>
+		<rich:dataTable value="#{paymentListBacking.payments}" var="payment" 
+        	rows="30" reRender="ds" columnClasses="ordersColumn" id="payments">
+       	
+        <rich:column sortBy="#{payment.id}"> 
+               <f:facet name="header">
+                   <h:outputText value="Id płatności"/>
+               </f:facet>
+               <div class="identifier">
+               
+               <h:outputText value="${payment.id}" rendered="#{empty payment.token}"/>
+               <h:commandLink actionListener="#{paymentStatusBacking.choosePayment}" action="paymentStatus" rendered="#{not empty payment.token}">
+					<f:attribute name="paymentId" value="${payment.id}"/>
+						${payment.id} 
+				</h:commandLink>
+				</div>
+        </rich:column>
+    
+        <rich:column sortBy="#{order.customer.surname}"> 
+               <f:facet name="header">
+                   <h:outputText value="Token"/>
+               </f:facet>
+              #{payment.token}
+        </rich:column>
+       
+        	
+         <f:facet name="footer">
+               <h:panelGroup>
+	                <rich:datascroller id="ds" maxPages="7"/>
+			   </h:panelGroup>
+         </f:facet>
+        </rich:dataTable> 	
+      </h:form>
+</ui:define>
+</ui:composition>
+</html>

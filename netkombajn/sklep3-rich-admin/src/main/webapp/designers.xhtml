@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+<h1>Projektanci</h1>
+
+  <rich:simpleTogglePanel switchType="client" label="Instrukcja(pokaż/ukryj)" styleClass="instructionManufacturer" opened="false">
+      	<ol>
+			<li>Mozna usuwac tylko projektantów ,którzy nie są jeszcze powiazani z żadnymi towarami.
+			</li>
+		</ol>
+      </rich:simpleTogglePanel>
+
+<div id="entityWrapper">
+	<div id="entityTable">
+		 <a4j:outputPanel id="editForm" ajaxRendered="true">
+       	
+	      <h:form rendered="#{not empty designerBacking.editedEntity}" styleClass="entityEditForm">
+	   
+	            <div class="row">
+	            	<label>Nazwa producenta</label>
+	            	<h:inputText id="designerName" value="#{designerBacking.editedEntity.name}" required="true"/>
+	            	<h:message for="designerName" styleClass="error"/>
+	            </div>
+	           	<div id="editEntityButton">
+	           		<a4j:commandButton reRender="designers,editForm" action="#{designerBacking.updateEntity}" value="edytuj"/>
+	           		<a4j:commandButton reRender="designers,editForm" value="anuluj">
+	           			<f:setPropertyActionListener target="#{designerBacking.designer}" value="#{null}"/>
+	           		</a4j:commandButton>
+	           	</div>
+	      </h:form>
+	 </a4j:outputPanel>
+		
+		<h:form>
+		<rich:dataTable id="designers" var="designer" value="#{designerDao.all}" rows="20" reRender="ds" styleClass="entityTable">
+        	
+	        <rich:column sortBy="#{designer.name}" styleClass="entityTableColumn"> 
+	               <f:facet name="header">
+	                   Nazwa
+	               </f:facet>
+	             #{designer.name}
+	        </rich:column>
+	         <rich:column styleClass="entityOperationColumn"> 
+	               <f:facet name="header">
+	                   Edycja
+	               </f:facet>
+	               <a4j:commandLink reRender="editForm" value="edytuj">
+	               		<f:setPropertyActionListener target="#{designerBacking.editedEntity}" value="#{designer}"/>
+	               </a4j:commandLink>
+		           
+	        </rich:column>
+	        <rich:column styleClass="entityOperationColumn"> 
+	               <f:facet name="header">
+	                   Usuń
+	               </f:facet>
+	               <a4j:commandLink reRender="designers" value="usuń" action="#{designerBacking.deleteEntity}" 
+	               					rendered="#{designer.productsNumber==0}">
+	               		<f:setPropertyActionListener target="#{designerBacking.editedEntity}" value="#{designer}"/>
+	               </a4j:commandLink>
+		           
+	        </rich:column>
+	        <f:facet name="footer">
+               <h:panelGroup>
+	                <rich:datascroller id="ds" maxPages="7"/>
+			   </h:panelGroup>
+         </f:facet>
+        </rich:dataTable>
+      </h:form>
+      
+      
+	</div>
+	<div id="newEntityBlock">
+		
+		<h:form  styleClass="entityNewForm" id="newEntityForm">
+					<div id="newProductLabel">Dodaj nowego projektanta</div>
+		
+		            <div class="row" >
+		            	<label>Nazwa projektanta</label>
+		            	<h:inputText id="designerName" value="#{designerBacking.addedEntity.name}" required="true" styleClass="newCreatorName"/>
+		            	<h:message for="designerName" styleClass="error"/>
+		            </div>
+		           	<div id="editEntityButton">
+		           		<a4j:commandButton reRender="designers,newEntityForm" action="#{designerBacking.addEntity}" value="dodaj"/>
+		           	</div>
+		 </h:form>
+	
+	</div>
+</div>
+
+      
+    
+       
+</ui:define>
+</ui:composition>
+</html>

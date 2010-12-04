@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+	xmlns:c="http://java.sun.com/jstl/core"	
+	>
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+
+<h1>
+	<h:outputText value="#{addProductBacking.product.name}" rendered="#{not empty addProductBacking.product.name}"/> 
+	<h:outputText value="Dodaj nowy produkt" rendered="#{empty addProductBacking.product.name}"/> 
+</h1>
+           
+           <rich:tabPanel switchType="client" selectedTab="#{addProductBacking.selectedTabName}">
+	        <rich:tab label="Szczegóły produktu" name="details">
+	            <h:form id="mainForm" enctype="multipart/form-data" class="productForm">
+
+	<div id="productProperties">
+	
+                <p>
+                	<label>Nazwa: <span class="inputRequirement">*</span></label>
+                	<h:inputText id="name" value="#{addProductBacking.product.name}" required="true"/>
+            		<h:message for="name" styleClass="error"/>
+            	</p>
+            	
+                <p><label>Numer katalogowy:</label><h:inputText value="#{addProductBacking.product.catalogNumber}" /></p>                    
+                <p>
+                	<label>Producent:</label>
+                	 <h:selectOneMenu value="#{addProductBacking.manufacturerId}" id="manufacturerSelect">
+             			<f:selectItems value="#{addProductBacking.manufacturers}" />
+        				<f:convertNumber />             
+              		</h:selectOneMenu>
+              		
+              		<h:message for="manufacturerSelect" styleClass="error"/>
+              	</p> 
+              	  <p>
+                	<label>Projektant:</label>
+                	 <h:selectOneMenu value="#{addProductBacking.designerId}" id="designerSelect">
+             			<f:selectItems value="#{addProductBacking.designers}" />
+        				<f:convertNumber />             
+              		</h:selectOneMenu>
+              		
+              	<h:message for="designerSelect" styleClass="error"/>
+              	</p>                
+                <p>
+                	<label>Krótki opis: <span class="inputRequirement">*</span></label>
+                	<h:inputTextarea id="shortDescription" value="#{addProductBacking.product.shortDescription}" required="true" class="shortDescription" />
+                	<h:message for="shortDescription" styleClass="error"/>
+                </p>                
+                <p>
+                	<label>Długi opis: <span class="inputRequirement">*</span></label>
+                	<span class="editControll">
+                		<rich:editor value="#{addProductBacking.product.description}" id="description" required="true" height="400" theme="advanced"/>
+                		<h:message for="description" styleClass="error"/>
+                	</span>
+                </p>
+               
+                <p><label>Kategoria:</label>
+                    <h:selectOneMenu value="#{addProductBacking.categoryId}" id="categorySelect">
+             			<f:selectItems value="#{addProductBacking.categories}" />
+        				<f:convertNumber />             
+              		</h:selectOneMenu>
+              			                	<h:message for="categorySelect" styleClass="error"/>
+              	</p>
+              	
+                <p><label>Produkt widoczny:</label><h:selectBooleanCheckbox value="#{addProductBacking.product.visible}" /></p> 
+                <p><label>Waga[kg]:</label>
+                	<h:inputText value="#{addProductBacking.product.weight}" id="weight"/>
+                	<h:message for="weight" styleClass="error" showDetail="true" showSummary="true"/>	
+                </p>
+                <p><label>Gwarancja [w miesiącach]:</label><h:inputText value="#{addProductBacking.product.warranty}" /></p>
+                <p><label>Hit:</label><h:selectBooleanCheckbox value="#{addProductBacking.product.hit}" /></p>
+                 <p><label>Produkt w promocji:</label><h:selectBooleanCheckbox value="#{addProductBacking.product.onSale}" /></p>
+                 <p><label>Obniżka w procentach:</label>
+                 	 <h:selectOneMenu value="#{addProductBacking.product.discountInPercents}" id="discountInPercents">
+                 	 
+                 	   <f:selectItems value="#{addProductBacking.discountInPercentsOptions}" />              		
+
+                 	   <f:selectItem itemValue="0" itemLabel="0%"/>                 	
+                 	   <f:selectItem itemValue="60" itemLabel="60%"/>
+                 	   <f:selectItem itemValue="70" itemLabel="70%"/>
+                 	   <f:selectItem itemValue="75" itemLabel="75%"/> 
+        				<f:convertNumber />        				          
+              		</h:selectOneMenu>
+                	<h:message for="discountInPercents" styleClass="error"/>              		
+               	</p>
+              	      
+           </div>   
+              		<h2 id="defaultSkuHeader">Domyślny wariant</h2>
+              		
+                       	
+             <div id="defaultSkuProperties">
+             
+              	
+                
+                <p>
+                	<label>Nazwa: <span class="inputRequirement">*</span></label>
+                	<h:inputText id="sku_name" value="#{addProductBacking.product.defaultSku.name}" required="true"/>
+            		<h:message for="sku_name" styleClass="error"/>
+            	</p>
+            	                
+                <p>
+                	<label>Cena: <span class="inputRequirement">*</span></label>
+                	<h:inputText id="price" value="#{addProductBacking.product.defaultSku.originalPrice}" required="true">
+                		<f:converter converterId="productPriceConverter"/>
+                	</h:inputText>
+                	<h:message for="price" styleClass="error"/>
+                </p>
+                              	
+                <p><label>Narzucona dostępność:</label>
+                    <h:selectOneMenu value="#{addProductBacking.product.defaultSku.availability}" id="availability">
+             			<f:selectItems value="#{addProductBacking.availabilityStatuses}" />       
+              		</h:selectOneMenu>
+              		   <h:message for="availability" styleClass="error"/>
+              	</p>              	
+              	
+              	<p><label>Ilość w magazynie:</label><h:inputText value="#{addProductBacking.product.defaultSku.quantityInStock}" id="quantityStock"/>
+                		<h:message for="quantityStock" styleClass="error" showDetail="true" showSummary="true"/>                		
+                </p>
+              	
+              	
+              	
+                <p>
+				<span id="inputRequirementLegend" class="inputRequirement">
+				Pola znaczone * są obowiązkowe do wypełnienia  
+				</span>
+            	</p>
+                <p>
+                	<span>
+                		<h:commandButton value="Zapisz" action="#{addProductBacking.saveProduct}"/>	
+                	</span>
+                	<span><h:commandButton value="Anuluj" action="products" immediate="true"/></span>
+                </p>
+              </div>  	
+
+                 	
+
+             
+             
+             
+             </h:form>
+	        </rich:tab>
+	        <rich:tab label="Obrazki" name="pictures" disabled="#{addProductBacking.product.id==null}">
+	         	<div id="picturesEdition">
+	         		<h:form>
+	            	 <p>
+                	
+                	<a4j:outputPanel  styleClass="editControll" id="imagesControll">
+						<ui:repeat value="#{addProductBacking.product.pictures}" var="picture">
+							<div class="imageDetails">
+								<div>
+								<s3:picture picture="${picture}" format="adminsmall"/>
+								 	
+								</div>	
+								<div class="imageDelete">
+									<a4j:commandLink value="usuń" actionListener="#{addProductBacking.deletePicture}" reRender="imagesControll">
+										<f:attribute name="pictureId" value="#{picture.id}"/>
+									</a4j:commandLink>	
+								</div>
+							</div>
+												
+						</ui:repeat>
+						    <a4j:support event="onclick" reRender="imagesControll"/>
+                	</a4j:outputPanel>
+                	<hr/>
+                	
+                	
+	                </p>                
+	                <div id="filesRow">
+	                      
+		                   <rich:fileUpload id="multiupload" fileUploadListener="#{addProductBacking.uploadListener}" styleClass="files"
+			                acceptedTypes="jpg, gif, png, bmp" maxFilesQuantity="500" listHeight="150px" immediateUpload="true" noDuplicate="false"
+			                addControlLabel="Dodaj"
+			                cancelEntryControlLabel="Anuluj"
+			                clearAllControlLabel="Wyczyść listę komunikatów"
+			                clearControlLabel=""
+			                doneLabel="Zakończono"
+			                progressLabel="transfer"
+			                sizeErrorLabel="Zbyt duży rozmiar pliku"
+			                transferErrorLabel="Błąd podczas transferu"
+			                uploadControlLabel="Kopiuj na serwer"
+			                stopControlLabel="zatrzymaj">
+			                   <a4j:support event="onuploadcomplete" reRender="imagesControll" />
+			               
+			                   
+			           </rich:fileUpload>
+			               
+	                </div>
+		            
+		            </h:form>
+	         	</div>
+	            
+	        </rich:tab>
+	         <rich:tab label="Warianty" name="skus" disabled="#{addProductBacking.product.id==null}">
+	         	<div id="skuTab">
+	         			<ui:include src="fragments/product/sku.xhtml"/>
+	         	</div>
+	         
+	         
+	         	
+	         </rich:tab>
+	         <rich:tab label="Kategorie" name="categoories" disabled="#{addProductBacking.product.id==null}">
+	         	<div id="skuTab">
+	         			<ui:include src="fragments/product/linkedCategories.xhtml"/>
+	         	</div>
+	         
+	         
+	         	
+	         </rich:tab>
+	    </rich:tabPanel>
+           
+            
+
+</ui:define>
+</ui:composition>
+
+
+</html>

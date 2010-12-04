@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+    
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+<h1>Formy dostawy</h1>
+
+
+ <rich:simpleTogglePanel switchType="client" label="Instrukcja(pokaż/ukryj)" styleClass="instructionManufacturer" opened="true">
+      	<ol>
+			<li>Aby uzwględnić zakres cenopwy opcji dostawy w trakcie składania zamówienia
+				zaznacz pole "Czy wyświetlać w określonym zakresie cen"
+			</li>
+			<li>Jeśli chcesz aby obowiązywał tylko dolny zakres cenowy zostaw pole "Maksymalny zakres cenowy" puste.
+			</li>
+			<li>Jeśli chcesz aby obowiązywał tylko górny zakres cenowy zostaw pole "Minimalny zakres cenowy" puste.
+			</li>
+			<li>Jeśli chcesz aby dana opcjia nie była wyświetlana gdy towary nie są dostepne od ręki (np. Trzeba czekać 4 tygodnie)
+				zaznacz pole "Dostawa tylko przy dostępności od ręki"
+			</li>
+		</ol>
+      </rich:simpleTogglePanel>
+
+<div id="entityWrapper">
+	<div id="entityTable">
+		 <a4j:outputPanel id="editForm" ajaxRendered="true">
+       	
+	      <h:form id="editEntityForm" rendered="#{not empty shipmentOptionBacking.editedEntity}" styleClass="entityEditForm">
+	   
+	            <div class="row">
+	            	<label>Nazwa formy dostawy</label>
+	            	<h:inputText id="shipmentOptionName" value="#{shipmentOptionBacking.editedEntity.name}"/>
+	            	<h:message for="shipmentOptionName" styleClass="error"/>
+	            </div>
+	             <div class="row">
+		            	<label>Koszt dostawy</label>
+		            	<h:inputText id="shipmentOptionCost" value="#{shipmentOptionBacking.editedEntity.cost}" required="true" styleClass="newEntityName">
+		            		<f:converter converterId="productPriceConverter"/>
+		            	</h:inputText>PLN
+		            	<div><h:message for="shipmentOptionCost" styleClass="error"/></div>
+		            </div>
+		          <div class="row">
+		            	<label>Czy wyświetlać w określonym zakresie cen</label>
+		            	<h:selectBooleanCheckbox id="usePriceRange" value="#{shipmentOptionBacking.editedEntity.useRange}" styleClass="useRange"/>
+		            </div>
+		             <div class="row">
+		            	<label>Minimalny zakres cenowy</label>
+		            	<h:inputText id="minimalOrderPrice" value="#{shipmentOptionBacking.editedEntity.minimalOrderPrice}" styleClass="newEntityName">
+		            		<f:converter converterId="productPriceConverter"/>
+		            	</h:inputText> PLN
+		            	<div><h:message for="minimalOrderPrice" styleClass="error"/></div>
+		            </div>
+		             <div class="row">
+		            	<label>Maksymalny zakres cenowy</label>
+		            	<h:inputText id="maximalOrderPrice" value="#{shipmentOptionBacking.editedEntity.maximalOrderPrice}" styleClass="newEntityName">
+		            		<f:converter converterId="productPriceConverter"/>
+		            	</h:inputText> PLN
+		            	<div><h:message for="maximalOrderPrice" styleClass="error"/></div>
+		            </div>
+		            <div class="row">
+		            	<label>Wagi</label>
+		            	<h:inputText id="weight" value="#{shipmentOptionBacking.editedEntity.weight}" styleClass="newEntityName"/>
+		            	<div><h:message for="weight" styleClass="error"/></div>
+		            </div>
+		             <div class="row">
+		            	<label>  Dostawa tylko przy dostępności od ręki</label>
+		            	<h:selectBooleanCheckbox id="instantAvailability" value="#{shipmentOptionBacking.editedEntity.allowOnlyInstantProducts}" styleClass="useRange"/>
+		            </div>
+		        
+	           	<div id="editEntityButton">
+	           		<a4j:commandButton reRender="entities,editForm" action="#{shipmentOptionBacking.updateEntity}" value="edytuj"/>
+	           		<a4j:commandButton reRender="entities,editForm" value="anuluj">
+	           			<f:setPropertyActionListener target="#{shipmentOptionBacking.editedEntity}" value="#{null}"/>
+	           		</a4j:commandButton>
+	           	</div>
+	      </h:form>
+	 </a4j:outputPanel>
+		
+		<h:form>
+		<rich:dataTable id="entities" var="shipmentOption" value="#{shipmentOptionDao.all}" rows="20" reRender="ds" styleClass="entityTable">
+        	
+	        <rich:column sortBy="#{shipmentOption.name}" styleClass="entityTableColumn"> 
+	               <f:facet name="header">
+	                   Nazwa
+	               </f:facet>
+	             #{shipmentOption.name}
+	        </rich:column>
+	        <rich:column styleClass="entityTableColumn"> 
+	               <f:facet name="header">
+	                   Wagi
+	               </f:facet>
+	             #{shipmentOption.weight}
+	        </rich:column>
+	        
+	         <rich:column sortBy="#{shipmentOption.cost}" styleClass="entityTableColumn"> 
+	               <f:facet name="header">
+	                   Koszt
+	               </f:facet>
+	               <s3:price price="#{shipmentOption.cost}"/>
+	        </rich:column>
+	         <rich:column styleClass="entityTableColumn"> 
+	               <f:facet name="header">
+	                  Zakres cen
+	               </f:facet>
+	               <h:outputText value="tak" rendered="#{shipmentOption.useRange}"/>
+	                <h:outputText value="nie" rendered="#{not shipmentOption.useRange}"/>
+	              
+	        </rich:column>
+	         <rich:column sortBy="#{shipmentOption.minimalOrderPrice}" styleClass="entityTableColumn"> 
+	               <f:facet name="header">
+	                   Minimalna cena
+	               </f:facet>
+	               <s3:price price="#{shipmentOption.minimalOrderPrice}"/>
+	        </rich:column>
+	         <rich:column sortBy="#{shipmentOption.maximalOrderPrice}" styleClass="entityTableColumn"> 
+	               <f:facet name="header">
+	                  Maksymalna Cena
+	               </f:facet>
+	               <s3:price price="#{shipmentOption.maximalOrderPrice}"/>
+	        </rich:column>
+	         <rich:column styleClass="entityTableColumn"> 
+	               <f:facet name="header">
+	                   Dostawa tylko od ręki
+	               </f:facet>
+	               <h:outputText value="tak" rendered="#{shipmentOption.allowOnlyInstantProducts}"/>
+	                <h:outputText value="nie" rendered="#{not shipmentOption.allowOnlyInstantProducts}"/>
+	              
+	        </rich:column>
+	         <rich:column styleClass="entityOperationColumn"> 
+	               <f:facet name="header">
+	                   Edycja
+	               </f:facet>
+	               <a4j:commandLink reRender="editForm" value="edytuj">
+	               		<f:setPropertyActionListener target="#{shipmentOptionBacking.editedEntity}" value="#{shipmentOption}"/>
+	               </a4j:commandLink>
+		           
+	        </rich:column>
+	        <rich:column styleClass="entityOperationColumn"> 
+	               <f:facet name="header">
+	                   Usuń
+	               </f:facet>
+	               <a4j:commandLink reRender="entities" value="usuń" action="#{shipmentOptionBacking.deleteEntity}" >
+	               		<f:setPropertyActionListener target="#{shipmentOptionBacking.editedEntity}" value="#{shipmentOption}"/>
+	               </a4j:commandLink>
+		           
+	        </rich:column>
+	        <f:facet name="footer">
+               <h:panelGroup>
+	                <rich:datascroller id="ds" maxPages="7"/>
+			   </h:panelGroup>
+         </f:facet>
+        </rich:dataTable>
+      </h:form>
+      
+      
+	</div>
+	<div id="newEntityBlock">
+		
+		
+		<h:form  styleClass="entityNewForm" id="newEntityForm">
+					<div id="newProductLabel">Dodaj nową formę dostawy</div>
+		
+		            <div class="row">
+		            	<label>Nazwa formy dostawy</label>
+		            	<h:inputText id="newShipmentOptionName" value="#{shipmentOptionBacking.addedEntity.name}" required="true" styleClass="newEntityName"/>
+		            	<div><h:message for="newShipmentOptionName" styleClass="error"/></div>
+		            </div>
+		            
+		            <div class="row">
+		            	<label>Wagi</label>
+		            	<h:inputText id="newWeight" value="#{shipmentOptionBacking.addedEntity.weight}" styleClass="newEntityName"/>
+		            	<div><h:message for="newWeight" styleClass="error"/></div>
+		            </div>
+		             <div class="row">
+		            	<label>Koszt dostawy</label>
+		            	<h:inputText id="newShipmentOptionCost" value="#{shipmentOptionBacking.addedEntity.cost}" required="true" styleClass="newEntityName">
+		            		<f:converter converterId="productPriceConverter"/>
+		            	</h:inputText> PLN
+		            	<div><h:message for="newShipmentOptionCost" styleClass="error"/></div>
+		            </div>
+		            <div class="row">
+		            	<label>Czy wyświetlać w określonym zakresie cen</label>
+		            	<h:selectBooleanCheckbox id="usePriceRange" value="#{shipmentOptionBacking.addedEntity.useRange}" styleClass="useRange"/>
+		            </div>
+		             <div class="row">
+		            	<label>Minimalny zakres cenowy</label>
+		            	<h:inputText id="minimalOrderPrice" value="#{shipmentOptionBacking.addedEntity.minimalOrderPrice}" styleClass="newEntityName">
+		            		<f:converter converterId="productPriceConverter"/>
+		            	</h:inputText> PLN
+		            	<div><h:message for="minimalOrderPrice" styleClass="error"/></div>
+		            </div>
+		             <div class="row">
+		            	<label>Maksymalny zakres cenowy</label>
+		            	<h:inputText id="maximalOrderPrice" value="#{shipmentOptionBacking.addedEntity.maximalOrderPrice}" styleClass="newEntityName">
+		            		<f:converter converterId="productPriceConverter"/>
+		            	</h:inputText> PLN
+		            	<div><h:message for="maximalOrderPrice" styleClass="error"/></div>
+		            </div>
+		            <div class="row">
+		            	<label>  Dostawa tylko przy dostępności od ręki</label>
+		            	<h:selectBooleanCheckbox id="instantAvailability" value="#{shipmentOptionBacking.addedEntity.allowOnlyInstantProducts}" styleClass="useRange"/>
+		            </div>
+		          
+		           	<div id="editEntityButton">
+		           		<a4j:commandButton reRender="entities,newEntityForm" action="#{shipmentOptionBacking.addEntity}" value="dodaj"/>
+		           	</div>
+		 </h:form>
+	
+	</div>
+</div>
+
+      
+    
+       
+</ui:define>
+</ui:composition>
+</html>

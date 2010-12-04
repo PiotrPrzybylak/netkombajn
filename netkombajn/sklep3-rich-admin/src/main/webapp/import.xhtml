@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:tr="http://myfaces.apache.org/trinidad"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+	
+	
+	
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+	<h1>Import produktów do sklepu</h1>
+
+	<h:form enctype="multipart/form-data">
+	
+		<t:div rendered="#{!importBacking.importInProgress}">
+	
+		<div class="fieldset">
+			<div id="importHeader">Import kategorii do sklepu</div>
+			<p>
+				<div class="message"><h:outputText value="#{importBacking.categoryMessage}"/></div>
+				<t:inputFileUpload value="#{importBacking.categoryUploadedFile}" storage="file" accept="text/xml"/>
+			</p>
+			<p>
+				<h:commandButton value="importuj" actionListener="#{importBacking.importCategoryFile}"/>
+			</p>
+		</div>
+		
+		<div class="fieldset" id="productImport">
+			<div id="importHeader">Import produktow do sklepu</div>
+			<p>
+
+				<t:inputFileUpload value="#{importBacking.productUploadedFile}" storage="file" accept="text/xml"/>
+			</p>
+			<p>
+				<h:commandButton value="importuj" action="#{importBacking.importProductFile}"/>
+			</p>
+		</div>
+		</t:div>
+				
+		
+		 
+		 <t:div rendered="#{importBacking.importInProgress}">
+			  <br/>
+				 TRWA IMPORT! Proszę czekać...
+			  <br/>
+			  <h:commandButton value="Przejdź do strony statusu importu" action="importStatus"/>
+		 </t:div>
+		
+	</h:form>
+</ui:define>
+</ui:composition>
+</html>

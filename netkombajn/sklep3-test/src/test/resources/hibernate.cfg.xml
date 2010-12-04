@@ -1,0 +1,33 @@
+<!DOCTYPE hibernate-configuration PUBLIC 
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+
+		<property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+
+		<property name="hbm2ddl.auto">create</property>
+
+		<property name="hibernate.show_sql">true</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost/skleptest</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">admin</property>
+		<property name="connection.pool_size">1</property>
+
+
+		<mapping class="pl.netolution.sklep3.domain.Manufacturer"/>
+		<mapping class="pl.netolution.sklep3.domain.Picture"/>
+		<mapping class="pl.netolution.sklep3.domain.ProductPicture"/>
+		<mapping class="pl.netolution.sklep3.domain.Product"/>
+		<mapping class="pl.netolution.sklep3.domain.ProductFamily"/>
+		<mapping class="pl.netolution.sklep3.domain.StockKeepingUnit"/>
+		<mapping class="pl.netolution.sklep3.domain.Category"/>
+		<mapping class="pl.netolution.sklep3.domain.Designer"/>
+		
+		
+	</session-factory>
+
+</hibernate-configuration>

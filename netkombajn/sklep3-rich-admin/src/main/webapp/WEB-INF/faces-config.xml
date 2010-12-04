@@ -1,0 +1,503 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE faces-config PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+  "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+
+<faces-config>
+
+	<application>
+		<view-handler>pl.netolution.sklep3.web.jsf.handlers.MailingErrorViewHandler</view-handler>
+		 <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+		 <resource-bundle>
+			<base-name>messagesBundle</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+		
+		
+		<message-bundle>customMessages</message-bundle>
+		 <locale-config>
+	      <default-locale>pl</default-locale>
+	    </locale-config>
+	</application>
+     
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>orders</from-outcome>
+			<to-view-id>/orders.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>payments</from-outcome>
+			<to-view-id>/payments.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>paymentStatus</from-outcome>
+			<to-view-id>/paymentStatus.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>orderDetails</from-outcome>
+			<to-view-id>/order.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>productDetails</from-outcome>
+			<to-view-id>/product.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addProduct</from-outcome>
+			<to-view-id>/addProduct.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>products</from-outcome>
+			<to-view-id>/products.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>import</from-outcome>
+			<to-view-id>/import.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>categories</from-outcome>
+			<to-view-id>/categories.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>productMassEdition</from-outcome>
+			<to-view-id>/productsMassEdition.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>compositeList</from-outcome>
+			<to-view-id>/compositeProductList.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>compositeNew</from-outcome>
+			<to-view-id>/addCompositeProduct.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>groupDetails</from-outcome>
+			<to-view-id>/groupDetails.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>configure</from-outcome>
+			<to-view-id>/configure.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>pictures</from-outcome>
+			<to-view-id>/pictures.xhtml</to-view-id>
+			<redirect/>				
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>newsletter</from-outcome>
+			<to-view-id>/newsletter.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manufacturers</from-outcome>
+			<to-view-id>/manufacturers.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>designers</from-outcome>
+			<to-view-id>/designers.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>shipmentOptions</from-outcome>
+			<to-view-id>/shipmentOptions.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>importStatus</from-outcome>
+			<to-view-id>/importStatus.xhtml</to-view-id>
+		</navigation-case>	
+		<navigation-case>
+			<from-outcome>productFamily</from-outcome>
+			<to-view-id>/productFamily.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>familyDetails</from-outcome>
+			<to-view-id>/familyDetails.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editText</from-outcome>
+			<to-view-id>/editText.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>texts</from-outcome>
+			<to-view-id>/texts.xhtml</to-view-id>
+		</navigation-case>				
+			
+		
+				
+	</navigation-rule>    
+	
+	<navigation-rule>
+	<from-view-id>/import.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>redirect</from-outcome>
+			<to-view-id>/import.xhtml</to-view-id>
+			<redirect/>	
+		</navigation-case>		
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>orderListBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.OrderListBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>orderDao</property-name>
+			<value>#{orderDao}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>messages</property-name>
+			<value>#{msgs}</value>
+		</managed-property>
+		<managed-property>
+            <property-name>rowsOnPage</property-name>
+            <value>20</value>
+        </managed-property>	
+	</managed-bean> 
+	
+	<managed-bean>
+		<managed-bean-name>orderDetailsBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.OrderDetailsBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+      	<managed-property>
+            <property-name>orderDao</property-name>
+            <value>#{orderDao}</value>
+        </managed-property>
+        <managed-property>
+        	<property-name>messages</property-name>
+        	<value>#{msgs}</value>
+        </managed-property>	
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>paymentListBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.PaymentListBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>paymentDao</property-name>
+			<value>#{paymentDao}</value>
+		</managed-property>
+	</managed-bean> 
+
+	<managed-bean>
+		<managed-bean-name>paymentStatusBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.PaymentStatusBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>paymentDao</property-name>
+			<value>#{paymentDao}</value>
+		</managed-property>
+
+		<managed-property>
+			<property-name>externalPaymentSystem</property-name>
+			<value>#{externalPaymentSystem}</value>
+		</managed-property>
+		
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>textListBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.TextListBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>textDao</property-name>
+			<value>#{textDao}</value>
+		</managed-property>
+	</managed-bean> 
+	
+	<managed-bean>
+		<managed-bean-name>textBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.TextBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>textDao</property-name>
+			<value>#{textDao}</value>
+		</managed-property>
+       	<managed-property>
+            <property-name>jsfRequestResolver</property-name>
+            <value>#{jsfRequestResolver}</value>
+        </managed-property>
+     
+	</managed-bean>  	
+
+	<managed-bean>
+		<managed-bean-name>productBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.ProductBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>productDao</property-name>
+            <value>#{productDao}</value>
+        </managed-property>
+         <managed-property>
+            <property-name>categoryDao</property-name>
+            <value>#{categoryDao}</value>
+        </managed-property>
+       	<managed-property>
+            <property-name>jsfRequestResolver</property-name>
+            <value>#{jsfRequestResolver}</value>
+        </managed-property>
+     	<managed-property>
+            <property-name>shopService</property-name>
+            <value>#{shopService}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>productService</property-name>
+            <value>#{productService}</value>
+        </managed-property>
+        <managed-property>
+        	<property-name>messageHelper</property-name>
+        	<value>#{messageHelper}</value>
+        </managed-property>	
+        <managed-property>
+            <property-name>rowsOnPage</property-name>
+            <value>20</value>
+        </managed-property>	
+     
+	</managed-bean>  
+
+	<managed-bean>
+		<managed-bean-name>addProductBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.AddProductBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>productDao</property-name>
+            <value>#{productDao}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>categoryDao</property-name>
+            <value>#{categoryDao}</value>
+        </managed-property> 
+         <managed-property>
+            <property-name>manufacturerDao</property-name>
+            <value>#{manufacturerDao}</value>
+        </managed-property>   
+        <managed-property>
+            <property-name>designerDao</property-name>
+            <value>#{designerDao}</value>
+        </managed-property>        
+       	<managed-property>
+            <property-name>jsfRequestResolver</property-name>
+            <value>#{jsfRequestResolver}</value>
+        </managed-property>
+       	<managed-property>
+            <property-name>pictureManager</property-name>
+            <value>#{pictureManager}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>pictureDao</property-name>
+            <value>#{pictureDao}</value>
+        </managed-property>  
+       
+            
+	</managed-bean>  
+	
+	
+	<managed-bean>
+		<managed-bean-name>categoryBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.CategoryBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>categoryDao</property-name>
+            <value>#{categoryDao}</value>
+        </managed-property>	
+        <managed-property>
+            <property-name>shopService</property-name>
+            <value>#{shopService}</value>
+        </managed-property>	
+	</managed-bean> 
+
+	<managed-bean>
+		<managed-bean-name>compositeBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.CompositeProductBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+      	<managed-property>
+            <property-name>compositeProductDao</property-name>
+            <value>#{compositeProductDao}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>productGroupDao</property-name>
+            <value>#{productGroupDao}</value>
+        </managed-property>
+       <managed-property>
+            <property-name>categoryDao</property-name>
+            <value>#{categoryDao}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>productDao</property-name>
+            <value>#{productDao}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>jsfRequestResolver</property-name>
+            <value>#{jsfRequestResolver}</value>
+        </managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>configurationBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.ConfigurationBackingBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+      	<managed-property>
+            <property-name>adminConfigurationDao</property-name>
+            <value>#{adminConfigurationDao}</value>
+        </managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>importBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.ImportBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+            <property-name>incomImportService</property-name>
+            <value>#{incomImportService}</value>
+        </managed-property>
+		<managed-property>
+            <property-name>importDao</property-name>
+            <value>#{importDao}</value>
+        </managed-property>
+		<managed-property>
+            <property-name>configuration</property-name>
+            <value>#{configuration}</value>
+        </managed-property>
+		<managed-property>
+            <property-name>globalImportBackingBean</property-name>
+            <value>#{globalImportBacking}</value>
+        </managed-property>	        	        		
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>globalImportBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.GlobalImportBackingBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>	
+		<managed-property>
+            <property-name>pictureImportService</property-name>
+            <value>#{picturesImportService}</value>
+        </managed-property>
+	</managed-bean>	
+	
+	<managed-bean>
+		<managed-bean-name>importPicturesBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.ImportPicturesBackingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+            <property-name>productDao</property-name>
+            <value>#{productDao}</value>
+        </managed-property>	        		
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>manufacturerBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.creators.ManufacturerBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+            <property-name>manufacturerDao</property-name>
+            <value>#{manufacturerDao}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>pictureManager</property-name>
+            <value>#{pictureManager}</value>
+        </managed-property>
+        <managed-property>
+        	<property-name>manufacturerService</property-name>
+            <value>#{manufacturerService}</value>
+        </managed-property>        		
+	</managed-bean>		
+	
+	
+	<managed-bean>
+		<managed-bean-name>designerBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.creators.DesignerBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+            <property-name>entityDao</property-name>
+            <value>#{designerDao}</value>
+        </managed-property>	        		
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>productFamilyBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.product.ProductFamilyBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+            <property-name>entityDao</property-name>
+            <value>#{productFamilyDao}</value>
+        </managed-property>
+          <managed-property>
+            <property-name>categoryDao</property-name>
+            <value>#{categoryDao}</value>
+        </managed-property>
+         <managed-property>
+            <property-name>jsfRequestResolver</property-name>
+            <value>#{jsfRequestResolver}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>productDao</property-name>
+            <value>#{productDao}</value>
+        </managed-property>	        		
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>shipmentOptionBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.shipment.ShipmentOptionBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+            <property-name>entityDao</property-name>
+            <value>#{shipmentOptionDao}</value>
+        </managed-property>
+         <managed-property>
+        	<property-name>messageHelper</property-name>
+        	<value>#{messageHelper}</value>
+        </managed-property>	        		
+	</managed-bean>
+	
+	
+	<managed-bean>
+		<managed-bean-name>picturesBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.pictures.PicturesBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+            <property-name>pictureManager</property-name>
+            <value>#{pictureManager}</value>
+        </managed-property>	        		
+	</managed-bean>			
+
+	<managed-bean>
+		<managed-bean-name>jsfRequestResolver</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.JsfRequestResolver</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>messageHelper</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.utils.MessageHelper</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>testBacking</managed-bean-name>
+		<managed-bean-class>pl.netolution.sklep3.web.jsf.TestBackingBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+		<managed-property>
+            <property-name>defaultSkuGenerator</property-name>
+            <value>#{defaultSkuGenerator}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>categoriesMigrationService</property-name>
+            <value>#{categoriesMigrationService}</value>
+        </managed-property>
+	</managed-bean> 	
+
+	<component>
+		<description />
+		<display-name>Iterator</display-name>
+		<component-type>pl.netolution.sklep3.Iterator</component-type>
+		<component-class>pl.netolution.sklep3.web.jsf.UIIterator</component-class>
+
+		<component-extension>
+			<component-family>facelets</component-family>
+			<renderer-type>facelets.ui.Repeat</renderer-type>
+		</component-extension>
+	</component>
+	
+	
+	<converter>
+		<converter-id>productPriceConverter</converter-id>
+		<converter-class>pl.netolution.sklep3.web.jsf.converters.PriceConverter</converter-class>
+	</converter>
+
+</faces-config>

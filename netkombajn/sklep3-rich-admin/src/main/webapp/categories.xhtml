@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"	
+	>
+	
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+
+<h1><h:form><h:commandLink actionListener="#{categoryBacking.chooseRootCategory}">Kategorie</h:commandLink></h:form></h1>
+<div id="categoryWrappper">
+	<div id="categeriesTree">
+		<h:form> 
+			<rich:tree switchType="client"  value="#{categoryBacking.categoriesTreeModel}" var="category">
+	            <rich:treeNode icon="../images/yellow-folder-open.png">
+	             
+					  <h:commandLink value="#{category.name} (#{category.allProductsNumber})" styleClass="nodeFolder"  actionListener="#{categoryBacking.chooseCategory}">
+								<f:attribute name="categoryId" value="#{category.id}"/>
+					</h:commandLink>
+	            </rich:treeNode>
+        	</rich:tree>
+		</h:form>
+	</div>
+	<div id="categories">
+		<h:outputText value="Wybierz kategorię" rendered="#{empty categoryBacking.choosenCategory}"/>
+				<h:form rendered="#{empty categoryBacking.choosenCategory}">
+					Nowa kategoria główna: <h:inputText value="#{categoryBacking.newSubcategory}"/>
+				<span><h:commandButton value="dodaj" action="#{categoryBacking.addSubcategory}"/></span>									
+				</h:form>
+		
+		<h:form rendered="#{not empty categoryBacking.choosenCategory}">
+		<div  class="fieldset">	
+			
+			<p>
+				<label> Nazwa : </label>
+				<h:inputText value="#{categoryBacking.choosenCategory.name}"/>
+			</p>
+			<p>
+				<label title="Ten narzut będzie używany przy imporcie produktów tej kategorii(jesli nie będzie pusta) ">
+					Domyślny narzut dla produktów tej kategorii:</label>
+				<h:inputText value="#{categoryBacking.choosenCategory.profitMargin}"/> %
+			</p>
+			<p>
+				<label title="To będzie domyślna waga produktów tej kategorii jeśli w samych produktach ta wartość nie będzie zdefiniowana">
+					Waga dla produktów tej kategorii:</label>
+				<h:inputText value="#{categoryBacking.choosenCategory.weight}"/> kg
+			</p>
+			<p>
+				<label title="Ta dostępność będzie używana przy imporcie produktów tej kategorii">
+					Domyślna dostępność dla produktów tej kategorii:</label>
+                    <h:selectOneMenu value="#{categoryBacking.choosenCategory.defaultManualAvailability}">
+             			<f:selectItems value="#{addProductBacking.availabilityStatuses}" />       
+              		</h:selectOneMenu>
+			</p>
+			<p>
+				<label title="Pozycja na liście">
+					Pozycja na liscie :</label>
+            	<h:inputText value="#{categoryBacking.choosenCategory.position}"/>
+			</p>						
+			<p>
+				<span><h:commandButton value="zapisz" actionListener="#{categoryBacking.updateCategory}"/></span>
+				<span><h:commandButton value="anuluj" type="reset"/></span>
+				<span><h:commandButton rendered="#{categoryBacking.choosenCategory.deletable}" value="usuń" actionListener="#{categoryBacking.deleteCategory}"/></span>
+			</p>
+		</div>
+		</h:form>
+				<h:form rendered="#{not empty categoryBacking.choosenCategory}">
+					Nowa podkategoria: <h:inputText value="#{categoryBacking.newSubcategory}"/>
+				<span><h:commandButton value="dodaj" action="#{categoryBacking.addSubcategory}"/></span>									
+		</h:form>
+		
+	</div>
+</div>
+
+
+
+</ui:define>
+</ui:composition>
+
+
+</html>
