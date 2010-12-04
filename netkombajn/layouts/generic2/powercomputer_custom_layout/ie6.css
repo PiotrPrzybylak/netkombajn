@@ -1,0 +1,265 @@
+div#wrapper{
+	width: 970px;
+	padding: 0px;
+}
+
+div#main{
+	padding: 0xp;
+	width: 960px;
+	margin-left: 20px;
+}
+
+#content-two-column{
+	float: right;
+	width: 620px;
+}
+
+
+div#sidebar{
+	margin: 0px;
+	padding: 0px;
+	width: 309px;
+}
+
+div#content{
+	margin: 0px;
+	padding: 0px;
+}
+
+#info li{
+	margin: 0xp;
+	border: 1px solid white;
+}
+
+#info li a{
+	margin: 0xp;
+	padding: 0px;
+}
+
+#search label {
+	float: right;
+	width: 55px;
+}
+
+/*******produkty******/
+#productsList{
+	clear: both;
+	height: 1px;	
+}
+
+#categoryProducts .product{
+	clear: both;
+}
+
+#categoryProducts .product-small-picture{
+	float: left;
+	width: 115px;
+	height:115px;
+	background-color: white;
+	border:0px;
+	margin-bottom: 0px;
+}
+
+#categoryProducts .product-information{
+	float: left;
+	margin:0xp;
+	padding:0xp;
+	margin-left: 5px;
+	background-color: #f6f8fe;
+}
+
+#categoryProducts .product-name{
+	float: left;	
+}
+
+#categoryProducts .product-price{
+	float: left;
+}
+
+#categoryProducts #cart{
+	float: left;
+}
+
+#addToCartComponent{
+	margin-top: 80px;	
+	
+}
+
+#addToCartComponent button, #addToCartComponent input, #addToCartComponent label {
+	display: inline;
+	float: none;
+}
+
+#addToCartComponent form {
+	float: none;
+}
+
+#productsListHeader  span {
+	display: block;
+	float: left;
+}
+
+#prodcutNameHeader {
+	width: 300px;
+}
+
+#productHeader {
+	float: none;
+}
+
+#productDetails {
+	width: 205px;
+	position: absolute;
+	right: 10px;
+	top: 30px;
+}
+
+#productPicture {
+	float: none;
+	display: block;
+}
+
+.productListAvailability{
+	border-bottom: none;
+	padding-bottom: 5px;
+	margin-bottom: 7px;	
+}
+
+/******************koszyk***************/
+#cart{
+	padding: 0px;
+	margin: 0px;	
+}
+
+#cart table{
+	margin: 0px;
+	padding: 0px;
+	width: 475px;;
+}
+
+
+#cart td.productListing-data{
+	margin: 0px;
+	padding: 0px;
+}
+
+#cart td.productNameCell{
+	margin: 0px;
+	padding: 0px;
+	width: 260px;
+}
+
+#cart td a{
+	margin: 0px;
+	padding: 0px;
+	width: 260px;
+}
+
+#cart td b{
+	color: black;
+}
+
+#cart span.totalPrice{
+	display: block;
+	font-weight: normal;
+	color: black;
+	position: relative;
+}
+
+#cart span.productName{
+	left:120px;
+}
+
+
+#shipmentData FIELDSET{
+	width: 500px;
+}
+
+.formTextField{
+	display: block;
+}
+/*************************Shipment opt***/
+
+
+#shipmentOptions{
+	background-color: white;	
+}
+
+#shipmentOptions form{
+	margin: 0px;
+}
+
+#shipmentOptions  .box-content{
+	padding: 0px 0 0 10px;
+	width: 505px;
+	border: 0px;
+	
+}
+
+.checkoutBarCurrent{
+	color: black;	
+}
+
+.checkoutBarTo{
+	color: black	
+}
+
+/********************payment************/
+#paymentOptions{
+	background-color: white;	
+}
+
+#paymentDocumentHeader span.firstHeader{
+	width: 75% !important;
+}
+
+span.paymentOptionText{
+	width: 75% !important;
+}
+
+#paymentOptions .box-content{
+	padding: 0px 0 0 10px;
+	width: 505px;
+	border: 0px;
+}
+
+#paymentOptions li span{
+	border:0px;
+}
+
+#paymentOptions li span.paymentOptionText{
+	border:0px;
+}
+
+/***************confirm order*******/
+#confirmOrder{
+	background-color: white;	
+}
+
+#confirmOrder .box-content{
+	padding: 0px 0 0 10px;
+	width: 505px;
+	border: 0px;
+}
+
+
+table#confirmOrderDetailsTable{
+	color: black !important;
+	background-color: white;
+}
+
+table#confirmOrderProductsTable{
+	color: black !important;
+	background-color: white;
+}
+
+/**********thanks***********/
+#thanks {
+	background-color: white;	
+}
+
+#thanks .box-content{
+	padding: 0px 0 0 10px;
+	width: 505px;
+	border: 0px;
+}

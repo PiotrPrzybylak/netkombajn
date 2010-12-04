@@ -1,0 +1,51 @@
+.availability {
+	width: 100px;
+	height: 23px;
+	display: block;
+	margin-left: -5px;
+	margin-top: -5px;
+}
+
+.AVAILABILITY_NOT_AVAILABLE {
+	background: url("img/availability/not_available.jpg") no-repeat center;
+}
+
+.AVAILABILITY_LOW {
+	background: url("img/availability/low.jpg") no-repeat center;
+}
+
+.AVAILABILITY_MEDIUM {
+	background: url("img/availability/medium.jpg") no-repeat center;
+}
+
+.AVAILABILITY_HIGH {
+	background: url("img/availability/high.jpg") no-repeat center;
+}
+
+.AVAILABILITY_SOON {
+	background: url("img/availability/soon.jpg") no-repeat center;
+}
+
+.AVAILABILITY_ON_ORDER {
+	background: url("img/availability/on_order.jpg") no-repeat center;
+}
+
+.AVAILABILITY_TEMPORARY_SHORTAGE {
+	background: url("img/availability/temporary_shortage.jpg") no-repeat center;
+}
+
+.availability span {
+	display: none;
+}
+
+
+.productListAvailability{
+	display:table-cell;
+	border-bottom: 1px black dotted;
+	padding-bottom: 5px;	
+}
+
+.availabilityInList{
+	display: inline-block;
+	width: 220px;
+}

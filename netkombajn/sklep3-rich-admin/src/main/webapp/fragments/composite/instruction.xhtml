@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:z="http://www.qualcomm.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+      
+      <ui:composition>
+      
+      <rich:simpleTogglePanel switchType="client" label="Instrukcja(pokaż/ukryj)" styleClass="instruction" opened="false">
+      	<ol id="compositeLegend">
+			<li>Po lewej stronie panelu  znajduje się sekcja pól przeznaczonych dla zestawu.
+				wprowadź tam nazwę zestawu, opis oraz procent zysku.<span class="important">Uwaga! Przycisk "zapisz zestaw" definitywnie
+				zapisuje zestaw w bazie danych.</span>
+			</li>
+			<li>
+				Zestaw skąłda się z grup. Aby dodać grupę kliknij na link "Dodaj grupę" z prawej strony panelu.
+				Po wypełnieniu danych kliknij rpzycisk dodaj.<span class="important">Gdy dodasz wszystkei grupy wybierz 
+				przycisk "zapisz zestaw" z sekcji zestawu.</span>
+			</li>
+			<li>
+				Aby dodać produkty do kategorii kliknij nazwe kategorii w kolumnie nazwa w tabeli kategorii poniżej sekcji zestawu.
+			</li>
+		</ol>
+      </rich:simpleTogglePanel>
+     		
+		
+      		
+      </ui:composition>
+</html> 

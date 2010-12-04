@@ -1,0 +1,1 @@
+mvnDebug tomcat:run

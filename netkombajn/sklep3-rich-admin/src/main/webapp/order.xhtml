@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+	
+	
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+<h1>Zamówienie numer ${orderDetailsBacking.order.id}</h1>
+
+<div id="orderProperties"><!-- ORDER INFO -->
+
+	<h2>Dane do wysyłki</h2>
+	
+	<div id="shipmentInfo" class="orderInfo">
+		<p>
+			<label>Nazwa: </label>
+			<span>${orderDetailsBacking.order.recipient.lastName} ${orderDetailsBacking.order.recipient.firstName}
+			
+			<h:outputText value=" ( ${orderDetailsBacking.order.recipient.companyName} )" rendered="#{not empty orderDetailsBacking.order.recipient.companyName}"/>
+			</span>
+		</p>
+		<p>
+			<label>Ulica:</label>
+			<span>${orderDetailsBacking.order.recipient.shipmentAddress.streetName} ${orderDetailsBacking.order.recipient.shipmentAddress.streetNumber}</span>
+		</p>
+		<p>
+			<label>Numer lokalu:</label>
+			<span>${orderDetailsBacking.order.recipient.shipmentAddress.flatNumber}</span>
+		</p>
+		<p>
+			<label>Miasto:</label>
+			<span>${orderDetailsBacking.order.recipient.shipmentAddress.city}</span></p>
+		<p>
+			<label>Kod Pocztowy:</label>
+			<span>${orderDetailsBacking.order.recipient.shipmentAddress.postalCode}</span>
+		</p>
+		<p>
+			<label>Poczta:</label>
+			<span>${orderDetailsBacking.order.recipient.shipmentAddress.postalCity}</span>
+		</p>
+		<p>
+			<label>Telefon kontaktowy:</label>
+			<span>${orderDetailsBacking.order.recipient.phone}</span>
+		</p>
+		<p>
+			<label>Email zamawiającego:</label>
+			<span>${orderDetailsBacking.order.customer.email}</span>
+		</p>
+		<p>
+			<label>Email odbiorcy:</label>
+			<span>${orderDetailsBacking.order.recipient.email}</span>
+		</p>
+	</div>
+	
+	
+	<rich:simpleTogglePanel id="clientComments" switchType="client" 
+	label="Komentarz użytkownika (pokaż/ukryj)" opened="true" rendered="#{not empty orderDetailsBacking.order.comments}">
+	${orderDetailsBacking.order.comments}
+	</rich:simpleTogglePanel>
+
+	<!-- Faktura -->
+	
+	 <rich:simpleTogglePanel id="invoiceDataBlock" switchType="client" label="Dane do faktury (pokaż/ukryj)" opened="false" rendered="#{not empty orderDetailsBacking.order.invoice}">
+	 	<div  class="orderInfo">
+		 	<p>
+				<label>Nazwa Firmy:</label>
+				<span>${orderDetailsBacking.order.invoice.companyName}</span>
+			</p>
+			<p>
+				<label>Nip:</label>
+				<span>${orderDetailsBacking.order.invoice.nip}</span>
+			</p>
+			<p>
+				<label>Ulica:</label>
+				<span>${orderDetailsBacking.order.invoice.invoiceAddress.streetName} ${orderDetailsBacking.order.invoice.invoiceAddress.streetNumber}</span>
+			</p>
+			<p>
+				<label>Miasto:</label>
+				<span>${orderDetailsBacking.order.invoice.invoiceAddress.city}</span></p>
+			<p>
+				<label>Kod Pocztowy:</label>
+				<span>${orderDetailsBacking.order.invoice.invoiceAddress.postalCode}</span>
+			</p>
+			<p>
+				<label>Poczta:</label>
+				<span>${orderDetailsBacking.order.invoice.invoiceAddress.postalCity}</span>
+			</p>
+		</div>
+	 </rich:simpleTogglePanel>
+	
+	
+	
+	<!-- EDYCJA -->
+	
+	 <rich:simpleTogglePanel switchType="client" label="Edycja danych do wysyłki (pokaż/ukryj)">
+	 	<div id="orderEdition">
+		
+			<h:form>
+				<p>
+					<label>Ulica:</label>
+					<h:inputText id="editstreet" value="#{orderDetailsBacking.order.recipient.shipmentAddress.streetName}" required="true"/>
+					<span class="error"><h:message for="editstreet"/></span>
+				</p>
+				<p>
+					<label>Numer ulicy:</label>
+					<h:inputText id="editStreetNumber" value="#{orderDetailsBacking.order.recipient.shipmentAddress.streetNumber}" required="true"/>
+					<span class="error"><h:message for="editStreetNumber"/></span>
+				</p>
+				<p>
+					<label>Miasto:</label>
+					<h:inputText id="editcity" value="#{orderDetailsBacking.order.recipient.shipmentAddress.city}" required="true"/>
+					<span class="error"><h:message for="editcity"/></span>
+				</p>
+				<p>
+					<label>Poczta:</label>
+					<h:inputText id="editPostalCity" value="#{orderDetailsBacking.order.recipient.shipmentAddress.postalCity}" required="true"/>
+					<span class="error"><h:message for="postalCity"/></span>
+				</p>
+				<p>
+					<label>Kod Pocztowy:</label>
+					<h:inputText id="editpostcode" value="#{orderDetailsBacking.order.recipient.shipmentAddress.postalCode}" required="true"/>
+					<span class="error"><h:message for="editpostcode"/></span>
+				</p>
+				<span><h:commandButton value="zmień" actionListener="#{orderDetailsBacking.updateOrder}"/></span>
+				<span><h:commandButton value="anuluj" type="reset"/></span>
+			</h:form>
+		</div>
+	 </rich:simpleTogglePanel>
+	
+	<table id="orderProducts" summary="tabela zawiera produkty z zamówienia. 
+			W zalezności od sposobu dostawy wyświtlana jest informacja o dodatkowych kosztach"
+			title="Zamówione akcesoria komputerowe" class="simpleTable">
+	
+			<tr>
+				<th>Produkt</th>
+				<th>Ilość</th>
+				<th>Cena Jednostki</th>
+				<th>Suma</th>
+			</tr>
+			<ui:repeat value="#{orderDetailsBacking.order.skuOrderItems}" var="item">
+				<tr>
+					<td>${item.sku.name}</td>
+					<td class="numeric">${item.quantity}</td>
+					<td class="numeric">
+						
+						<s3:price price="#{item.unitPrice}"/>
+						<div class="info">
+							<h:outputText 
+								value="cena w katalogu jest inna od ceny w zamowieniu (${item.sku.finalPrice} PLN)"
+								rendered="${!item.theSamePrice}"/>
+						</div>
+					</td>
+					<td class="numeric">
+						<s3:price price="#{item.totalPrice}"/>		 
+					</td>
+				</tr>
+			</ui:repeat>
+			<ui:repeat value="#{orderDetailsBacking.order.compositeOrderItems}" var="item">
+				<tr>
+					<td colspan="3">${item.compositeProduct.name}</td>
+					<td class="numeric">
+						<s3:price price="#{item.unitPrice}"/>
+					</td>
+					
+				</tr>
+				<tr>
+					<td colspan="4" class="blankTableCell">Zestaw składa się z :</td>
+				</tr>
+				<ui:repeat value="#{item.singleOrderItems}" var="singleItem">
+				<tr>
+					<td colspan="3" class="blankTableCell">#{singleItem.product.name}</td>
+					<td class="blankTableCell"><s3:price price="#{singleItem.unitPrice}"/></td>
+				</tr>
+				</ui:repeat>
+			</ui:repeat>
+			<tr id="orderSummary">
+				<td colspan="3">SUMA:</td>
+				<td class="numeric">
+					<s3:price price="#{orderDetailsBacking.order.totalWithoutShipping}"/>
+				
+				 	<h:outputText value=" ( plus koszt wysyłki)" rendered="#{orderDetailsBacking.notNullshippmentCost}"/>
+				 </td>
+			</tr>
+		</table>
+
+	<div class="orderInfo">
+		<p>
+			<label>Sposób dostawy:</label> 
+			<span>${orderDetailsBacking.order.shipmentOption}</span>
+		</p>
+		<p>
+			<label>Sposób płatności:</label>
+			<span>#{orderDetailsBacking.order.payment.form}</span>
+		</p>
+	</div>
+
+	<div id="orderDescription">
+		<div id="descriptionHeader">Komentarz:</div>
+		<h:form>
+			<div id="editArea">
+				<h:inputTextarea id="description" value="#{orderDetailsBacking.order.description}"
+				cols="50" rows="10"/>
+			</div>
+			<div class="descriptionButton" id="saveDescriptionButton">
+				<h:commandButton value="zapisz" actionListener="#{orderDetailsBacking.updateOrder}"/>
+			</div>
+		</h:form>
+	</div>
+
+	</div><!-- ORDER INFO -->
+	
+	
+	
+	<div id="orderHistory"><!-- ORDER History -->
+		
+		 <rich:simpleTogglePanel switchType="client" label="Zmiana Statusu(pokaż/ukryj)">
+		 	<div id="statusChange">
+		
+			<h:form>
+				<div  id="selectStatus">
+					<h:selectOneListbox size="1" value="#{orderDetailsBacking.orderStatus}">
+						<f:selectItems value="#{orderDetailsBacking.orderStatuses}"/>
+					</h:selectOneListbox>
+				</div>
+				<div id="historyComment">
+					<h:inputTextarea id="description" value="#{orderDetailsBacking.statusDescription}"
+					cols="50" rows="10"/>
+				</div>
+				<div>
+					<span>
+						<a4j:commandButton value="zmień" 
+								actionListener="#{orderDetailsBacking.changeOrderStatus}" reRender="historyData"/>
+					</span>
+					<span>
+						<h:commandButton value="anuluj" type="reset"/>
+					</span>
+				</div>
+			</h:form>
+	
+		</div>
+		 </rich:simpleTogglePanel>	
+		
+		 
+		<h:form>
+			<rich:dataTable value="#{orderDetailsBacking.order.orderHistory}" var="record" 
+        	rows="20" reRender="ds" columnClasses="ordersColumn" styleClass="historyTable" id="historyData">
+			
+			 <rich:column> 
+               	<f:facet name="header">
+                   <h:outputText value="Data zmiany"/>
+               	</f:facet>
+              	<h:outputText value="${record.changeDate}">
+							<f:convertDateTime pattern="yyyy-MM-dd hh:mm"/>
+				</h:outputText>
+				 <rich:toolTip rendered="#{not empty record.description}">
+               		#{record.description}
+               	 </rich:toolTip>
+        	</rich:column>
+        	<rich:column> 
+               	<f:facet name="header">
+                   <h:outputText value="Zmiana na status"/>
+               	</f:facet>
+              #{msgs[record.orderStatus]}
+               <rich:toolTip rendered="#{not empty record.description}">
+               	#{record.description}
+               </rich:toolTip>
+        	</rich:column>
+			
+			<f:facet name="footer">
+                <rich:datascroller id="ds"></rich:datascroller>
+         	</f:facet>
+			</rich:dataTable>
+			
+			
+			 <rich:panel>
+		        <f:facet name="header">
+		       	Płatność
+		        </f:facet>
+		        
+		         <div class="paymentRow">
+		        	<span>Id :</span> #{orderDetailsBacking.order.payment.id}
+		        </div>
+		        <div class="paymentRow">
+		        	<span>Suma :</span> <s3:price price="#{orderDetailsBacking.order.payment.amount}"/>
+		        </div>
+		        <div class="paymentRow">
+		        	<span>Forma :</span> #{orderDetailsBacking.order.payment.form}
+		        </div>
+		         <div class="paymentRow">
+		        	<span>Status :</span> #{orderDetailsBacking.order.payment.status}
+		        </div>
+		        <div class="paymentRow">
+		        	<span>Token :</span> #{orderDetailsBacking.order.payment.token}
+		        </div>
+		        
+		        
+		        
+		        
+		    </rich:panel>
+		</h:form>
+	</div><!-- ORDER History -->
+</ui:define>
+</ui:composition>
+</html>

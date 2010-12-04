@@ -1,0 +1,153 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>pl.netolution.sklep3</groupId>
+	<artifactId>sklep3-test</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>Sklep3 Tests</name>
+
+	
+	<dependencies>
+	
+		<dependency>
+			<groupId>pl.netolution.sklep3</groupId>
+			<artifactId>sklep3-core</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>pl.netolution.sklep3</groupId>
+			<artifactId>sklep3-common-web</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+			
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>2.5.1</version>
+            <scope>compile</scope>			
+		</dependency>
+		
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-core</artifactId>
+			<version>2.0.0-M1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.5</version>
+		</dependency>
+		
+		<dependency>
+        	<groupId>net.sourceforge.jtds</groupId>
+        	<artifactId>jtds</artifactId>
+        	<version>1.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>2.4.6</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.8</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>1.5.8</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.0.4</version>
+		</dependency>  	
+		
+		<dependency>		
+			<groupId>org.mockito</groupId>
+  			<artifactId>mockito-core</artifactId>
+  			<version>1.8.0-rc2</version>		
+					
+		</dependency>	
+				
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+			<!--
+			 <plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+		        <artifactId>dbunit-maven-plugin</artifactId>
+		        <version>1.0-beta-3</version>
+		        
+		        jar file that has the jdbc driver 
+		        <dependencies>
+		          <dependency>
+		           <groupId>mysql</groupId>
+		           <artifactId>mysql-connector-java</artifactId>
+		           <version>5.0.5</version>
+		          </dependency>
+		        </dependencies>
+		        
+		      
+		        <configuration>
+		          <driver>com.mysql.jdbc.Driver</driver>
+		          <url>jdbc:mysql://localhost/skleptest</url>
+		          <username>root</username>
+		          <password>admin</password>
+		        </configuration>
+		       
+		  <executions>
+          <execution>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>operation</goal>
+            </goals>
+         
+            <configuration>
+              <type>CLEAN_INSERT</type>
+              <src>src/test/resources/insert.xml</src>
+            </configuration>
+          </execution>
+         
+        </executions>
+	 
+ </plugin>-->
+						
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,83 @@
+#shipmentData fieldset {
+	padding-bottom: 10px;
+}
+
+img {
+	-ms-interpolation-mode:bicubic;
+}
+
+#productsListHeader  span {
+	float: left;
+	display: block;
+}
+
+#productsListHeader {
+	width: 100%;
+	float: left;
+}
+
+#productNameHeader {
+	width: 300px;
+}
+
+#productsList .product-information .product-name{
+	padding-top: 0;
+}
+
+.product-information {
+	width: 420px;
+	margin-left: 10px;
+}
+
+#cartPreviewProducts span {
+	float: left;
+	display: block;
+}
+#cartPreviewProducts .productName {
+	width: 110px;
+}
+
+#cartPreviewProducts .productPrice {
+	text-align: right;
+	float: right;
+}
+
+#cartPreviewProducts  li {
+	float: left;
+}
+
+#productsPageNavigation{
+	margin: auto;
+	width: 500px;
+	margin-top: 10px;	
+}
+
+#paginatorWrapper{
+	width: 500px;
+}
+
+#paginator{
+	float:left;
+	width: 300px;
+	text-align: center;
+}
+
+#productsPageNavigation #prevProductsNavigation{
+	width: 100px;
+	text-align:center;
+	float:left;
+}
+
+#productsPageNavigation #nextProductsNavigation{
+	text-align:center;
+	width: 100px;
+	float:right;
+}
+
+.productListAvailability{
+	border-bottom: 1px black dotted;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+}
+
+ 

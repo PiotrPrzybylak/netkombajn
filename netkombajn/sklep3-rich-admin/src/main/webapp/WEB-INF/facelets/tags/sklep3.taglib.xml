@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE facelet-taglib PUBLIC
+  "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
+  "facelet-taglib_1_0.dtd">
+<facelet-taglib>
+    <namespace>http://netolution.pl/jsf/sklep3</namespace>
+	
+	<function>
+      <function-name>generatePictureUrl</function-name>
+      <function-class>pl.netolution.sklep3.web.jsp.el.ELPictureUrlGenerator</function-class>
+      <function-signature>
+        java.lang.String generatePictureUrl( pl.netolution.sklep3.domain.Picture )
+      </function-signature>
+    </function>
+    
+     <function>
+      <function-name>generatePictureFormatUrl</function-name>
+      <function-class>pl.netolution.sklep3.web.jsp.el.ELPictureUrlGenerator</function-class>
+      <function-signature>
+        java.lang.String generatePictureUrl( pl.netolution.sklep3.domain.Picture,java.lang.String )
+      </function-signature>
+    </function>
+	
+	<tag>
+		<tag-name>dupa</tag-name>
+		<source>dupa.xhtml</source>
+	</tag>
+
+	<tag>
+		<tag-name>picture</tag-name>
+		<source>picture.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>productPicture</tag-name>
+		<source>productPicture.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>price</tag-name>
+		<source>price.xhtml</source>
+	</tag>	
+
+	<tag>
+		<tag-name>repeat</tag-name>
+		<component>
+			<component-type>pl.netolution.sklep3.Iterator</component-type>
+			<renderer-type>facelets.ui.Repeat</renderer-type>
+		</component>
+	</tag>
+
+</facelet-taglib>

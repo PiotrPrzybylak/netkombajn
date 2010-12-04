@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:tr="http://myfaces.apache.org/trinidad"
+	>
+	
+	
+	
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+	Ilość produktów z zewnętrznymi obrazkami #{importPicturesBacking.productsWithExteralPictureCount}
+	<h:form>
+					<h:commandButton value="Pobież obrazki" action="#{globalImportBacking.importPictures}" rendered="#{!globalImportBacking.importInProgress}"/>
+					
+			<t:div rendered="#{importBacking.importInProgress}">
+				 TRWA IMPORT! Proszę czekać...
+				 <br/>
+				 Postęp importu: #{globalImportBacking.picturesImportStatus}
+				 <br/>
+				 <h:commandButton value="Odśwież" />
+				 
+		  <!-- Trinidad progress bar 
+				<tr:poll pollInterval="2000" id="pollid"/>
+				<tr:progressIndicator id="progress_widget"
+                      action="guide"
+                      value="#{globalImportBacking.progressModel}"
+                      partialTriggers="pollid"/>
+                      
+       -->	
+       				<t:div rendered="#{globalImportBacking.picturesImportStatus.hasErrors}">
+       					<h3>Błędy Importu:</h3>
+       					<ul>
+       					<ui:repeat value="#{globalImportBacking.picturesImportStatus.errors}" var="error">
+       					<li>#{error.description} :  #{error.exception} </li>
+       					</ui:repeat>
+       					</ul>
+       				</t:div>       
+				</t:div>
+		</h:form>
+</ui:define>
+</ui:composition>
+</html>

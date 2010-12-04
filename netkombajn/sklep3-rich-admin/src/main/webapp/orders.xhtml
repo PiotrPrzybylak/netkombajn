@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+    xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+<h1>Zamówienia</h1>
+
+	<div id="filterBoxes">
+		<h:form id="filter">
+			<h:selectManyCheckbox id="listBoxes" value="#{orderListBacking.filteredOrderStatuses}">										    
+				 <f:selectItems value="#{orderListBacking.orderStatuses}"/>
+			</h:selectManyCheckbox>
+			<a4j:commandButton value="odśwież" 
+				actionListener="#{orderListBacking.filterOrdersAction}" reRender="orders"/>
+		</h:form>
+	</div>
+
+
+	<h:form>
+		<rich:dataTable value="#{orderListBacking.orders}" var="order" 
+        	rows="#{orderListBacking.rowsOnPage}" reRender="ds" columnClasses="ordersColumn" id="orders">
+       	
+        <rich:column sortBy="#{order.id}"> 
+               <f:facet name="header">
+                   <h:outputText value="Id zamówienia"/>
+               </f:facet>
+               <div class="identifier">
+               <h:commandLink actionListener="#{orderDetailsBacking.chooseOrder}" action="orderDetails">
+					<f:attribute name="orderId" value="${order.id}"/>
+						${order.id} <h:graphicImage value="../images/icons/server.png" rendered="#{order.composite}"/>
+				</h:commandLink>
+				</div>
+        </rich:column>
+        <rich:column sortBy="#{order.created}"> 
+               <f:facet name="header">
+                   <h:outputText value="Data złożenia"/>
+               </f:facet>
+              #{order.created}
+        </rich:column>
+        <rich:column sortBy="#{order.customer.surname}"> 
+               <f:facet name="header">
+                   <h:outputText value="Klient"/>
+               </f:facet>
+              #{order.customer.surname}  #{order.customer.name}
+        </rich:column>
+         <rich:column sortBy="#{order.totalWithoutShipping}"> 
+               <f:facet name="header">
+                   <h:outputText value="Suma zakupów"/>
+               </f:facet>
+               #{order.totalWithoutShipping}
+        </rich:column>
+        <rich:column sortBy="#{order.status}"> 
+               <f:facet name="header">
+                   <h:outputText value="Status"/>
+               </f:facet>
+               #{msgs[order.status]}
+        </rich:column>
+        	
+         <f:facet name="footer">
+               <h:panelGroup>
+	                <rich:datascroller id="ds" maxPages="7"/>
+	                <h:selectOneMenu value="#{orderListBacking.rowsOnPage}" onchange="submit()">
+		           		<f:selectItem itemValue="10" itemLabel="10 wierszy"/>
+		           		<f:selectItem itemValue="20" itemLabel="20 wierszy"/>
+		           		<f:selectItem itemValue="50" itemLabel="50 wierszy"/>
+		           	</h:selectOneMenu>
+			   </h:panelGroup>
+         </f:facet>
+        </rich:dataTable> 	
+      </h:form>
+</ui:define>
+</ui:composition>
+</html>

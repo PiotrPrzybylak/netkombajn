@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+    
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+<h1>Rodziny produktów</h1>
+
+
+<div id="entityWrapper">
+	<div id="entityTable">
+		 <a4j:outputPanel id="editForm" ajaxRendered="true">
+       	
+	      <h:form rendered="#{not empty productFamilyBacking.editedEntity}" styleClass="entityEditForm">
+	   
+	            <div class="row">
+	            	<label>Nazwa rodziny</label>
+	            	<h:inputText id="editedName" value="#{productFamilyBacking.editedEntity.name}"/>
+	            	<h:message for="editedName" styleClass="error"/>
+	            </div>
+	             
+	           	<div id="editEntityButton">
+	           		<a4j:commandButton reRender="entities,editForm" action="#{productFamilyBacking.updateEntity}" value="edytuj"/>
+	           		<a4j:commandButton reRender="entities,editForm" value="anuluj">
+	           			<f:setPropertyActionListener target="#{productFamilyBacking.editedEntity}" value="#{null}"/>
+	           		</a4j:commandButton>
+	           	</div>
+	      </h:form>
+	 </a4j:outputPanel>
+		
+		<h:form>
+		<rich:dataTable id="entities" var="productFamily" value="#{productFamilyDao.all}" rows="20" reRender="ds" styleClass="entityTable">
+        	
+	        <rich:column sortBy="#{productFamily.name}" styleClass="entityTableColumn"> 
+	               <f:facet name="header">
+	                  Nazwa
+	               </f:facet>
+	               <a4j:commandLink action="#{productFamilyBacking.familyDetails}">
+	               	<span class="important">#{productFamily.name}</span>
+	               		<f:setPropertyActionListener target="#{productFamilyBacking.familyId}" value="#{productFamily.id}"/>
+	               </a4j:commandLink>
+	             
+	        </rich:column>
+	        
+	         <rich:column styleClass="entityOperationColumn"> 
+	               <f:facet name="header">
+	                   Edycja
+	               </f:facet>
+	               <a4j:commandLink reRender="editForm" value="edytuj">
+	               		<f:setPropertyActionListener target="#{productFamilyBacking.editedEntity}" value="#{productFamily}"/>
+	               </a4j:commandLink>
+		           
+	        </rich:column>
+	        <rich:column styleClass="entityOperationColumn"> 
+	               <f:facet name="header">
+	                   Usuń
+	               </f:facet>
+	               <a4j:commandLink reRender="entities" value="usuń" action="#{productFamilyBacking.deleteEntity}" >
+	               		<f:setPropertyActionListener target="#{productFamilyBacking.editedEntity}" value="#{productFamily}"/>
+	               </a4j:commandLink>
+		           
+	        </rich:column>
+	        <f:facet name="footer">
+               <h:panelGroup>
+	                <rich:datascroller id="ds" maxPages="7"/>
+			   </h:panelGroup>
+         </f:facet>
+        </rich:dataTable>
+      </h:form>
+      
+      
+	</div>
+	<div id="newEntityBlock">
+		
+		<h:form  styleClass="entityNewForm" id="newEntityForm">
+					<div id="newProductLabel">Dodaj nową rodzinę produktów</div>
+		
+		            <div class="row">
+		            	<label>Nazwa rodziny</label>
+		            	<h:inputText id="newFamilyName" value="#{productFamilyBacking.addedEntity.name}" required="true" styleClass="newEntityName"/>
+		            	<div><h:message for="newFamilyName" styleClass="error"/></div>
+		            </div>
+		             
+		           	<div id="editEntityButton">
+		           		<a4j:commandButton reRender="entities,newEntityForm" action="#{productFamilyBacking.addEntity}" value="dodaj"/>
+		           	</div>
+		 </h:form>
+	
+	</div>
+</div>
+
+      
+    
+       
+</ui:define>
+</ui:composition>
+</html>

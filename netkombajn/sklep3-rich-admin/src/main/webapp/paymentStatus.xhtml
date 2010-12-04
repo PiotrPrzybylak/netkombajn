@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+	
+	
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+<h1>Płatność numer ${paymentStatusBacking.payment.id} token: ${paymentStatusBacking.payment.token}</h1>
+
+
+	Status : ${paymentStatusBacking.status}
+	
+	
+	
+</ui:define>
+</ui:composition>
+</html>

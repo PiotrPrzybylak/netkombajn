@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s3="http://netolution.pl/jsf/sklep3">
+	
+	
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+<h:form>
+						<h:commandButton value="TEST actionListener" actionListener="#{testBacking.testActionListener}"/>
+						<h:commandButton value="TEST action" action="#{testBacking.testAction}"/>
+						<h:commandButton value="Pokaż guzik" action="#{testBacking.showButton}"/>
+						<h:commandButton value="Ukryj guzik" action="#{testBacking.hideButton}"/>			
+						<h:commandButton value="Ukrywany guzik" action="#{testBacking.testButton}" rendered="#{testBacking.testButtonVisible}"/>		
+						
+						<h:commandButton value="Resetuj stan importu" action="#{globalImportBacking.resetImportStatus}" />
+						<h:commandButton value="Reload Config" action="#{configuration.init}" />
+						<h:commandButton value="Regenerate Pictures" action="#{pictureManager.regeneratePictures}" />						
+						<h:commandButton value="transformOldProductPicturesIntoNewStructure" action="#{pictureManager.transformOldProductPicturesIntoNewStructure}" />			
+						<h:commandButton value="generateDefaultSkus" action="#{testBacking.generateDefaultSkus}" />
+						
+						<div>
+							<h:commandButton value="Ino żyć kateorie przenieś" action="#{testBacking.migrateToLinkedCategories}" />
+						</div>
+						<div>
+							<h:commandButton value="Generate Runtime Exception" action="#{testBacking.generateRuntimeException}" />
+							<h:commandButton value="Generate checked Exception" action="#{testBacking.generateCheckedException}" />
+						</div>									
+						<div>
+							<h:commandButton value="Przeindeksuj lucyne" action="#{phraseIndexer.init}" />
+						</div>
+</h:form>
+</ui:define>
+</ui:composition>
+</html>

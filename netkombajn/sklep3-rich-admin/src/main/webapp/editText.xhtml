@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+	xmlns:c="http://java.sun.com/jstl/core"	
+	>
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+
+<h1>
+	Edycja tekstu :#{textBacking.text.name}  
+</h1>
+           
+
+	            <h:form id="mainForm" enctype="multipart/form-data" class="productForm">
+
+	<div id="productProperties">
+	
+	
+                	<span class="editControll">
+                		<rich:editor value="#{textBacking.text.text}" id="description" height="600" width="600" theme="advanced"/>
+                		<h:message for="description" styleClass="error"/>
+                	</span>
+             
+              	
+                <p>
+                	<span>
+                		<h:commandButton value="Zapisz" action="#{textBacking.saveText}"/>	
+                	</span>
+                	<span><h:commandButton value="Anuluj" action="texts" immediate="true"/></span>
+                </p>
+              </div>  	
+
+                 	
+
+             
+             
+             
+             </h:form>
+	      
+           
+            
+
+</ui:define>
+</ui:composition>
+
+
+</html>

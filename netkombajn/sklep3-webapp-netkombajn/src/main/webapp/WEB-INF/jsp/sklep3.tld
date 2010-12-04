@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"> 
+ <tlib-version>1.0</tlib-version>
+ <short-name>s3</short-name>
+ <uri>http://sklep3.netolution.pl</uri>
+ <display-name>NetKombajn TAG</display-name>
+ 
+	<function>
+      <name>generatePictureUrl</name>
+      <function-class>pl.netolution.sklep3.web.jsp.el.ELPictureUrlGenerator</function-class>
+      <function-signature>
+        java.lang.String generatePictureUrl( pl.netolution.sklep3.domain.Picture )
+      </function-signature>
+    </function>
+    
+     <function>
+      <name>generatePictureFormatUrl</name>
+      <function-class>pl.netolution.sklep3.web.jsp.el.ELPictureUrlGenerator</function-class>
+      <function-signature>
+        java.lang.String generatePictureUrl( pl.netolution.sklep3.domain.Picture,java.lang.String )
+      </function-signature>
+    </function>
+    
+
+
+ <tag>
+ 
+  <name>sort</name>
+  <tag-class>pl.netolution.sklep3.web.jsp.SortTag</tag-class>
+   <body-content>empty</body-content>
+  
+  <attribute>
+   <name>orderName</name>
+   <required>true</required>
+   <rtexprvalue>true</rtexprvalue>
+  </attribute>
+
+  <attribute>
+   <name>label</name>
+   <required>true</required>
+   <rtexprvalue>true</rtexprvalue>
+  </attribute>  
+  
+  
+ </tag>
+ <tag>
+  <name>siteNavigation</name>
+  <tag-class>pl.netolution.sklep3.web.jsp.PageNavigationTag</tag-class>
+   <body-content>scriptless</body-content>
+  
+  <attribute>
+   <name>items</name>
+   <required>true</required>
+   <rtexprvalue>true</rtexprvalue>
+   <type>java.util.List</type>
+  </attribute>
+  
+   <attribute>
+   <name>numberOfAllItems</name>
+   <required>true</required>
+   <rtexprvalue>true</rtexprvalue>
+   <type>int</type>
+  </attribute>
+  
+   <attribute>
+   <name>currentStart</name>
+   <required>true</required>
+   <rtexprvalue>true</rtexprvalue>
+   <type>int</type>
+  </attribute>
+  
+  <attribute>
+   <name>fixedItemsOnPage</name>
+   <required>false</required>
+   <rtexprvalue>true</rtexprvalue>
+   <type>int</type>
+  </attribute>
+  
+ </tag>
+ 
+</taglib>
