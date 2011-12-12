@@ -7,30 +7,30 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.netolution.sklep3.domain.product.opinions.ProductRating;
+import pl.netolution.sklep3.domain.product.opinions.ProductRatings;
+import pl.netolution.sklep3.domain.product.opinions.SingleRating;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-@TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "/applicationContext.xml", "/beans.xml" })
 public class ProductOpinionDaoTest {
 
 	@Autowired
-	ProductOpinionDao productOpinionDao;
+	ProductRatingDao productRatingDao;
 
 	@Test
-	public void shouldSaveProductOpinion() throws Exception {
-		ProductRating productOpinion = ProductRating.fromList(3);
-		productOpinion.forProduct(11L);
-		productOpinionDao.makePersistent(productOpinion);
-		productOpinionDao.flush();
+	public void shouldSaveProductRating() throws Exception {
+		ProductRatings productRatings = ProductRatings.fromList(3);
+		productRatings.forProduct(11L);
+		productRatingDao.makePersistent(productRatings);
+		productRatingDao.flush();
 
-		ProductRating fromDatabase = productOpinionDao.findById(productOpinion.getId());
+		ProductRatings fromDatabase = productRatingDao.findById(productRatings.getId());
 
-		assertEquals(new Integer(3), fromDatabase.getAverageRating());
+		assertNotNull(fromDatabase.getId());
+		assertEquals(new SingleRating().of(3), fromDatabase.getAverageRating());
 		assertEquals(new Long(11L), fromDatabase.getProductId());
 	}
 }

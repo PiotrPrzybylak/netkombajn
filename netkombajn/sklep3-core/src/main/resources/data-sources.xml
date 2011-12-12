@@ -43,6 +43,40 @@
 			<value>jdbc_pool_check</value>
 		</property>
 	</bean>
+<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="eventListeners">
+			<map>
+				<entry key="post-update">
+					<ref bean="postUpdateListener" />
+				</entry>
+			</map>
+		</property>
 
+		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
+		<property name="packagesToScan">
+			<list>
+				<value>pl.netolution.sklep3.domain</value>
+				<value>pl.netolution.sklep3.domain.payment</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.format_sql">
+					true
+				</prop>
+			</props>
+		</property>
+
+	</bean>
 
 </beans>
