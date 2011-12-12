@@ -10,6 +10,7 @@
 		<constructor-arg value="pl.netolution.sklep3.dao.ProductDao" />
 	</bean>
 	<bean id="productRatingDao" class="org.mockito.Mockito" factory-method="mock">
-		<constructor-arg value="pl.netolution.sklep3.dao.ProductRatingDao" />
+		<constructor-arg value="pl.netolution.sklep3.dao.hibernate.ProductRatingDao" />
 	</bean>
+	
 </beans>
