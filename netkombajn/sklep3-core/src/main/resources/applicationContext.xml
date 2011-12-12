@@ -23,39 +23,8 @@
 			<value>SYSTEM_PROPERTIES_MODE_OVERRIDE</value>
 		</property>
 	</bean>
-
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass">
-			<value>${jdbc.driver}</value>
-		</property>
-		<property name="jdbcUrl">
-			<value>${jdbc.url}</value>
-		</property>
-		<property name="user">
-			<value>${jdbc.username}</value>
-		</property>
-		<property name="password">
-			<value>${jdbc.password}</value>
-		</property>
-		<property name="minPoolSize">
-			<value>4</value>
-		</property>
-		<property name="maxPoolSize">
-			<value>30</value>
-		</property>
-		<property name="checkoutTimeout">
-			<value>20000</value>
-		</property>
-		<property name="maxIdleTime">
-			<value>3600</value>
-		</property>
-		<property name="idleConnectionTestPeriod">
-			<value>300</value>
-		</property>
-		<property name="automaticTestTable">
-			<value>jdbc_pool_check</value>
-		</property>
-	</bean>
+	
+	<import resource="data-sources.xml"/>
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
@@ -92,7 +61,6 @@
 		</property>
 
 	</bean>
-
 	<bean id="postUpdateListener"
 		class="pl.netolution.sklep3.lucene.PostUpdateProductEventListener" />
 

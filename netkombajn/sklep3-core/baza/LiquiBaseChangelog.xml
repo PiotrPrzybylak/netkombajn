@@ -63,9 +63,6 @@
 		)
 		ENGINE = InnoDB DEFAULT CHARSET=utf8;
    	  </sql>
-     <addForeignKeyConstraint constraintName="fk_composite_order_item_1"
-    		baseTableName="composite_order_items" baseColumnNames="composite_product_id"
-    		referencedTableName="composite_product" referencedColumnNames="id"/>
     </changeSet>
     
     <changeSet id="4" author="pw">
@@ -141,10 +138,6 @@
 		<addColumn tableName="products" ><column name="manufacturer_id" type="int"/></addColumn>
 		
 		
-		<addForeignKeyConstraint constraintName="fk_product_manufacturer"
-    		baseTableName="products" baseColumnNames="manufacturer_id"
-    		referencedTableName="manufacturer" referencedColumnNames="id"
-		/>
 	</changeSet>	
 	
 	<changeSet id="11" author="pw">  
@@ -163,10 +156,6 @@
 	            </column>
 	        </createTable>  
 	        
-	        <addForeignKeyConstraint constraintName="fk_picture_product"
-    		baseTableName="pictures" baseColumnNames="product_id"
-    		referencedTableName="products" referencedColumnNames="id"
-			/>                      
 		</changeSet>    
 		
 		<changeSet id="12" author="pw">  
@@ -212,10 +201,6 @@
 		<addColumn tableName="products" ><column name="designer_id" type="int"/></addColumn>
 		
 		
-		<addForeignKeyConstraint constraintName="fk_product_designer"
-    		baseTableName="products" baseColumnNames="designer_id"
-    		referencedTableName="designers" referencedColumnNames="id"
-		/>
 	</changeSet> 		
 	
 	<changeSet author="pp" id="16">		
@@ -243,10 +228,6 @@
 	            <column name="quantityInStock" type="INTEGER UNSIGNED"></column> 
 	        </createTable>
 	        
-	        <addForeignKeyConstraint constraintName="fk_sku_product"
-    		baseTableName="sku" baseColumnNames="product_id"
-    		referencedTableName="products" referencedColumnNames="id"
-			/>  	        
 	</changeSet>
 	
 	<changeSet author="pp" id="18">
@@ -258,10 +239,6 @@
 		<addColumn tableName="order_items" ><column name="sku_id" type="int"/></addColumn>
 		
 		
-		<addForeignKeyConstraint constraintName="fk_orderItem_sku"
-    		baseTableName="order_items" baseColumnNames="sku_id"
-    		referencedTableName="sku" referencedColumnNames="id"
-		/>	
 	</changeSet>
 	
 	<changeSet author="pw" id="20">
@@ -275,10 +252,6 @@
 			<column name="picture_id" type="int"/>
 		</addColumn>
 		
-		<addForeignKeyConstraint constraintName="fk_manufacturer_picture"
-    		baseTableName="manufacturer" baseColumnNames="picture_id"
-    		referencedTableName="pictures" referencedColumnNames="id"
-		/>	
 	</changeSet>
 	
 	<changeSet author="pw" id="22">	
@@ -314,10 +287,6 @@
 			<column name="default_sku_id" type="int"/>
 		</addColumn>
 		
-		<addForeignKeyConstraint constraintName="fk_product_defaultSku"
-    		baseTableName="products" baseColumnNames="default_sku_id"
-    		referencedTableName="sku" referencedColumnNames="id"
-		/>	
 	</changeSet>
 	
 	<changeSet author="pw" id="25">
@@ -325,10 +294,6 @@
 			<column name="customer_id" type="int"/>
 		</addColumn>
 		
-		<addForeignKeyConstraint constraintName="fk_orders_customer"
-    		baseTableName="orders" baseColumnNames="customer_id"
-    		referencedTableName="customer" referencedColumnNames="id"
-		/>	
 	</changeSet>
 	
 	
@@ -359,10 +324,6 @@
 			<column name="address_id" type="int"/>
 		</addColumn>
 		
-		<addForeignKeyConstraint constraintName="fk_customer_address"
-    		baseTableName="customer" baseColumnNames="address_id"
-    		referencedTableName="addresses" referencedColumnNames="id"
-		/>
 	</changeSet>
 	
 	<changeSet author="pw" id="28">
@@ -370,10 +331,6 @@
 			<column name="invoice_address_id" type="int"/>
 		</addColumn>
 		
-		<addForeignKeyConstraint constraintName="fk_orders_invoice_address"
-    		baseTableName="orders" baseColumnNames="invoice_address_id"
-    		referencedTableName="addresses" referencedColumnNames="id"
-		/>	
 	</changeSet>
 	
 	<changeSet author="pw" id="29">
@@ -426,10 +383,6 @@
 			<column name="shipment_option_id" type="int"/>
 		</addColumn>
 		
-		<addForeignKeyConstraint constraintName="fk_orders_shipment_option"
-    		baseTableName="orders" baseColumnNames="shipment_option_id"
-    		referencedTableName="shipment_options" referencedColumnNames="id"
-		/>	
 	</changeSet>
 	
 	<changeSet author="pw" id="36">
@@ -460,10 +413,6 @@
 				<column name="order_id" type="INTEGER UNSIGNED"/>
 			</createTable>
 			
-			<addForeignKeyConstraint constraintName="fk_orders_payment"
-    		baseTableName="payments" baseColumnNames="order_id"
-    		referencedTableName="orders" referencedColumnNames="id"
-			/>	
 	</changeSet>
 	
 	<changeSet author="pp" id="39">
@@ -507,15 +456,6 @@
 				
 			</createTable>
 			
-			<addForeignKeyConstraint constraintName="fk_products_linked_categories1"
-    		baseTableName="products_linked_categories" baseColumnNames="product_id"
-    		referencedTableName="products" referencedColumnNames="id"
-			/>	
-			
-			<addForeignKeyConstraint constraintName="fk_products_linked_categories2"
-    		baseTableName="products_linked_categories" baseColumnNames="category_id"
-    		referencedTableName="categories" referencedColumnNames="id"
-			/>	
 	</changeSet>
 
 	<changeSet author="pp" id="44">
@@ -561,15 +501,6 @@
 				
 			</createTable>
 			
-			<addForeignKeyConstraint constraintName="fk_products_families1"
-    		baseTableName="products_families_relation" baseColumnNames="product_id"
-    		referencedTableName="products" referencedColumnNames="id"
-			/>	
-			
-			<addForeignKeyConstraint constraintName="fk_products_families2"
-    		baseTableName="products_families_relation" baseColumnNames="product_family_id"
-    		referencedTableName="product_family" referencedColumnNames="id"
-			/>	
 	</changeSet>
 	
 	<changeSet author="pp" id="48">
@@ -577,10 +508,6 @@
 			<column name="shipment_address_id" type="int"/>
 		</addColumn>
 		
-		<addForeignKeyConstraint constraintName="fk_orders_shipment_address"
-    		baseTableName="orders" baseColumnNames="shipment_address_id"
-    		referencedTableName="addresses" referencedColumnNames="id"
-		/>	
 	</changeSet>	
 	
 	<changeSet author="pw" id="49">
