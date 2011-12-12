@@ -67,7 +67,6 @@
 
 	<bean name="/product.html" class="pl.netolution.sklep3.web.controller.ProductDetailsController">
 		<property name="productDao" ref="productDao" />
-		<property name="productRatingDao" ref="productRatingDao" />
 		<property name="viewName" value="product" />		
 	</bean>
 

@@ -1,26 +1,12 @@
 package pl.netolution.sklep3.domain.product.opinions;
 
-import static org.hibernate.annotations.CascadeType.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Cascade;
-
-@Entity
 public class ProductRatings {
 
-	@Id
-	@GeneratedValue
 	private Long id;
-	@OneToMany(mappedBy = "productRatings")
-	@Cascade({ PERSIST, SAVE_UPDATE, DELETE_ORPHAN })
-	private List<SingleRating> ratings = new ArrayList<SingleRating>();
+	List<SingleRating> ratings = new ArrayList<SingleRating>();
 
 	private Long productId;
 
