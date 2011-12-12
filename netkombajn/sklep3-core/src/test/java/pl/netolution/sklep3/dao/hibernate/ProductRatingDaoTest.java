@@ -15,7 +15,7 @@ import pl.netolution.sklep3.domain.product.opinions.SingleRating;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @ContextConfiguration({ "/applicationContext.xml", "/beans.xml" })
-public class ProductOpinionDaoTest {
+public class ProductRatingDaoTest {
 
 	@Autowired
 	ProductRatingDao productRatingDao;
