@@ -6,11 +6,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
-	<bean id="productDao" class="org.mockito.Mockito" factory-method="mock">
-		<constructor-arg value="pl.netolution.sklep3.dao.ProductDao" />
-	</bean>
-	<bean id="productRatingDao" class="org.mockito.Mockito" factory-method="mock">
-		<constructor-arg value="pl.netolution.sklep3.dao.hibernate.ProductRatingDao" />
-	</bean>
+	
 	
 </beans>
