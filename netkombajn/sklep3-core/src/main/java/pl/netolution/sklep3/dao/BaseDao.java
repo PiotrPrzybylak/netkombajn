@@ -17,4 +17,6 @@ public interface BaseDao<T> {
 	int countAll();
 
 	List<T> getAllSortedBy(String sortProperty);
+
+	void flush();// for tests
 }
