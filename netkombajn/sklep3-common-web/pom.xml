@@ -6,11 +6,11 @@
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>Sklep3 Common Web</name>
-	
+
 	<properties>
 		<spring-webflow.version>2.0.7.RELEASE</spring-webflow.version>
-	</properties> 	
-	
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>m2.gowo.pl</id>
@@ -18,7 +18,7 @@
 			<url>http://m2.gowo.pl</url>
 		</repository>
 	</repositories>
-		
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -28,9 +28,19 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>3.0.0.RELEASE</version>
-			<scope>test</scope>			
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -41,7 +51,24 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>3.0.0.RELEASE</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -110,42 +137,41 @@
 			<artifactId>ognl</artifactId>
 			<version>2.7.3</version>
 		</dependency>
-	
-       		
+
 		<dependency>
 			<groupId>org.easymock</groupId>
 			<artifactId>easymockclassextension</artifactId>
 			<version>2.4</version>
-            <scope>test</scope>			
+			<scope>test</scope>
 		</dependency>
-		
-		<dependency>		
+
+		<dependency>
 			<groupId>org.mockito</groupId>
-  			<artifactId>mockito-core</artifactId>
-  			<version>1.8.0-rc2</version>		
-			<scope>test</scope>			
+			<artifactId>mockito-core</artifactId>
+			<version>1.8.0-rc2</version>
+			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.directwebremoting</groupId>
 			<artifactId>dwr</artifactId>
 			<version>2.0.3</version>
 		</dependency>
-				
+
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -157,7 +183,7 @@
 				</configuration>
 			</plugin>
 			<plugin>
-                <!--This plugin allows to run the example using mvn jetty:run -->
+				<!--This plugin allows to run the example using mvn jetty:run -->
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
 				<version>6.1.8</version>
@@ -170,7 +196,7 @@
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<version>1.0-beta-1</version>
 			</plugin>
-			
+
 		</plugins>
 	</build>
 </project>
