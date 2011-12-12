@@ -19,6 +19,7 @@ import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.dao.hibernate.ProductRatingDao;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.product.opinions.ProductRatings;
+import pl.netolution.sklep3.domain.product.opinions.SingleRating;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/applicationContext.xml", "/exception-context.xml", "/sessionContext.xml",
@@ -40,7 +41,8 @@ public class ProductDetailsControllerSpringTest {
 		Product product = new Product();
 		product.setVisible(true);
 		when(productDao.findById(1L)).thenReturn(product);
-		when(productRatingDao.findByProductId(1L)).thenReturn(ProductRatings.fromList(5));
+		ProductRatings ratings = ProductRatings.fromList(5);
+		when(productRatingDao.findByProductId(1L)).thenReturn(ratings);
 
 		request.setRequestURI("/product.html");
 		request.setParameter("productId", "1");
@@ -48,7 +50,8 @@ public class ProductDetailsControllerSpringTest {
 		ModelAndView modelAndView = execute(request, new MockHttpServletResponse());
 
 		assertSame(product, modelAndView.getModel().get("product"));
-		assertEquals(5, ((ProductRatings) modelAndView.getModel().get("ratings")).getAverageRating());
+		assertEquals(new SingleRating().of(5),
+				((ProductRatings) modelAndView.getModel().get("ratings")).getAverageRating());
 	}
 
 	private ModelAndView execute(MockHttpServletRequest request, MockHttpServletResponse response) throws Exception {
