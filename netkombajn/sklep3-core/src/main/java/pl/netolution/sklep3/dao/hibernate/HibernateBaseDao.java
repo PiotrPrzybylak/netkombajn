@@ -19,7 +19,8 @@ public class HibernateBaseDao<T> extends HibernateDaoSupport implements BaseDao<
 
 	@SuppressWarnings("unchecked")
 	public HibernateBaseDao() {
-		this.persistentClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+		this.persistentClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
+				.getActualTypeArguments()[0];
 
 	}
 
@@ -54,10 +55,16 @@ public class HibernateBaseDao<T> extends HibernateDaoSupport implements BaseDao<
 
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public int countAll() {
-		return (Integer) getSession().createCriteria(persistentClass).setProjection(Projections.rowCount()).uniqueResult();
+		return (Integer) getSession().createCriteria(persistentClass).setProjection(Projections.rowCount())
+				.uniqueResult();
 	}
 
 	protected Criteria createCriteria() {
 		return getSession().createCriteria(persistentClass);
+	}
+
+	public void flush() {
+		getHibernateTemplate().clear();
+		getHibernateTemplate().flush();
 	}
 }
