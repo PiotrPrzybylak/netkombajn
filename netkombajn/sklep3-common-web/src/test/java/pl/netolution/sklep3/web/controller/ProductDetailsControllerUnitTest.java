@@ -19,7 +19,7 @@ import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.exception.ProductNotAcessibleException;
 
-public class ProductDetailsControllerTest {
+public class ProductDetailsControllerUnitTest {
 
 	private static final String PRODUCT_VIEW = "product";
 	private static final String PRODUCT_ID_PARAMETER = "productId";

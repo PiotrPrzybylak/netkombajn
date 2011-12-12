@@ -33,4 +33,16 @@ public class ProductRatingDaoTest {
 		assertEquals(new SingleRating().of(3), fromDatabase.getAverageRating());
 		assertEquals(new Long(11L), fromDatabase.getProductId());
 	}
+
+	@Test
+	public void shouldFetchProductRatingByProductId() throws Exception {
+		ProductRatings productRatings = ProductRatings.fromList(3);
+		productRatings.forProduct(11L);
+		productRatingDao.makePersistent(productRatings);
+		productRatingDao.flush();
+
+		ProductRatings fromDatabase = productRatingDao.findByProductId(11L);
+
+		assertEquals(new Long(11L), fromDatabase.getProductId());
+	}
 }
