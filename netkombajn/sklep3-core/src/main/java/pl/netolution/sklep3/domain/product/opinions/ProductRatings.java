@@ -3,9 +3,21 @@ package pl.netolution.sklep3.domain.product.opinions;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+
+@Entity
 public class ProductRatings {
 
+	@Id
+	@GeneratedValue
 	private Long id;
+	@OneToMany(mappedBy = "productRatings")
+	@Cascade({ org.hibernate.annotations.CascadeType.PERSIST, org.hibernate.annotations.CascadeType.SAVE_UPDATE })
 	List<SingleRating> ratings = new ArrayList<SingleRating>();
 
 	private Long productId;
@@ -23,8 +35,9 @@ public class ProductRatings {
 		return new ProductRatings(ratingsAsIntegers);
 	}
 
-	public void forProduct(Long productId) {
+	public ProductRatings forProduct(Long productId) {
 		this.productId = productId;
+		return this;
 	}
 
 	public Long getId() {
@@ -32,7 +45,20 @@ public class ProductRatings {
 	}
 
 	public SingleRating getAverageRating() {
-		return ratings.get(0);
+		if (ratings.isEmpty())
+			return SingleRating.of(0);
+		else {
+			int averageRating = sumOfRatings() / ratings.size();
+			return SingleRating.of(averageRating);
+		}
+	}
+
+	private Integer sumOfRatings() {
+		Integer sum = 0;
+		for (SingleRating singleRating : ratings) {
+			sum += singleRating.value();
+		}
+		return sum;
 	}
 
 	public Long getProductId() {

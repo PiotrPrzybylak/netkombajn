@@ -17,21 +17,39 @@ import pl.netolution.sklep3.domain.product.opinions.SingleRating;
 @ContextConfiguration({ "/applicationContext.xml", "/beans.xml" })
 public class ProductRatingDaoTest {
 
+	private static final Long PRODUCT_ID = 11L;
 	@Autowired
 	ProductRatingDao productRatingDao;
 
 	@Test
 	public void shouldSaveProductRating() throws Exception {
-		ProductRatings productRatings = ProductRatings.fromList(3);
-		productRatings.forProduct(11L);
-		productRatingDao.makePersistent(productRatings);
-		productRatingDao.flush();
+		ProductRatings productRatings = ProductRatings.fromList(3).forProduct(PRODUCT_ID);
 
+		pushRatingToDatabase(productRatings);
 		ProductRatings fromDatabase = productRatingDao.findById(productRatings.getId());
 
 		assertNotNull(fromDatabase.getId());
-		assertEquals(new SingleRating().of(3), fromDatabase.getAverageRating());
-		assertEquals(new Long(11L), fromDatabase.getProductId());
+		assertEquals(SingleRating.of(3), fromDatabase.getAverageRating());
+		assertEquals(PRODUCT_ID, fromDatabase.getProductId());
+	}
+
+	private void pushRatingToDatabase(ProductRatings productRatings) {
+		productRatingDao.makePersistent(productRatings);
+		pushToDatabase();
+	}
+
+	@Test
+	public void shouldFindRatingByProductId() throws Exception {
+		ProductRatings productRatings = ProductRatings.fromList().forProduct(PRODUCT_ID);
+
+		pushRatingToDatabase(productRatings);
+		ProductRatings fromDatabase = productRatingDao.findByProductId(PRODUCT_ID);
+
+		assertEquals(PRODUCT_ID, fromDatabase.getProductId());
+	}
+
+	private void pushToDatabase() {
+		productRatingDao.flush();
 	}
 
 }
