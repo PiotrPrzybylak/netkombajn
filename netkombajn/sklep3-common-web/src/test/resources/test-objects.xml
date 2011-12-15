@@ -7,5 +7,12 @@
 
 	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
 	
+	<bean name="productDao" class="org.mockito.Mockito" factory-method="mock">
+		<constructor-arg value="pl.netolution.sklep3.dao.ProductDao" />
+	</bean>
+	
+	<bean name="productRatingDao" class="org.mockito.Mockito" factory-method="mock">
+		<constructor-arg value="pl.netolution.sklep3.dao.hibernate.ProductRatingDao" />
+	</bean>
 	
 </beans>
