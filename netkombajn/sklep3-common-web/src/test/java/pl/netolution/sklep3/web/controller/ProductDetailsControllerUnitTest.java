@@ -1,12 +1,9 @@
 package pl.netolution.sklep3.web.controller;
 
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.replay;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.fail;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
+import static org.easymock.EasyMock.*;
+import static org.junit.Assert.*;
+import static org.mockito.BDDMockito.*;
+import static org.mockito.Mockito.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +13,7 @@ import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.netolution.sklep3.dao.ProductDao;
+import pl.netolution.sklep3.dao.hibernate.ProductRatingDao;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.exception.ProductNotAcessibleException;
 
@@ -27,6 +25,7 @@ public class ProductDetailsControllerUnitTest {
 
 	private ProductDao productDao;
 	private ProductDetailsController productDetailsController;
+	private ProductRatingDao productRatingDao;
 
 	@Before
 	public void setUp() {
@@ -38,6 +37,7 @@ public class ProductDetailsControllerUnitTest {
 
 		productDetailsController.setViewName(PRODUCT_VIEW);
 		productDao = EasyMock.createStrictMock(ProductDao.class);
+		productRatingDao = EasyMock.createNiceMock(ProductRatingDao.class);
 		Product productBefore = new Product();
 		productBefore.setVisible(true);
 		expect(productDao.findById(TEST_PRODUCT_ID)).andReturn(productBefore);
@@ -47,12 +47,13 @@ public class ProductDetailsControllerUnitTest {
 		replay(request);
 
 		productDetailsController.setProductDao(productDao);
+		productDetailsController.setProductRatingDao(productRatingDao);
 
 		ModelAndView mv = productDetailsController.handleRequest(request, null);
 
 		assertEquals(PRODUCT_VIEW, mv.getViewName());
 		assertSame(productBefore, mv.getModel().get(PRODUCT_VIEW));
-		assertEquals(1, mv.getModel().size());
+		assertEquals(2, mv.getModel().size());
 
 		EasyMock.verify(productDao);
 		EasyMock.verify(request);

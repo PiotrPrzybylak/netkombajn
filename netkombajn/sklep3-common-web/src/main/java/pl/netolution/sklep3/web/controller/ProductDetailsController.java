@@ -23,13 +23,14 @@ public class ProductDetailsController extends ParameterizableViewController {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		Product product = productDao.findById(getProductIdFrom(request));
+		long productId = getProductIdFrom(request);
+		Product product = productDao.findById(productId);
 		if (!product.isVisible()) {
 			throw new ProductNotAcessibleException();
 		}
 
 		ModelAndView modelAndView = new ModelAndView(getViewName(), "product", product);
-		modelAndView.addObject("productRating", productRatingDao.findByProductId(getProductIdFrom(request)));
+		modelAndView.addObject("productRating", productRatingDao.findByProductId(productId));
 		return modelAndView;
 	}
 
