@@ -20,3 +20,6 @@ glob:netkombajn/sklep3-test/.settings
 glob:netkombajn/sklep3-webapp-netkombajn/.classpath
 glob:netkombajn/sklep3-webapp-netkombajn/.project
 glob:netkombajn/sklep3-webapp-netkombajn/.settings/
+syntax: glob
+netkombajn/sklep3-common-web/logs
+netkombajn/sklep3-webapp-netkombajn/logs
