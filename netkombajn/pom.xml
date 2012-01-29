@@ -9,11 +9,11 @@
 
   
   <modules>
-    <module>sklep3-core</module>
-    <module>sklep3-common-web</module>    
-    <module>sklep3-webapp-netkombajn</module>
-    <module>sklep3-test</module>
-    <module>sklep3-rich-admin</module>
+    <module>nk-core</module>
+    <module>nk-common-web</module>    
+    <module>nk-webapp-store</module>
+    <module>nk-webapp-admin</module>
+    <module>nk-test</module>
   </modules>
 
 	<build>
