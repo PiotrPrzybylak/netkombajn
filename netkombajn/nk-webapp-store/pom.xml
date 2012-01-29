@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>pl.netolution.sklep3</groupId>
-	<artifactId>sklep3-webapp-netkombajn</artifactId>
+	<groupId>com.netkombajn.store</groupId>
+	<artifactId>nk-webapp-store</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>Sklep3 Webapp</name>
+	<name>Netkombajn Store Webapp</name>
 	
 	<properties>
 		<spring-webflow.version>2.0.7.RELEASE</spring-webflow.version>
@@ -22,8 +22,8 @@
 	<dependencies>
 	
 		<dependency>
-			<groupId>pl.netolution.sklep3</groupId>
-			<artifactId>sklep3-common-web</artifactId>
+			<groupId>com.netkombajn.store</groupId>
+			<artifactId>nk-common-web</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>	
 	
@@ -72,7 +72,7 @@
 	</dependencies>
 	
 	<build>
-		<finalName>sklep3-webapp-powercomputer</finalName>
+		<finalName>nk-webapp-store</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

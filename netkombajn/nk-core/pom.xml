@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>pl.netolution.sklep3</groupId>
-	<artifactId>sklep3-core</artifactId>
+	<groupId>com.netkombajn.store</groupId>
+	<artifactId>nk-core</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>Sklep3 Core</name>
+	<name>Netkombajn Core</name>
 
 	<repositories>
 		<repository>
