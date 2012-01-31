@@ -22,3 +22,7 @@
 .searchButton span {
  display: none;
 }
+
+.categoryToogleGadget {
+ display: none;
+}
