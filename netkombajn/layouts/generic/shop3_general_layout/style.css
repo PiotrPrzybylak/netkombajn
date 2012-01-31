@@ -251,6 +251,10 @@ div.box .box-teaser {
 	width: 100%;
 }
 
+.search p {
+        margin-bottom: 10px;
+}
+
 #search .box-content {
 	padding-left: 4px;
 }
