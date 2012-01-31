@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import pl.netolution.sklep3.dao.ProductRatingDao;
 import pl.netolution.sklep3.domain.product.opinions.ProductRatings;
 import pl.netolution.sklep3.domain.product.opinions.SingleRating;
 

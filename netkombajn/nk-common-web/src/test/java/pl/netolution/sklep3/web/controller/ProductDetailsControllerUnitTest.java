@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.netolution.sklep3.dao.ProductDao;
-import pl.netolution.sklep3.dao.hibernate.ProductRatingDao;
+import pl.netolution.sklep3.dao.ProductRatingDao;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.exception.ProductNotAcessibleException;
 

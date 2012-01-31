@@ -20,6 +20,11 @@ glob:netkombajn/nk-test/.settings
 glob:netkombajn/nk-webapp-store/.classpath
 glob:netkombajn/nk-webapp-store/.project
 glob:netkombajn/nk-webapp-store/.settings/
+glob:netkombajn/nk-persistence/.classpath
+glob:netkombajn/nk-persistence/.project
+glob:netkombajn/nk-persistence/.settings/
+glob:netkombajn/nk-persistence/target/
+glob:netkombajn/nk-persistence/logs/
 syntax: glob
 netkombajn/nk-common-web/logs
 netkombajn/nk-webapp-store/logs
