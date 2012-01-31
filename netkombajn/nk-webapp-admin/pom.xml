@@ -5,7 +5,7 @@
 	<artifactId>nk-webapp-admin</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>Netkombajn Admin</name>
+	<name>Netkombajn Admin Webapp</name>
 	
 	<properties>
 		<spring-webflow.version>2.0.7.RELEASE</spring-webflow.version>
