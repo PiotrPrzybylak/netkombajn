@@ -1,8 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>pl.netolution.sklep3</groupId>
-	<artifactId>sklep3-parent</artifactId>
+	<groupId>com.netkombajn.store</groupId>
+	<artifactId>nk-parent</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>Netkombajn Parent Project</name>
@@ -10,11 +10,23 @@
   
   <modules>
     <module>nk-core</module>
+    <module>nk-persistence</module>
     <module>nk-common-web</module>    
     <module>nk-webapp-store</module>
     <module>nk-webapp-admin</module>
     <module>nk-test</module>
   </modules>
+
+<dependencies>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.8.0-rc2</version>
+			<scope>test</scope>
+		</dependency>
+
+</dependencies>
 
 	<build>
   		<plugins>
@@ -28,13 +40,23 @@
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 				</configuration>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<version>1.0-beta-1</version>
 			</plugin>
-			
-		</plugins>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+					
+		</plugins>	
   	</build>
   	
 </project>
