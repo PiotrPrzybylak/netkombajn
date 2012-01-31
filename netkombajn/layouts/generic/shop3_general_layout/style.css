@@ -255,6 +255,14 @@ div.box .box-teaser {
         margin-bottom: 10px;
 }
 
+#main .search {
+        display: none;
+}
+
+#main #sidebar .search {
+        display: block;
+}
+
 #search .box-content {
 	padding-left: 4px;
 }
