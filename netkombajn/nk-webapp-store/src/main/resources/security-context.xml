@@ -17,11 +17,11 @@
     http://www.springframework.org/schema/jndi 
     http://www.springframework.org/schema/jndi/spring-jndi.xsd 
     http://www.springframework.org/schema/util 
-    http://www.springframework.org/schema/util/spring-util-2.0.xsd\
+    http://www.springframework.org/schema/util/spring-util-2.0.xsd
 	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security.xsd">
+	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	
-  <http auto-config='true' >
+  <http auto-config='true'>
   	<form-login always-use-default-target="true" default-target-url="/admin/orders.xhtml"/>
 	<intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY"/>    
 	<intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
@@ -37,10 +37,11 @@
     <intercept-url pattern="/**" access="ROLE_NOBODY"/>
   </http>
   
-
-  	<authentication-provider user-service-ref='myUserDetailsService' />
+	<authentication-manager>
+  		<authentication-provider user-service-ref='myUserDetailsService' />
+  	</authentication-manager>
  
-	<beans:bean id="myUserDetailsService" class="org.springframework.security.userdetails.jdbc.JdbcDaoImpl" >
+	<beans:bean id="myUserDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl" >
 		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
 
