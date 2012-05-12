@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
 
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.Product;
@@ -20,8 +19,6 @@ public class PicturesImportService {
 	private DownloadService downloadService;
 
 	private PictureManager pictureManager;
-
-	private SessionFactory sessionFactory;
 
 	public void importAllMissingPictures(ImportStatus picturesImportStatus) {
 
@@ -54,14 +51,6 @@ public class PicturesImportService {
 
 	public void setPictureManager(PictureManager pictureManager) {
 		this.pictureManager = pictureManager;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
 	}
 
 }
