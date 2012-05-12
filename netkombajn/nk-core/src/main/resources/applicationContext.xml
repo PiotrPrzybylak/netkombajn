@@ -161,7 +161,6 @@
 		<property name="downloadService" ref="downloadService" />
 		<property name="pictureManager" ref="pictureManager" />
 		<property name="productDao" ref="productDao" />
-		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
