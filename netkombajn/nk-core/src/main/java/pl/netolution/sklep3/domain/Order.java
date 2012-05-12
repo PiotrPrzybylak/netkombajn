@@ -20,13 +20,11 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.apache.lucene.search.Weight;
 import org.hibernate.annotations.Cascade;
 
 import pl.netolution.sklep3.domain.payment.InternalPayment;
 
 @SuppressWarnings("serial")
-@org.hibernate.annotations.TypeDefs( { @org.hibernate.annotations.TypeDef(name = "nip2", typeClass = pl.netolution.sklep3.dao.hibernate.old.NipUserType.class) })
 @Entity
 @Table(name = "orders")
 public class Order implements Serializable {
