@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -30,12 +29,9 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Type;
 
-import pl.netolution.sklep3.lucene.PostUpdateProductEventListener;
-
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "products")
-@EntityListeners(value = { PostUpdateProductEventListener.class })
 public class Product implements Serializable, Cloneable {
 
 	@Id
