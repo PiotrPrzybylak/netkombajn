@@ -10,13 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.netolution.sklep3.dao.OrderDao;
 import pl.netolution.sklep3.domain.Customer;
 import pl.netolution.sklep3.domain.Order;
+import pl.netolution.sklep3.utils.CriteriaOrderListQueryBuilder;
 import pl.netolution.sklep3.utils.OrderListQueryBuilder;
 
 @Transactional
 public class HibernateOrderDao extends HibernateBaseDao<Order> implements OrderDao {
 
 	public OrderListQueryBuilder createOrderListQueryBuilder() {
-		return new OrderListQueryBuilder(getSession().createCriteria(Order.class));
+		return new CriteriaOrderListQueryBuilder(getSession().createCriteria(Order.class));
 	}
 
 	@SuppressWarnings("unchecked")

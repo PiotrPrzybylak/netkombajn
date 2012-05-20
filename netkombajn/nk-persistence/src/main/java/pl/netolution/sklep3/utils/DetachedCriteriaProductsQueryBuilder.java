@@ -207,10 +207,6 @@ public class DetachedCriteriaProductsQueryBuilder implements ProductsQueryBuilde
 		return this;
 	}
 
-	public enum ProductSortProperty {
-		name, price, availability;
-	}
-
 	public boolean isShowOnlyVisible() {
 		return showOnlyVisible;
 	}

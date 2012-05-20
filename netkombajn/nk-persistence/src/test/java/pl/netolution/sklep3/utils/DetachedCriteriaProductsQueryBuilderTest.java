@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 import org.hibernate.criterion.DetachedCriteria;
 
-public class ProductQueryBuilderTest extends TestCase {
+public class DetachedCriteriaProductsQueryBuilderTest extends TestCase {
 
 	public void testBuildProductQueryPrice() throws Exception {
 		DetachedCriteriaProductsQueryBuilder builder = new DetachedCriteriaProductsQueryBuilder();

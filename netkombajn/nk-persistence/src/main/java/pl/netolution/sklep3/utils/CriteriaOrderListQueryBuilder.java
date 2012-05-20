@@ -9,7 +9,7 @@ import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.domain.OrderStatus;
 import pl.netolution.sklep3.domain.enums.SortDirection;
 
-public class OrderListQueryBuilder {
+public class CriteriaOrderListQueryBuilder implements OrderListQueryBuilder {
 
 	private final static String STATUS_FIELD = "status";
 
@@ -21,10 +21,13 @@ public class OrderListQueryBuilder {
 
 	private final Criteria criteria;
 
-	public OrderListQueryBuilder(Criteria criteria) {
+	public CriteriaOrderListQueryBuilder(Criteria criteria) {
 		this.criteria = criteria;
 	}
 
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.OrderListQueryBuilder#getOrders()
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Order> getOrders() {
 
@@ -44,16 +47,25 @@ public class OrderListQueryBuilder {
 		return criteria.list();
 	}
 
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.OrderListQueryBuilder#setStatuses(java.util.List)
+	 */
 	public OrderListQueryBuilder setStatuses(List<OrderStatus> statuses) {
 		this.statuses = statuses;
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.OrderListQueryBuilder#setOrderByProperty(java.lang.String)
+	 */
 	public OrderListQueryBuilder setOrderByProperty(String orderByProperty) {
 		this.orderByProperty = orderByProperty;
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.OrderListQueryBuilder#setOrderDirection(pl.netolution.sklep3.domain.enums.SortDirection)
+	 */
 	public OrderListQueryBuilder setOrderDirection(SortDirection sortDirection) {
 		this.orderDirection = sortDirection;
 		return this;
