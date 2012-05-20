@@ -4,12 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.ServletRequestUtils;
 
-import pl.netolution.sklep3.utils.ProductsQueryBuilder;
+import pl.netolution.sklep3.utils.IProductsQueryBuilder;
 
 public class SearchController extends ProductsController {
 
 	@Override
-	protected void addAdditionalInitParameters(HttpServletRequest req, ProductsQueryBuilder queryBuilder) {
+	protected void addAdditionalInitParameters(HttpServletRequest req, IProductsQueryBuilder queryBuilder) {
 		String searchPhrase = req.getParameter("searchPhrase");
 		int minPrice = ServletRequestUtils.getIntParameter(req, "minPrice", 0);
 		int maxPrice = ServletRequestUtils.getIntParameter(req, "maxPrice", 0);

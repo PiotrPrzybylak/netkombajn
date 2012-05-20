@@ -25,6 +25,7 @@ import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.comparator.ProductAvailabilityComparator;
 import pl.netolution.sklep3.domain.enums.SortDirection;
 import pl.netolution.sklep3.lucene.PhraseSearcher;
+import pl.netolution.sklep3.utils.IProductsQueryBuilder;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder.ProductSortProperty;
 
@@ -126,7 +127,7 @@ public class ProductsController extends ParameterizableViewController {
 
 	}
 
-	protected void addAdditionalInitParameters(HttpServletRequest req, ProductsQueryBuilder queryBuilder) {
+	protected void addAdditionalInitParameters(HttpServletRequest req, IProductsQueryBuilder queryBuilder) {
 		// template method
 	}
 
@@ -138,7 +139,7 @@ public class ProductsController extends ParameterizableViewController {
 	}
 
 	// TODO zrobić opcję jednego parametru , który ma nazwę i kierunek sortowania
-	private void addSortingToBuilder(HttpServletRequest req, ProductsQueryBuilder queryBuilder) {
+	private void addSortingToBuilder(HttpServletRequest req, IProductsQueryBuilder queryBuilder) {
 
 		String sortOrder = ServletRequestUtils.getStringParameter(req, "order", "name");
 
