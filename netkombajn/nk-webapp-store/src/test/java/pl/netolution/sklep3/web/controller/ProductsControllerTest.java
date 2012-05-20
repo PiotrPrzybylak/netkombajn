@@ -22,7 +22,6 @@ import pl.netolution.sklep3.dao.ManufacturerDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.utils.DetachedCriteriaProductsQueryBuilder;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 
 public class ProductsControllerTest {
@@ -75,7 +74,7 @@ public class ProductsControllerTest {
 		//given
 		given(request.getParameter("start")).willReturn("0");
 
-		given(productDao.getProductsQueryBuilder()).willReturn(new DetachedCriteriaProductsQueryBuilder() );
+		given(productDao.getProductsQueryBuilder()).willReturn(new TestProductsQueryBuilder() );
 		List<Product> products = Arrays.asList(new Product(), new Product(), new Product(), new Product(), new Product());
 		given(productDao.searchProducts(any(ProductsQueryBuilder.class), eq(0), eq(12))).willReturn(products);
 		//when

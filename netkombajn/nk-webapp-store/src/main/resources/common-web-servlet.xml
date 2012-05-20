@@ -88,9 +88,6 @@
 		<property name="designerDao" ref="designerDao"/>
 		<property name="manufacturerDao" ref="manufacturerDao"/>
 		<property name="adminConfigurationDao" ref="adminConfigurationDao"/>
-		<property name="phraseSearcher" ref="phraseSearcher"/>
-		
-		<property name="useLucene" value="true"/>
 	</bean>	
 
 	<bean name="/category.html" class="pl.netolution.sklep3.web.controller.CategoriesController">

@@ -1,11 +1,10 @@
-package pl.netolution.sklep3.web.controller;
+package pl.netolution.sklep3.lucene;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.lucene.PhraseSearcher;
 import pl.netolution.sklep3.utils.DetachedCriteriaProductsQueryBuilder;
 
 public class LuceneProductQueryBuilder extends DetachedCriteriaProductsQueryBuilder {

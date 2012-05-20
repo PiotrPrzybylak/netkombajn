@@ -52,7 +52,10 @@
 	</bean>
 
 	<bean id="productDao" class="pl.netolution.sklep3.dao.hibernate.HibernateProductDao"
-		parent="daoBase" />
+		parent="daoBase" >
+		<property name="phraseSearcher" ref="phraseSearcher"/>		
+		<property name="useLucene" value="true"/> 		
+		</bean>
 	<bean id="orderDao" class="pl.netolution.sklep3.dao.hibernate.HibernateOrderDao"
 		parent="daoBase" />
 	<bean id="categoryDao" class="pl.netolution.sklep3.dao.hibernate.HibernateCategoryDao"
