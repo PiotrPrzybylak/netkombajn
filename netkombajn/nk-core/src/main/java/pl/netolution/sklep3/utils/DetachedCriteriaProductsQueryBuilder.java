@@ -17,7 +17,7 @@ import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.enums.SortDirection;
 
-public class DetachedCriteriaProductsQueryBuilder implements IProductsQueryBuilder {
+public class DetachedCriteriaProductsQueryBuilder implements ProductsQueryBuilder {
 
 	protected DetachedCriteria criteria;
 
@@ -146,7 +146,7 @@ public class DetachedCriteriaProductsQueryBuilder implements IProductsQueryBuild
 	/* (non-Javadoc)
 	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addMinPrice(int)
 	 */
-	public IProductsQueryBuilder addMinPrice(int price) {
+	public ProductsQueryBuilder addMinPrice(int price) {
 		this.minPrice = price;
 		return this;
 	}
@@ -154,7 +154,7 @@ public class DetachedCriteriaProductsQueryBuilder implements IProductsQueryBuild
 	/* (non-Javadoc)
 	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addMaxPrice(int)
 	 */
-	public IProductsQueryBuilder addMaxPrice(int price) {
+	public ProductsQueryBuilder addMaxPrice(int price) {
 		this.maxPrice = price;
 		return this;
 	}
@@ -162,7 +162,7 @@ public class DetachedCriteriaProductsQueryBuilder implements IProductsQueryBuild
 	/* (non-Javadoc)
 	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addSearchPhrase(java.lang.String)
 	 */
-	public IProductsQueryBuilder addSearchPhrase(String searchPhrase) {
+	public ProductsQueryBuilder addSearchPhrase(String searchPhrase) {
 		this.searchPhrase = searchPhrase;
 		return this;
 	}
@@ -170,7 +170,7 @@ public class DetachedCriteriaProductsQueryBuilder implements IProductsQueryBuild
 	/* (non-Javadoc)
 	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addCategory(pl.netolution.sklep3.domain.Category)
 	 */
-	public IProductsQueryBuilder addCategory(Category category) {
+	public ProductsQueryBuilder addCategory(Category category) {
 		this.category = category;
 		return this;
 	}
@@ -178,7 +178,7 @@ public class DetachedCriteriaProductsQueryBuilder implements IProductsQueryBuild
 	/* (non-Javadoc)
 	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addDesigner(pl.netolution.sklep3.domain.Designer)
 	 */
-	public IProductsQueryBuilder addDesigner(Designer designer) {
+	public ProductsQueryBuilder addDesigner(Designer designer) {
 		this.designer = designer;
 		return this;
 	}
@@ -186,7 +186,7 @@ public class DetachedCriteriaProductsQueryBuilder implements IProductsQueryBuild
 	/* (non-Javadoc)
 	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addManufacturer(pl.netolution.sklep3.domain.Manufacturer)
 	 */
-	public IProductsQueryBuilder addManufacturer(Manufacturer manufacturer) {
+	public ProductsQueryBuilder addManufacturer(Manufacturer manufacturer) {
 		this.manufacturer = manufacturer;
 		return this;
 	}
@@ -194,7 +194,7 @@ public class DetachedCriteriaProductsQueryBuilder implements IProductsQueryBuild
 	/* (non-Javadoc)
 	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addSortProperty(pl.netolution.sklep3.utils.ProductsQueryBuilder.ProductSortProperty)
 	 */
-	public IProductsQueryBuilder addSortProperty(ProductSortProperty sortProperty) {
+	public ProductsQueryBuilder addSortProperty(ProductSortProperty sortProperty) {
 		this.sortProperty = sortProperty;
 		return this;
 	}
@@ -202,7 +202,7 @@ public class DetachedCriteriaProductsQueryBuilder implements IProductsQueryBuild
 	/* (non-Javadoc)
 	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#setSortDirection(pl.netolution.sklep3.domain.enums.SortDirection)
 	 */
-	public IProductsQueryBuilder setSortDirection(SortDirection sortDirection) {
+	public ProductsQueryBuilder setSortDirection(SortDirection sortDirection) {
 		this.sortDirection = sortDirection;
 		return this;
 	}
