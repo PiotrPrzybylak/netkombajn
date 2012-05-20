@@ -17,7 +17,7 @@ import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.enums.SortDirection;
 
-public class ProductsQueryBuilder {
+public class ProductsQueryBuilder implements IProductsQueryBuilder {
 
 	protected DetachedCriteria criteria;
 
@@ -143,42 +143,66 @@ public class ProductsQueryBuilder {
 		}
 	}
 
-	public ProductsQueryBuilder addMinPrice(int price) {
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addMinPrice(int)
+	 */
+	public IProductsQueryBuilder addMinPrice(int price) {
 		this.minPrice = price;
 		return this;
 	}
 
-	public ProductsQueryBuilder addMaxPrice(int price) {
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addMaxPrice(int)
+	 */
+	public IProductsQueryBuilder addMaxPrice(int price) {
 		this.maxPrice = price;
 		return this;
 	}
 
-	public ProductsQueryBuilder addSearchPhrase(String searchPhrase) {
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addSearchPhrase(java.lang.String)
+	 */
+	public IProductsQueryBuilder addSearchPhrase(String searchPhrase) {
 		this.searchPhrase = searchPhrase;
 		return this;
 	}
 
-	public ProductsQueryBuilder addCategory(Category category) {
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addCategory(pl.netolution.sklep3.domain.Category)
+	 */
+	public IProductsQueryBuilder addCategory(Category category) {
 		this.category = category;
 		return this;
 	}
 
-	public ProductsQueryBuilder addDesigner(Designer designer) {
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addDesigner(pl.netolution.sklep3.domain.Designer)
+	 */
+	public IProductsQueryBuilder addDesigner(Designer designer) {
 		this.designer = designer;
 		return this;
 	}
 
-	public ProductsQueryBuilder addManufacturer(Manufacturer manufacturer) {
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addManufacturer(pl.netolution.sklep3.domain.Manufacturer)
+	 */
+	public IProductsQueryBuilder addManufacturer(Manufacturer manufacturer) {
 		this.manufacturer = manufacturer;
 		return this;
 	}
 
-	public ProductsQueryBuilder addSortProperty(ProductSortProperty sortProperty) {
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#addSortProperty(pl.netolution.sklep3.utils.ProductsQueryBuilder.ProductSortProperty)
+	 */
+	public IProductsQueryBuilder addSortProperty(ProductSortProperty sortProperty) {
 		this.sortProperty = sortProperty;
 		return this;
 	}
 
-	public ProductsQueryBuilder setSortDirection(SortDirection sortDirection) {
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#setSortDirection(pl.netolution.sklep3.domain.enums.SortDirection)
+	 */
+	public IProductsQueryBuilder setSortDirection(SortDirection sortDirection) {
 		this.sortDirection = sortDirection;
 		return this;
 	}
@@ -191,6 +215,9 @@ public class ProductsQueryBuilder {
 		return showOnlyVisible;
 	}
 
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.utils.IProductsQueryBuilder#setShowOnlyVisible(boolean)
+	 */
 	public void setShowOnlyVisible(boolean showOnlyVisible) {
 		this.showOnlyVisible = showOnlyVisible;
 	}
