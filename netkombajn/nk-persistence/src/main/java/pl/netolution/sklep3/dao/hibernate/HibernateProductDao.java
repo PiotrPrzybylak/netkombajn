@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.Product;
+import pl.netolution.sklep3.lucene.LuceneProductQueryBuilder;
+import pl.netolution.sklep3.lucene.PhraseSearcher;
 import pl.netolution.sklep3.utils.DetachedCriteriaProductsQueryBuilder;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 
@@ -21,6 +23,10 @@ import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 public class HibernateProductDao extends HibernateBaseDao<Product> implements ProductDao {
 
 	private static final Logger log = Logger.getLogger(HibernateProductDao.class);
+	
+	private boolean useLucene;
+
+	private PhraseSearcher phraseSearcher;
 
 	@SuppressWarnings("unchecked")
 	public List<Product> searchProducts(ProductsQueryBuilder builder) {
@@ -101,6 +107,18 @@ public class HibernateProductDao extends HibernateBaseDao<Product> implements Pr
 	}
 
 	public ProductsQueryBuilder getProductsQueryBuilder() {
-		return new DetachedCriteriaProductsQueryBuilder();
+		if (useLucene) {
+			return new LuceneProductQueryBuilder(phraseSearcher);
+		} else {
+			return new DetachedCriteriaProductsQueryBuilder();
+		}
 	}
+	
+	public void setUseLucene(boolean useLucene) {
+		this.useLucene = useLucene;
+	}
+
+	public void setPhraseSearcher(PhraseSearcher phraseSearcher) {
+		this.phraseSearcher = phraseSearcher;
+	}	
 }

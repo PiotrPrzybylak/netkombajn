@@ -168,11 +168,7 @@
 			<groupId>com.netkombajn.store</groupId>
 			<artifactId>nk-persistence</artifactId>
 			<version>1.0-SNAPSHOT</version>
-			<!-- 
-			Scope set temporarily to "compile" for dependencies of LuceneProductQueryBuilder which should be moved to nk-persistence where it belongs. 
-			Then it should be changed back to "runtime".
-			-->
-			<scope>compile</scope>
+			<scope>runtime</scope>
 		</dependency>				
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>

@@ -24,7 +24,6 @@ import pl.netolution.sklep3.domain.Manufacturer;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.comparator.ProductAvailabilityComparator;
 import pl.netolution.sklep3.domain.enums.SortDirection;
-import pl.netolution.sklep3.lucene.PhraseSearcher;
 import pl.netolution.sklep3.utils.ProductSortProperty;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 
@@ -39,10 +38,6 @@ public class ProductsController extends ParameterizableViewController {
 	private DesignerDao designerDao;
 
 	private ManufacturerDao manufacturerDao;
-
-	private boolean useLucene;
-
-	private PhraseSearcher phraseSearcher;
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -80,11 +75,7 @@ public class ProductsController extends ParameterizableViewController {
 	}
 
 	private ProductsQueryBuilder getQueryParser() {
-		if (useLucene) {
-			return new LuceneProductQueryBuilder(phraseSearcher);
-		} else {
 			return productDao.getProductsQueryBuilder();
-		}
 	}
 
 	private List<Product> getSubPageList(int productsOnPage, HttpServletRequest req, List<Product> productList) {
@@ -182,18 +173,6 @@ public class ProductsController extends ParameterizableViewController {
 
 	public void setManufacturerDao(ManufacturerDao manufacturerDao) {
 		this.manufacturerDao = manufacturerDao;
-	}
-
-	public void setUseLucene(boolean useLucene) {
-		this.useLucene = useLucene;
-	}
-
-	public boolean isUseLucene() {
-		return useLucene;
-	}
-
-	public void setPhraseSearcher(PhraseSearcher phraseSearcher) {
-		this.phraseSearcher = phraseSearcher;
 	}
 
 }
