@@ -120,5 +120,9 @@ public class HibernateProductDao extends HibernateBaseDao<Product> implements Pr
 
 	public void setPhraseSearcher(PhraseSearcher phraseSearcher) {
 		this.phraseSearcher = phraseSearcher;
+	}
+
+	public ProductsQueryBuilder getOldSkulNoLucenceProductsQueryBuilder() {
+		return new DetachedCriteriaProductsQueryBuilder();
 	}	
 }

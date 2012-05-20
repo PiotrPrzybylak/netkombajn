@@ -31,7 +31,7 @@ public class ProductsController extends ParameterizableViewController {
 
 	private CategoryDao categoryDao;
 
-	private ProductDao productDao;
+	protected ProductDao productDao;
 
 	private AdminConfigurationDao adminConfigurationDao;
 
@@ -74,7 +74,7 @@ public class ProductsController extends ParameterizableViewController {
 		return modelAndView;
 	}
 
-	private ProductsQueryBuilder getQueryParser() {
+	protected ProductsQueryBuilder getQueryParser() {
 			return productDao.getProductsQueryBuilder();
 	}
 

@@ -189,7 +189,7 @@ public class ProductBackingBean extends ProductBackingBase {
 
 	private List<Product> getProductsByCategory() {
 		List<Product> products;
-		ProductsQueryBuilder queryBuilder = productDao.getProductsQueryBuilder();
+		ProductsQueryBuilder queryBuilder = productDao.getOldSkulNoLucenceProductsQueryBuilder();
 		queryBuilder.addCategory(choosenCategory);
 		queryBuilder.setShowOnlyVisible(false);
 		products = productDao.searchProducts(queryBuilder);

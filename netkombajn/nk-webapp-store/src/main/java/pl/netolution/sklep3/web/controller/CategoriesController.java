@@ -6,6 +6,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.netolution.sklep3.domain.Category;
+import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 
 public class CategoriesController extends ProductsController {
 
@@ -15,5 +16,10 @@ public class CategoriesController extends ProductsController {
 		long categoryId = ServletRequestUtils.getLongParameter(req, "categoryId", 0);
 		Category category = getCategoryDao().findById(categoryId);
 		modelAndView.addObject("choosenCategory", category);
+	}
+	
+	@Override
+	protected ProductsQueryBuilder getQueryParser() {
+		return productDao.getOldSkulNoLucenceProductsQueryBuilder();
 	}
 }

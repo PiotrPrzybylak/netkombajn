@@ -29,4 +29,7 @@ public interface ProductDao extends BaseDao<Product> {
 	List<Product> getVisibleProducts();
 
 	ProductsQueryBuilder getProductsQueryBuilder();
+	
+	// TODO remove
+	ProductsQueryBuilder getOldSkulNoLucenceProductsQueryBuilder();
 }
