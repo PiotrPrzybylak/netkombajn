@@ -4,7 +4,6 @@ import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.Designer;
 import pl.netolution.sklep3.domain.Manufacturer;
 import pl.netolution.sklep3.domain.enums.SortDirection;
-import pl.netolution.sklep3.utils.DetachedCriteriaProductsQueryBuilder.ProductSortProperty;
 
 public interface ProductsQueryBuilder {
 

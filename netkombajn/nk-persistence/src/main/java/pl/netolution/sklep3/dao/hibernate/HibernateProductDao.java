@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.Product;
+import pl.netolution.sklep3.utils.DetachedCriteriaProductsQueryBuilder;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 
 @Transactional
@@ -23,7 +24,7 @@ public class HibernateProductDao extends HibernateBaseDao<Product> implements Pr
 
 	@SuppressWarnings("unchecked")
 	public List<Product> searchProducts(ProductsQueryBuilder builder) {
-		DetachedCriteria buildCriteria = builder.buildCriteria();
+		DetachedCriteria buildCriteria = ((DetachedCriteriaProductsQueryBuilder) builder).buildCriteria();
 		if (buildCriteria == null) {
 			return Collections.emptyList();
 		}
@@ -34,7 +35,7 @@ public class HibernateProductDao extends HibernateBaseDao<Product> implements Pr
 	@SuppressWarnings("unchecked")
 	// TODO chyba nie uzywane
 	public List<Product> searchProducts(ProductsQueryBuilder builder, int firstResult, int maxResults) {
-		DetachedCriteria buildCriteria = builder.buildCriteria();
+		DetachedCriteria buildCriteria = ((DetachedCriteriaProductsQueryBuilder) builder).buildCriteria();
 		if (buildCriteria == null) {
 			return Collections.emptyList();
 		}
@@ -59,7 +60,7 @@ public class HibernateProductDao extends HibernateBaseDao<Product> implements Pr
 
 	// TODO chyba nieuzywane
 	public int countProducts(ProductsQueryBuilder builder) {
-		Criteria criteria = builder.buildCriteria().getExecutableCriteria(getSession());
+		Criteria criteria = ((DetachedCriteriaProductsQueryBuilder) builder).buildCriteria().getExecutableCriteria(getSession());
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		criteria.setProjection(Projections.rowCount());
 
@@ -97,5 +98,9 @@ public class HibernateProductDao extends HibernateBaseDao<Product> implements Pr
 
 	private Criteria createCriteriaForVisibleProducts() {
 		return getSession().createCriteria(Product.class).add(Restrictions.eq("visible", true));
+	}
+
+	public ProductsQueryBuilder getProductsQueryBuilder() {
+		return new DetachedCriteriaProductsQueryBuilder();
 	}
 }

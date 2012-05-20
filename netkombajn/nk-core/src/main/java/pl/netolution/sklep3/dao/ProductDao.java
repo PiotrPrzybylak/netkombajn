@@ -4,19 +4,19 @@ import java.util.Date;
 import java.util.List;
 
 import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.utils.DetachedCriteriaProductsQueryBuilder;
+import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 
 public interface ProductDao extends BaseDao<Product> {
 
-	List<Product> searchProducts(DetachedCriteriaProductsQueryBuilder builder);
+	List<Product> searchProducts(ProductsQueryBuilder queryBuilder);
 
-	List<Product> searchProducts(DetachedCriteriaProductsQueryBuilder builder, int firstResult, int maxResults);
+	List<Product> searchProducts(ProductsQueryBuilder builder, int firstResult, int maxResults);
 
 	List<Product> getNewProducts(int maxProducts);
 
 	List<Product> getHitProducts();
 
-	int countProducts(DetachedCriteriaProductsQueryBuilder builder);
+	int countProducts(ProductsQueryBuilder builder);
 
 	Product findByCatalogNumber(String catalogNumber);
 
@@ -27,4 +27,6 @@ public interface ProductDao extends BaseDao<Product> {
 	List<Product> getProductsOnSale();
 
 	List<Product> getVisibleProducts();
+
+	ProductsQueryBuilder getProductsQueryBuilder();
 }

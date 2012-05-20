@@ -6,9 +6,9 @@ import org.hibernate.criterion.Restrictions;
 
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.lucene.PhraseSearcher;
-import pl.netolution.sklep3.utils.ProductsQueryBuilder;
+import pl.netolution.sklep3.utils.DetachedCriteriaProductsQueryBuilder;
 
-public class LuceneProductQueryBuilder extends ProductsQueryBuilder {
+public class LuceneProductQueryBuilder extends DetachedCriteriaProductsQueryBuilder {
 	private final PhraseSearcher phraseSearcher;
 
 	public LuceneProductQueryBuilder(PhraseSearcher phraseSearcher) {

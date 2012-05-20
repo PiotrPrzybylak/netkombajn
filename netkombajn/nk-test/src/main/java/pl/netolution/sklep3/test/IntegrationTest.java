@@ -23,8 +23,8 @@ import pl.netolution.sklep3.domain.OrderHistoryRecord;
 import pl.netolution.sklep3.domain.OrderStatus;
 import pl.netolution.sklep3.domain.PaymentForm;
 import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.utils.ProductsQueryBuilder;
-import pl.netolution.sklep3.utils.ProductsQueryBuilder.ProductSortProperty;
+import pl.netolution.sklep3.utils.DetachedCriteriaProductsQueryBuilder;
+import pl.netolution.sklep3.utils.ProductSortProperty;
 
 public class IntegrationTest {
 
@@ -138,7 +138,7 @@ public class IntegrationTest {
 	}
 
 	public void testGetProductList() {
-		ProductsQueryBuilder builder = new ProductsQueryBuilder();
+		DetachedCriteriaProductsQueryBuilder builder = new DetachedCriteriaProductsQueryBuilder();
 		builder.addSortProperty(ProductSortProperty.price);
 		builder.addSearchPhrase("dupa");
 		productDao.searchProducts(builder);

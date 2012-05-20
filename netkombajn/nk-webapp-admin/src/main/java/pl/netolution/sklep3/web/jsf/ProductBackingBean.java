@@ -19,6 +19,7 @@ import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.service.ProductService;
 import pl.netolution.sklep3.service.ShopService;
+import pl.netolution.sklep3.utils.DetachedCriteriaProductsQueryBuilder;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 import pl.netolution.sklep3.web.jsf.utils.MessageHelper;
 
@@ -189,7 +190,7 @@ public class ProductBackingBean extends ProductBackingBase {
 
 	private List<Product> getProductsByCategory() {
 		List<Product> products;
-		ProductsQueryBuilder queryBuilder = new ProductsQueryBuilder();
+		ProductsQueryBuilder queryBuilder = new DetachedCriteriaProductsQueryBuilder();
 		queryBuilder.addCategory(choosenCategory);
 		queryBuilder.setShowOnlyVisible(false);
 		products = productDao.searchProducts(queryBuilder);
