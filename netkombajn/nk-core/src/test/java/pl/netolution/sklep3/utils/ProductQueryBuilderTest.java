@@ -7,7 +7,7 @@ import org.hibernate.criterion.DetachedCriteria;
 public class ProductQueryBuilderTest extends TestCase {
 
 	public void testBuildProductQueryPrice() throws Exception {
-		ProductsQueryBuilder builder = new ProductsQueryBuilder();
+		DetachedCriteriaProductsQueryBuilder builder = new DetachedCriteriaProductsQueryBuilder();
 
 		builder.addMinPrice(5);
 		builder.addMaxPrice(10);
@@ -19,7 +19,7 @@ public class ProductQueryBuilderTest extends TestCase {
 	}
 
 	public void testBuildProductQueryMinPrice() throws Exception {
-		ProductsQueryBuilder builder = new ProductsQueryBuilder();
+		DetachedCriteriaProductsQueryBuilder builder = new DetachedCriteriaProductsQueryBuilder();
 		builder.addMinPrice(5);
 		DetachedCriteria criteria = builder.buildCriteria();
 
@@ -27,7 +27,7 @@ public class ProductQueryBuilderTest extends TestCase {
 	}
 
 	public void testBuildProductQueryMaxPrice() throws Exception {
-		ProductsQueryBuilder builder = new ProductsQueryBuilder();
+		DetachedCriteriaProductsQueryBuilder builder = new DetachedCriteriaProductsQueryBuilder();
 		builder.addMaxPrice(10);
 		DetachedCriteria criteria = builder.buildCriteria();
 
@@ -35,7 +35,7 @@ public class ProductQueryBuilderTest extends TestCase {
 	}
 
 	public void testBuildProductQueryKeyword() throws Exception {
-		ProductsQueryBuilder builder = new ProductsQueryBuilder();
+		DetachedCriteriaProductsQueryBuilder builder = new DetachedCriteriaProductsQueryBuilder();
 		builder.addSearchPhrase("dupa");
 		DetachedCriteria criteria = builder.buildCriteria();
 

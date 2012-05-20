@@ -17,7 +17,7 @@ import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.enums.SortDirection;
 
-public class ProductsQueryBuilder implements IProductsQueryBuilder {
+public class DetachedCriteriaProductsQueryBuilder implements IProductsQueryBuilder {
 
 	protected DetachedCriteria criteria;
 
