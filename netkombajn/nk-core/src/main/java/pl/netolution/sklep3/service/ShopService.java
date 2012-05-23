@@ -29,8 +29,9 @@ import pl.netolution.sklep3.domain.ShipmentOption;
 import pl.netolution.sklep3.domain.ShoppingCart;
 import pl.netolution.sklep3.domain.payment.Payment.Status;
 import pl.netolution.sklep3.exception.EmptyOrderException;
+import pl.netolution.sklep3.front.SubmitOrderService;
 
-public class ShopService {
+public class ShopService implements SubmitOrderService {
 
 	private OrderDao orderDao;
 
@@ -72,8 +73,11 @@ public class ShopService {
 		orderDao.makePersistent(order);
 	}
 
+	/* (non-Javadoc)
+	 * @see pl.netolution.sklep3.service.SubmitOrderService#processOrderFromSimpleCheckout(pl.netolution.sklep3.domain.Order)
+	 */
 	@Transactional
-	public void processOrderFromSimpleCheckout(Order order) throws EmptyOrderException {
+	public void submitOrder(Order order) throws EmptyOrderException {
 
 		processOrderInternal(order);
 		emailService.sendOrderEmailToRecipient(order);
