@@ -2,8 +2,6 @@ package pl.netolution.sklep3.front;
 
 import java.util.Date;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import pl.netolution.sklep3.dao.OrderDao;
 import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.domain.OrderStatus;
@@ -21,12 +19,6 @@ public class SubmitOrderService {
 		this.emailService = emailService;
 	}
 	
-	// TODO For CGLIB. Remove when @Transactional is removed
-	protected SubmitOrderService() {
-		
-	}
-	
-	@Transactional
 	public void submitOrder(Order order) throws EmptyOrderException {
 		processOrder(order);
 		emailService.sendOrderEmailToRecipient(order);
