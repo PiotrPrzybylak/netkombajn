@@ -2,11 +2,8 @@ package pl.netolution.sklep3.service;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
-
-import org.springframework.transaction.annotation.Transactional;
 
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
@@ -21,19 +18,14 @@ import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.NewsletterRecipient;
 import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.domain.OrderItem;
-import pl.netolution.sklep3.domain.OrderStatus;
 import pl.netolution.sklep3.domain.PaymentForm;
 import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.ShipmentOption;
 import pl.netolution.sklep3.domain.ShoppingCart;
 import pl.netolution.sklep3.domain.payment.Payment.Status;
-import pl.netolution.sklep3.exception.EmptyOrderException;
-import pl.netolution.sklep3.front.SubmitOrderService;
 
-public class ShopService implements SubmitOrderService {
-
-	private OrderDao orderDao;
+public class ShopService{
 
 	private ProductDao productDao;
 
@@ -51,38 +43,6 @@ public class ShopService implements SubmitOrderService {
 
 	private ShipmentOptionDao shipmentOptionDao;
 
-	private CustomerDao customerDao;
-
-	@Transactional
-	public void processOrder(Order order) throws EmptyOrderException {
-
-		processOrderInternal(order);
-
-		emailService.sendOrderEmailToAdmin(order);
-		emailService.sendOrderEmailToCustomer(order);
-	}
-
-	private void processOrderInternal(Order order) throws EmptyOrderException {
-		if (!order.isNotEmpty()) {
-			throw new EmptyOrderException();
-		}
-		order.setCreated(new Date());
-		order.setStatus(OrderStatus.NEW);
-		order.updatePaymentAmount();
-
-		orderDao.makePersistent(order);
-	}
-
-	/* (non-Javadoc)
-	 * @see pl.netolution.sklep3.service.SubmitOrderService#processOrderFromSimpleCheckout(pl.netolution.sklep3.domain.Order)
-	 */
-	@Transactional
-	public void submitOrder(Order order) throws EmptyOrderException {
-
-		processOrderInternal(order);
-		emailService.sendOrderEmailToRecipient(order);
-	}
-
 	public void prepareOrderForSimpleCheckoutProcess(Order order) {
 
 		order.getPayment().setForm(PaymentForm.CASH_ON_DELIVERY);
@@ -90,10 +50,6 @@ public class ShopService implements SubmitOrderService {
 
 		order.getRecipient().setShipmentAddress(null);
 
-	}
-
-	public void setOrderDao(OrderDao orderDao) {
-		this.orderDao = orderDao;
 	}
 
 	public Product getHitProduct() {
