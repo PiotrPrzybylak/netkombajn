@@ -40,12 +40,9 @@
 					 -->		
 
 		</on-render>
-
-		
-
 		
 		<transition on="continue" to="thankYou">
-			<evaluate expression="shopService.processOrderFromSimpleCheckout(orderModel.order)"/>
+			<evaluate expression="submitOrderService.submitOrder(orderModel.order)"/>
 			<evaluate expression="shoppingCart.clear()"/>
 		</transition>
 				

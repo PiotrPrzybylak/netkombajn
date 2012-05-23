@@ -64,45 +64,6 @@ public class ShopServiceTest {
 		shopService.setProductDao(productDao);
 	}
 
-	@Test
-	//TODO mockito i proces ze względu na sku
-	public void testProcessOrder() {
-
-		Order order = new Order();
-		order.setShipmentOption(new ShipmentOption());
-		Product product = new Product();
-		product.setRetailGrossPrice(new Price("10.0"));
-		product.addDefaultSkuIfNecessary();
-		order.addSkuOderItem(new SkuOrderItem(product.getDefaultSku(), 1));
-
-		OrderDao orderDao = createStrictMock(OrderDao.class);
-		orderDao.makePersistent(order);
-		replay(orderDao);
-		shopService.setOrderDao(orderDao);
-
-		EmailService emailService = createStrictMock(EmailService.class);
-		emailService.sendOrderEmailToAdmin(order);
-		emailService.sendOrderEmailToCustomer(order);
-		replay(emailService);
-		shopService.setEmailService(emailService);
-		shopService.processOrder(order);
-
-		// DateService with getNow or getCurrentDate may increase testability of such cases
-		assertEquals(new Date().getTime(), order.getCreated().getTime(), 20);
-
-		EasyMock.verify(orderDao);
-	}
-
-	@Test
-	public void testProcessOrder_Empty() {
-		try {
-			shopService.processOrder(new Order());
-			fail("EmptyOrderException expected");
-		} catch (EmptyOrderException ex) {
-
-		}
-
-	}
 
 	@Test
 	public void testGetHitProduct() {
