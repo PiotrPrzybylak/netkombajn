@@ -28,3 +28,4 @@ glob:netkombajn/nk-persistence/logs/
 syntax: glob
 netkombajn/nk-common-web/logs
 netkombajn/nk-webapp-store/logs
+glob:netkombajn/nk-test/logs/

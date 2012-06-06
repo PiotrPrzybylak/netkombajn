@@ -2,20 +2,18 @@ package com.netkombjan.front;
 
 import java.util.Date;
 
-import pl.netolution.sklep3.dao.OrderDao;
 import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.domain.OrderStatus;
-import pl.netolution.sklep3.exception.EmptyOrderException;
 import pl.netolution.sklep3.service.EmailService;
 
 public class SubmitOrderService {
 
-	private OrderDao orderDao;
+	private OrderHistory orderHistory;
 
 	private EmailService emailService;
 
-	public SubmitOrderService(OrderDao orderDao, EmailService emailService) {
-		this.orderDao = orderDao;
+	public SubmitOrderService(OrderHistory orderHistory, EmailService emailService) {
+		this.orderHistory = orderHistory;
 		this.emailService = emailService;
 	}
 	
@@ -32,6 +30,6 @@ public class SubmitOrderService {
 		order.setStatus(OrderStatus.NEW);
 		order.updatePaymentAmount();
 
-		orderDao.makePersistent(order);
+		orderHistory.addToHistory(order);
 	}
 }

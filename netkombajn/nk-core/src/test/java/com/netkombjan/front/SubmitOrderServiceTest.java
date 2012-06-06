@@ -7,7 +7,6 @@ import org.junit.Test;
 import com.netkombjan.front.SubmitOrderService;
 
 import pl.netolution.sklep3.domain.Order;
-import pl.netolution.sklep3.exception.EmptyOrderException;
 
 
 public class SubmitOrderServiceTest {
