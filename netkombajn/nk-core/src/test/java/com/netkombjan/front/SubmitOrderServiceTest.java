@@ -1,8 +1,10 @@
-package pl.netolution.sklep3.front;
+package com.netkombjan.front;
 
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
+
+import com.netkombjan.front.SubmitOrderService;
 
 import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.exception.EmptyOrderException;

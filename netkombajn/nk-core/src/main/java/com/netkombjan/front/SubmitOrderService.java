@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.front;
+package com.netkombjan.front;
 
 import java.util.Date;
 

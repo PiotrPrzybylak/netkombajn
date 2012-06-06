@@ -17,7 +17,7 @@
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-	<bean name="submitOrderService" class="pl.netolution.sklep3.front.SubmitOrderService">
+	<bean name="submitOrderService" class="com.netkombjan.front.SubmitOrderService">
 		<constructor-arg ref="orderDao" />
 		<constructor-arg ref="emailService"/>
 	</bean>
