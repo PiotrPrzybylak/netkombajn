@@ -7,6 +7,8 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.netkombjan.front.OrderHistory;
+
 import pl.netolution.sklep3.dao.OrderDao;
 import pl.netolution.sklep3.domain.Customer;
 import pl.netolution.sklep3.domain.Order;
@@ -14,7 +16,7 @@ import pl.netolution.sklep3.utils.CriteriaOrderListQueryBuilder;
 import pl.netolution.sklep3.utils.OrderListQueryBuilder;
 
 @Transactional
-public class HibernateOrderDao extends HibernateBaseDao<Order> implements OrderDao {
+public class HibernateOrderDao extends HibernateBaseDao<Order> implements OrderDao, OrderHistory {
 
 	public OrderListQueryBuilder createOrderListQueryBuilder() {
 		return new CriteriaOrderListQueryBuilder(getSession().createCriteria(Order.class));
@@ -42,6 +44,10 @@ public class HibernateOrderDao extends HibernateBaseDao<Order> implements OrderD
 		Criteria criteria = getSession().createCriteria(Order.class);
 		criteria.add(Restrictions.eq("customer", customer));
 		return criteria.list();
+	}
+
+	public void addToHistory(Order order) {	
+		makePersistent(order);
 	}
 
 }

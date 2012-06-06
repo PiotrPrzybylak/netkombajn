@@ -26,6 +26,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.netkombjan.front.EmptyOrderException;
+
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.CategoryDao;
@@ -40,7 +42,6 @@ import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.ShipmentOption;
 import pl.netolution.sklep3.domain.SkuOrderItem;
-import pl.netolution.sklep3.exception.EmptyOrderException;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ShopServiceTest {
