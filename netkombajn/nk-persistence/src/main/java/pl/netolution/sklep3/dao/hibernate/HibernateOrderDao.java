@@ -7,7 +7,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.netkombjan.front.OrderHistory;
+import com.netkombjan.customerActions.orderSubmition.OrderHistory;
 
 import pl.netolution.sklep3.dao.OrderDao;
 import pl.netolution.sklep3.domain.Customer;

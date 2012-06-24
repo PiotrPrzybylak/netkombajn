@@ -10,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.netkombjan.customerActions.orderSubmition.SubmitOrderService;
+
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.ProductDao;
@@ -75,7 +77,7 @@ public class SubmitOrderIntegrationTest {
 		recipient.setEmail("test2@netkombajn.com");
 		order.setRecipient(recipient);
 		order.addSkuOderItem(new SkuOrderItem(sku, 1));
-		submitOrderService.submitOrder(order);
+		submitOrderService.submit(order);
 	}
 	
 
