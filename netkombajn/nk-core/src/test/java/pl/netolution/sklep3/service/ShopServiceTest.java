@@ -26,7 +26,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.netkombjan.front.EmptyOrderException;
+import com.netkombjan.customerActions.orderSubmition.EmptyOrderException;
 
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.AdminConfigurationDao;

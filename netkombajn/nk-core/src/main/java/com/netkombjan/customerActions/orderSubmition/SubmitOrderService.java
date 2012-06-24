@@ -1,4 +1,4 @@
-package com.netkombjan.front;
+package com.netkombjan.customerActions.orderSubmition;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ public class SubmitOrderService {
 		this.emailService = emailService;
 	}
 	
-	public void submitOrder(Order order) throws EmptyOrderException {
+	public void submit(Order order) throws EmptyOrderException {
 		processOrder(order);
 		emailService.sendOrderEmailToRecipient(order);
 	}
