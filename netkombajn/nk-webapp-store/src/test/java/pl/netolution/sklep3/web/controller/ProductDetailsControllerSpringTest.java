@@ -22,7 +22,7 @@ import pl.netolution.sklep3.domain.product.opinions.ProductRatings;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/applicationContext.xml", "/exception-context.xml", "/sessionContext.xml",
-		"/common-web-servlet.xml", "/beans.xml", "/test-objects.xml" })
+		"/store-web-context.xml", "/beans.xml", "/test-objects.xml" })
 public class ProductDetailsControllerSpringTest {
 
 	@Autowired

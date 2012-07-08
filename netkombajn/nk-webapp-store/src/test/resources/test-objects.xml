@@ -15,4 +15,6 @@
 		<constructor-arg value="pl.netolution.sklep3.dao.ProductRatingDao" />
 	</bean>
 	
+	<bean name="tilesConfigurer" class="java.lang.Object"/>
+	
 </beans>

@@ -21,6 +21,15 @@
 
 	<import resource="exception-context.xml"/>
 	
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+       <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles-saitek.xml</value>                
+            </list>
+        </property>
+    </bean>	
+	
+	
 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
 		<property name="interceptors">	
 			<list>
