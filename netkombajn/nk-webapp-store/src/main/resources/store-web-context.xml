@@ -24,7 +24,7 @@
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
        <property name="definitions">
             <list>
-                <value>/WEB-INF/tiles-saitek.xml</value>                
+                <value>/WEB-INF/store-tiles-config.xml</value>                
             </list>
         </property>
     </bean>	
