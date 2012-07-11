@@ -9,13 +9,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.easymock.classextension.EasyMock;
@@ -26,22 +24,15 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.netkombjan.customerActions.orderSubmition.EmptyOrderException;
-
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.NewsletterRecipientDao;
-import pl.netolution.sklep3.dao.OrderDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.NewsletterRecipient;
-import pl.netolution.sklep3.domain.Order;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.domain.ShipmentOption;
-import pl.netolution.sklep3.domain.SkuOrderItem;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ShopServiceTest {

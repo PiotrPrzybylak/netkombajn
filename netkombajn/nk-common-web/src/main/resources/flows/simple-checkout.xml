@@ -12,7 +12,7 @@
 	</decision-state>
 		
 	<action-state id="initializeOrder">
-		<evaluate expression="shopService.prepareOrderForSimpleCheckoutProcess(orderModel.order)" />
+		<evaluate expression="submitOrderService.prepareOrderForSimpleCheckoutProcess(orderModel.order)" />
 		<transition to="simpleCheckout" />
 	</action-state>	
 		
@@ -42,7 +42,7 @@
 		</on-render>
 		
 		<transition on="continue" to="thankYou">
-			<evaluate expression="submitOrderService.submitOrder(orderModel.order)"/>
+			<evaluate expression="submitOrderService.submit(orderModel.order)"/>
 			<evaluate expression="shoppingCart.clear()"/>
 		</transition>
 				

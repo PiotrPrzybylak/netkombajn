@@ -8,22 +8,17 @@ import java.util.UUID;
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.CategoryDao;
-import pl.netolution.sklep3.dao.CustomerDao;
 import pl.netolution.sklep3.dao.NewsletterRecipientDao;
-import pl.netolution.sklep3.dao.OrderDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.dao.ShipmentOptionDao;
 import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.NewsletterRecipient;
-import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.domain.OrderItem;
-import pl.netolution.sklep3.domain.PaymentForm;
 import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.ShipmentOption;
 import pl.netolution.sklep3.domain.ShoppingCart;
-import pl.netolution.sklep3.domain.payment.Payment.Status;
 
 public class ShopService{
 
@@ -42,15 +37,6 @@ public class ShopService{
 	private AdminConfigurationDao adminConfigurationDao;
 
 	private ShipmentOptionDao shipmentOptionDao;
-
-	public void prepareOrderForSimpleCheckoutProcess(Order order) {
-
-		order.getPayment().setForm(PaymentForm.CASH_ON_DELIVERY);
-		order.getPayment().setStatus(Status.NEW);
-
-		order.getRecipient().setShipmentAddress(null);
-
-	}
 
 	public Product getHitProduct() {
 		List<Product> hits = productDao.getHitProducts();

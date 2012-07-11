@@ -12,7 +12,7 @@ import pl.netolution.sklep3.domain.SkuOrderItem;
 import pl.netolution.sklep3.domain.Text;
 import pl.netolution.sklep3.domain.enums.PaymentFormType;
 
-public class TextMessageService {
+public class OrderTextMessageService {
 
 	private static final String SIMPLE_CHECKOUT = "SIMPLE_ORDER";
 
@@ -23,15 +23,6 @@ public class TextMessageService {
 	private TextDao textDao;
 
 	private Map<String, Map<PaymentFormType, String>> orderEmailsNames;
-
-	public String getRemindedPasswordMessage(String password, String email) {
-		String emailText = textDao.findTextByName("emailPrzypomnijHaslo").getText();
-
-		String replacedText = emailText.replaceAll("#email#", email).replace("#password#", password);
-
-		return replacedText;
-
-	}
 
 	public String getSimpleOrderEmail(Order order) {
 

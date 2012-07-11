@@ -15,6 +15,7 @@
     <module>nk-webapp-store</module>
     <module>nk-webapp-admin</module>
     <module>nk-test</module>
+    <module>nk-domain-order</module>
   </modules>
 
 <dependencies>
@@ -26,6 +27,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>		
+		
 </dependencies>
 
 	<build>

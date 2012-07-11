@@ -29,3 +29,7 @@ syntax: glob
 netkombajn/nk-common-web/logs
 netkombajn/nk-webapp-store/logs
 glob:netkombajn/nk-test/logs/
+netkombajn/nk-domain-order/target/
+netkombajn/nk-domain-order/.settings/
+netkombajn/nk-domain-order/.project
+netkombajn/nk-domain-order/.classpath
