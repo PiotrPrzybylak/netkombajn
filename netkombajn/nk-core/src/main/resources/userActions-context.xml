@@ -2,8 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:jndi="http://www.springframework.org/schema/jndi" xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/context
@@ -17,8 +16,30 @@
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-	<bean name="submitOrderService" class="com.netkombjan.customerActions.orderSubmition.SubmitOrderService">
+	<bean name="submitOrderService"
+		class="com.netkombjan.customerActions.orderSubmition.SubmitOrderService">
 		<constructor-arg ref="orderDao" />
-		<constructor-arg ref="emailService"/>
+		<constructor-arg>
+			<bean class="pl.netolution.sklep3.service.OrderEmailService">
+				<constructor-arg ref="netKombajnMailSender" />
+				<constructor-arg ref="adminConfigurationDao" />
+				<constructor-arg>
+					<bean class="pl.netolution.sklep3.service.OrderTextMessageService">
+						<property name="textDao" ref="textDao" />
+						<property name="orderEmailsNames">
+							<map>
+								<entry key="DEFAULT_SHIPMENT_OPTION_CODE">
+									<map key-type="pl.netolution.sklep3.domain.enums.PaymentFormType">
+										<entry key="CASH_ON_DELIVERY" value="SIMPLE_ORDER" />
+										<entry key="ONLINE_TRANSFER" value="SIMPLE_ORDER" />
+										<entry key="NORMAL_TRANSFER" value="SIMPLE_ORDER" />
+									</map>
+								</entry>
+							</map>
+						</property>
+					</bean>
+				</constructor-arg>
+			</bean>
+		</constructor-arg>
 	</bean>
 </beans>

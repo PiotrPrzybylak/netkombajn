@@ -221,17 +221,6 @@
 
 	<bean id="textMessageService" class="pl.netolution.sklep3.service.TextMessageService">
 		<property name="textDao" ref="textDao" />
-		<property name="orderEmailsNames">
-			<map>
-				<entry key="DEFAULT_SHIPMENT_OPTION_CODE">
-					<map key-type="pl.netolution.sklep3.domain.enums.PaymentFormType">
-						<entry key="CASH_ON_DELIVERY" value="SIMPLE_ORDER" />
-						<entry key="ONLINE_TRANSFER" value="SIMPLE_ORDER" />
-						<entry key="NORMAL_TRANSFER" value="SIMPLE_ORDER" />
-					</map>
-				</entry>
-			</map>
-		</property>
 	</bean>
 
 

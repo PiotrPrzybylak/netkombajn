@@ -307,7 +307,7 @@ public class Order implements Serializable {
 	}
 
 	public void setPayment(InternalPayment payment) {
-		payment.setOrder(this);
+	//	payment.setOrder(this);
 		this.payment = payment;
 	}
 

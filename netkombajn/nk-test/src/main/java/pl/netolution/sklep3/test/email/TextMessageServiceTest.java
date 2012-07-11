@@ -18,11 +18,12 @@ import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.ShipmentOption;
 import pl.netolution.sklep3.domain.Text;
 import pl.netolution.sklep3.domain.payment.InternalPayment;
+import pl.netolution.sklep3.service.OrderTextMessageService;
 import pl.netolution.sklep3.service.TextMessageService;
 
 public class TextMessageServiceTest {
 
-	private TextMessageService textMessageService;
+	private OrderTextMessageService textMessageService;
 
 	private final ApplicationContext applicationContext;
 
@@ -49,7 +50,7 @@ public class TextMessageServiceTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 
-		textMessageService = (TextMessageService) applicationContext.getBean("textMessageService");
+		textMessageService = (OrderTextMessageService) applicationContext.getBean("textMessageService");
 		textMessageService.setTextDao(textDao);
 
 		//given common

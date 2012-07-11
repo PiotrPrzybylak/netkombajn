@@ -3,13 +3,8 @@ package pl.netolution.sklep3.service;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import pl.netolution.sklep3.domain.Customer;
 
 public class EncryptionService {
-
-	public void encodeCustomer(Customer customer) {
-		customer.setPassword(encode(customer.getPassword()));
-	}
 
 	public String encode(String encode) {
 		MessageDigest messageDigest;
