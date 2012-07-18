@@ -17,6 +17,7 @@
     <module>nk-test</module>
     <module>nk-domain-order</module>
     <module>nk-domain-shared</module>
+    <module>nk-domain-payment</module>
   </modules>
 
 <dependencies>
