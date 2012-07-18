@@ -1,6 +1,5 @@
 package pl.netolution.sklep3.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -10,15 +9,10 @@ import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.NewsletterRecipientDao;
 import pl.netolution.sklep3.dao.ProductDao;
-import pl.netolution.sklep3.dao.ShipmentOptionDao;
 import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.NewsletterRecipient;
-import pl.netolution.sklep3.domain.OrderItem;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.domain.ShipmentOption;
-import pl.netolution.sklep3.domain.ShoppingCart;
 
 public class ShopService{
 
@@ -35,8 +29,6 @@ public class ShopService{
 	private NewsletterRecipientDao newsletterRecipientDao;
 
 	private AdminConfigurationDao adminConfigurationDao;
-
-	private ShipmentOptionDao shipmentOptionDao;
 
 	public Product getHitProduct() {
 		List<Product> hits = productDao.getHitProducts();
@@ -61,46 +53,9 @@ public class ShopService{
 		return configuration.getMaxHitsNumber() != null && hits.size() > configuration.getMaxHitsNumber();
 	}
 
-	public List<ShipmentOption> getShipmentOptions(ShoppingCart cart) {
-		List<ShipmentOption> shipmentOptions = shipmentOptionDao.getAll();
-		List<ShipmentOption> inRangeOptions = getOptionsInPriceRange(cart.getTotalPrice(), shipmentOptions);
-		List<ShipmentOption> availableShipmentOptions = getAvailableShipmentOptions(cart, inRangeOptions);
 
-		return availableShipmentOptions;
-	}
 
-	private List<ShipmentOption> getAvailableShipmentOptions(ShoppingCart cart, List<ShipmentOption> inRangeOptions) {
-		List<ShipmentOption> availableShipmentOptions = new ArrayList<ShipmentOption>();
 
-		if (cart.isAvailableInstantly()) {
-			return inRangeOptions;
-		}
-		for (ShipmentOption shipmentOption : inRangeOptions) {
-			if (!shipmentOption.isAllowOnlyInstantProducts()) {
-				availableShipmentOptions.add(shipmentOption);
-			}
-		}
-
-		return availableShipmentOptions;
-	}
-
-	private List<ShipmentOption> getOptionsInPriceRange(Price totalShoppingPrice, List<ShipmentOption> shipmentOptions) {
-		List<ShipmentOption> inRangeOptions = new ArrayList<ShipmentOption>();
-
-		for (ShipmentOption shipmentOption : shipmentOptions) {
-			if (shipmentOption.isInRange(totalShoppingPrice)) {
-				inRangeOptions.add(shipmentOption);
-			}
-		}
-		return inRangeOptions;
-	}
-
-	public void refreshProducts(ShoppingCart shoppingCart) {
-
-		for (OrderItem orderItem : shoppingCart.getItems()) {
-			productDao.refresh(orderItem.getProduct());
-		}
-	}
 
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
@@ -184,10 +139,6 @@ public class ShopService{
 
 	public void setAdminConfigurationDao(AdminConfigurationDao adminConfigurationDao) {
 		this.adminConfigurationDao = adminConfigurationDao;
-	}
-
-	public void setShipmentOptionDao(ShipmentOptionDao shipmentOptionDao) {
-		this.shipmentOptionDao = shipmentOptionDao;
 	}
 
 	public void leaveContactMessage(String email, String text) {

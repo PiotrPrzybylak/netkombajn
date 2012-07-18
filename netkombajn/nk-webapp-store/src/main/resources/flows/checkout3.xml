@@ -54,7 +54,7 @@
 		</binder>	
 		
 		<on-render>
-			<set name="requestScope.shipmentOptions" value="shopService.getShipmentOptions(shoppingCart)"/>
+			<set name="requestScope.shipmentOptions" value="shoppingCartService.getShipmentOptions(shoppingCart)"/>
 			<evaluate expression="orderModel.order.fillFromShoppingCart(shoppingCart)"/>		
 			<!--<set name="orderModel.order.totalWeight" value="shoppingCart.getTotalWeight()"/>
 		--></on-render>
@@ -70,7 +70,7 @@
 			<binding property="order.saleDocument"  required="true" />		
 		</binder>		
 		<transition on="continue" to="confirmOrder">		
-			<evaluate expression="shopService.refreshProducts(shoppingCart)"/>
+			<evaluate expression="shoppingCartService.refreshProducts(shoppingCart)"/>
 		</transition>
 		<transition on="back" to="shipmentOptions" validate="false"/>		
 	</view-state>

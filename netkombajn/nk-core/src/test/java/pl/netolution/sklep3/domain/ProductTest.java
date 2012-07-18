@@ -296,17 +296,17 @@ public class ProductTest {
 
 	}
 
-	@Test
-	public void shouldNotBeDeletableWhenHasOrders() throws Exception {
-		// given
-		product.setDefaultSku(new StockKeepingUnit());
-		new SkuOrderItem(product.getDefaultSku(), 1);
-
-		// when
-		boolean result = product.isDeletable();
-
-		// then
-		assertFalse(result);
-
-	}
+//	@Test
+//	public void shouldNotBeDeletableWhenHasOrders() throws Exception {
+//		// given
+//		product.setDefaultSku(new StockKeepingUnit());
+//		new SkuOrderItem(product.getDefaultSku(), 1);
+//
+//		// when
+//		boolean result = product.isDeletable();
+//
+//		// then
+//		assertFalse(result);
+//
+//	}
 }
