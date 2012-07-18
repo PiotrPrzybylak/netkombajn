@@ -16,6 +16,7 @@
     <module>nk-webapp-admin</module>
     <module>nk-test</module>
     <module>nk-domain-order</module>
+    <module>nk-domain-shared</module>
   </modules>
 
 <dependencies>

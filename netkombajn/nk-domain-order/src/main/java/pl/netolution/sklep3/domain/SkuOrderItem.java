@@ -58,7 +58,7 @@ public class SkuOrderItem extends OrderItemBase implements Serializable, Cloneab
 			throw new IllegalArgumentException("Sku canot be null!");
 		}
 
-		sku.addOrderItem(this);
+//		sku.addOrderItem(this);
 		this.sku = sku;
 	}
 

@@ -1,8 +1,6 @@
 package pl.netolution.sklep3.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -43,8 +40,8 @@ public class StockKeepingUnit implements Serializable {
 
 	private Integer priority;
 
-	@OneToMany(mappedBy = "sku")
-	private List<SkuOrderItem> skuOrderItems = new ArrayList<SkuOrderItem>();
+//	@OneToMany(mappedBy = "sku")
+//	private List<SkuOrderItem> skuOrderItems = new ArrayList<SkuOrderItem>();
 
 	public Long getId() {
 		return id;
@@ -154,11 +151,13 @@ public class StockKeepingUnit implements Serializable {
 		throw new RuntimeException("Unpredicted availability: " + availability);
 	}
 
-	public void addOrderItem(SkuOrderItem skuOrderItem) {
-		skuOrderItems.add(skuOrderItem);
-	}
+//	public void addOrderItem(SkuOrderItem skuOrderItem) {
+//		skuOrderItems.add(skuOrderItem);
+//	}
 
 	public boolean isDeletable() {
-		return skuOrderItems.isEmpty();
+		// TODO check if it is possible to delete this SKU.
+		return true;
+		//	return skuOrderItems.isEmpty();
 	}
 }

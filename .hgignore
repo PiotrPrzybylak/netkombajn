@@ -33,3 +33,7 @@ netkombajn/nk-domain-order/target/
 netkombajn/nk-domain-order/.settings/
 netkombajn/nk-domain-order/.project
 netkombajn/nk-domain-order/.classpath
+netkombajn/nk-domain-shared/.classpath
+netkombajn/nk-domain-shared/target/
+netkombajn/nk-domain-shared/.project
+netkombajn/nk-domain-shared/.settings/
