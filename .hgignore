@@ -37,3 +37,7 @@ netkombajn/nk-domain-shared/.classpath
 netkombajn/nk-domain-shared/target/
 netkombajn/nk-domain-shared/.project
 netkombajn/nk-domain-shared/.settings/
+netkombajn/nk-domain-payment/.settings/
+netkombajn/nk-domain-payment/target/
+netkombajn/nk-domain-payment/.classpath
+netkombajn/nk-domain-payment/.project
