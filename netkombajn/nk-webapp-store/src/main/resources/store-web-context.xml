@@ -61,9 +61,8 @@
 		<property name="cacheSeconds" value="0" />	
 	</bean>
 
-	<bean name="/home.html" class="pl.netolution.sklep3.web.controller.MainController" parent="baseController">
+	<bean name="/home.html" class="pl.netolution.sklep3.web.controller.MainController" parent="baseController" autowire="constructor">
 		<property name="viewName" value="home" />
-		<property name="shopService" ref="shopService"/>	
 	</bean>
 
 	<bean name="/info.html" class="org.springframework.web.servlet.mvc.ParameterizableViewController">

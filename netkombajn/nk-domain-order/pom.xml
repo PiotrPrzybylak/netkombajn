@@ -28,6 +28,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.netkombajn.store</groupId>
+			<artifactId>nk-domain-product</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>		
+		<dependency>
+			<groupId>com.netkombajn.store</groupId>
 			<artifactId>nk-domain-payment</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>

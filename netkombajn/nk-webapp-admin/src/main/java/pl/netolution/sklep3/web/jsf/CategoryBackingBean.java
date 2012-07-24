@@ -10,6 +10,7 @@ import org.richfaces.model.TreeNodeImpl;
 
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.domain.Category;
+import pl.netolution.sklep3.service.CategoryService;
 import pl.netolution.sklep3.service.ShopService;
 
 public class CategoryBackingBean {
@@ -22,7 +23,7 @@ public class CategoryBackingBean {
 
 	private String newSubcategory;
 
-	private ShopService shopService;
+	private CategoryService categoryService;
 
 	//TODO tam metoda jest taka sama jak ta z ProductBackingBean
 	public void chooseCategory(ActionEvent actionEvent) {
@@ -95,7 +96,7 @@ public class CategoryBackingBean {
 	}
 
 	public String addSubcategory() {
-		shopService.createSubcategory(choosenCategory, newSubcategory);
+		categoryService.createSubcategory(choosenCategory, newSubcategory);
 		initializeCategoriesTree();
 		newSubcategory = null;
 		return null;
@@ -121,8 +122,7 @@ public class CategoryBackingBean {
 		this.newSubcategory = newSubcategory;
 	}
 
-	public void setShopService(ShopService shopService) {
-		this.shopService = shopService;
+	public void setCategoryService(CategoryService categoryService) {
+		this.categoryService = categoryService;
 	}
-
 }

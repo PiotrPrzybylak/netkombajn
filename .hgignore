@@ -44,3 +44,5 @@ netkombajn/nk-domain-payment/.project
 .classpath
 .project
 .settings
+netkombajn/nk-domain-product/target/
+netkombajn/nk-domain-product/logs/

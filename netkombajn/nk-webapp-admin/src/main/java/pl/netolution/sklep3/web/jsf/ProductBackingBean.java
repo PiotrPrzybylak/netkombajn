@@ -18,7 +18,6 @@ import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.service.ProductService;
-import pl.netolution.sklep3.service.ShopService;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 import pl.netolution.sklep3.web.jsf.utils.MessageHelper;
 
@@ -26,8 +25,6 @@ public class ProductBackingBean extends ProductBackingBase {
 
 	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(ProductBackingBean.class);
-
-	private ShopService shopService;
 
 	private static final String PRODUCT_DETAILS_VIEW = "productDetails";
 
@@ -90,12 +87,12 @@ public class ProductBackingBean extends ProductBackingBase {
 	}
 
 	public String hideProduct() {
-		shopService.hideProduct(getProductIdFromRequest());
+		productService.hideProduct(getProductIdFromRequest());
 		return null;
 	}
 
 	public String unhideProduct() {
-		shopService.unhideProduct(getProductIdFromRequest());
+		productService.unhideProduct(getProductIdFromRequest());
 		return null;
 	}
 
@@ -200,10 +197,6 @@ public class ProductBackingBean extends ProductBackingBase {
 		Set<Product> products = choosenMassEditCategory.getAllProducts();
 
 		return new ArrayList<Product>(products);
-	}
-
-	public void setShopService(ShopService shopService) {
-		this.shopService = shopService;
 	}
 
 	public Category getChoosenCategory() {
