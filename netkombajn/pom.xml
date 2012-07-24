@@ -18,6 +18,7 @@
     <module>nk-domain-order</module>
     <module>nk-domain-shared</module>
     <module>nk-domain-payment</module>
+    <module>nk-domain-product</module>
   </modules>
 
 <dependencies>
