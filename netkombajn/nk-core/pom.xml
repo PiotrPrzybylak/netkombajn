@@ -7,6 +7,12 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>Netkombajn Core</name>
 
+	<parent>
+		<groupId>com.netkombajn.store</groupId>
+		<artifactId>nk-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
 	<properties>
 		<spring.version>3.1.1.RELEASE</spring.version>
 	</properties>
@@ -24,18 +30,6 @@
 			<groupId>com.netkombajn.store</groupId>
 			<artifactId>nk-domain-shared</artifactId>
 			<version>1.0-SNAPSHOT</version>
-		</dependency>	
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
-				<dependency>
-			<groupId>org.easytesting</groupId>
-			<artifactId>fest-assert</artifactId>
-			<version>1.4</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -51,7 +45,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -100,34 +94,28 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
 			<version>3.3.0.ga</version>
-	<exclusions>
-		<exclusion>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate</artifactId>		
-		</exclusion>
-	</exclusions>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
 			<version>3.3.0.ga</version>
-	<exclusions>
-		<exclusion>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate</artifactId>		
-		</exclusion>
-	</exclusions>			
+			<exclusions>
+				<exclusion>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.easymock</groupId>
-			<artifactId>easymock</artifactId>
-			<version>2.5.1</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.easymock</groupId>

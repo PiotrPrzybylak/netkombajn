@@ -108,15 +108,7 @@
 	<bean id="productRatingDao" class="pl.netolution.sklep3.dao.hibernate.HibernateProductRatingDao"
 		parent="daoBase" />
 
-	<bean id="shopService" class="pl.netolution.sklep3.service.ShopService">
-		<property name="productDao" ref="productDao" />
-		<property name="configuration" ref="configuration" />
-		<property name="randomService" ref="randomService" />
-		<property name="emailService" ref="emailService" />
-		<property name="categoryDao" ref="categoryDao" />
-		<property name="newsletterRecipientDao" ref="newsletterRecipientDao" />
-		<property name="adminConfigurationDao" ref="adminConfigurationDao" />
-	</bean>
+	<bean id="shopService" class="pl.netolution.sklep3.service.ShopService" autowire="constructor"/>
 
 	<bean id="shoppingCartService" class="pl.netolution.sklep3.service.ShoppingCartService">
 		<constructor-arg ref="productDao"/>
@@ -187,10 +179,7 @@
 		<property name="textMessageService" ref="textMessageService" />
 	</bean>
 
-	<bean id="productService" class="pl.netolution.sklep3.service.ProductService">
-		<property name="pictureManager" ref="pictureManager" />
-		<property name="productDao" ref="productDao" />
-	</bean>
+	<bean id="productService" class="pl.netolution.sklep3.service.ProductService" autowire="constructor"/>
 
 	<bean id="manufacturerService" class="pl.netolution.sklep3.service.ManufacturerService">
 		<property name="pictureManager" ref="pictureManager" />

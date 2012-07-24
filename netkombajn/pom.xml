@@ -20,6 +20,10 @@
     <module>nk-domain-payment</module>
     <module>nk-domain-product</module>
   </modules>
+  
+  	<properties>
+		<spring.version>3.1.1.RELEASE</spring.version>
+	</properties>
 
 <dependencies>
 
@@ -36,6 +40,20 @@
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>		
+		
+		<dependency>
+			<groupId>org.easytesting</groupId>
+			<artifactId>fest-assert</artifactId>
+			<version>1.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>2.5.1</version>
+			<scope>test</scope>
+		</dependency>
 		
 </dependencies>
 
