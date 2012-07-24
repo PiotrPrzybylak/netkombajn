@@ -41,3 +41,6 @@ netkombajn/nk-domain-payment/.settings/
 netkombajn/nk-domain-payment/target/
 netkombajn/nk-domain-payment/.classpath
 netkombajn/nk-domain-payment/.project
+.classpath
+.project
+.settings
