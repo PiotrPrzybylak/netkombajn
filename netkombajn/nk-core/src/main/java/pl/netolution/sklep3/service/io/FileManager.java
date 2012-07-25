@@ -41,13 +41,6 @@ public class FileManager {
 		}
 	}
 
-	private byte[] getDataFromFile(File uploadedFile) throws FileNotFoundException, IOException {
-		InputStream inputStream = new FileInputStream(uploadedFile);
-		byte[] data = new byte[inputStream.available()];
-		inputStream.read(data);
-		return data;
-	}
-
 	public void readFileToStream(File file, OutputStream os) throws FileNotFoundException, IOException {
 		log.debug("Reading file to stream: " + file.getPath());
 
