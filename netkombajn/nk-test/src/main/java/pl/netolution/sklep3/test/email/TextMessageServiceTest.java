@@ -19,7 +19,6 @@ import pl.netolution.sklep3.domain.ShipmentOption;
 import pl.netolution.sklep3.domain.Text;
 import pl.netolution.sklep3.domain.payment.InternalPayment;
 import pl.netolution.sklep3.service.OrderTextMessageService;
-import pl.netolution.sklep3.service.TextMessageService;
 
 public class TextMessageServiceTest {
 
