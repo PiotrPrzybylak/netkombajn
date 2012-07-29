@@ -1,40 +1,51 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.netkombajn.store</groupId>
-    <artifactId>nk-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
-  <groupId>com.netkombajn.store</groupId>
-  <artifactId>nk-domain-order</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>nk-domain-order</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  <dependencies>
-		<dependency>
-			<groupId>com.netkombajn.store</groupId>
-			<artifactId>nk-core</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.netkombajn.store</groupId>
+		<artifactId>nk-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.netkombajn.store</groupId>
+	<artifactId>nk-domain-order</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>nk-domain-order</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
 		<dependency>
 			<groupId>com.netkombajn.store</groupId>
 			<artifactId>nk-domain-shared</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.netkombajn.store</groupId>
 			<artifactId>nk-domain-product</artifactId>
 			<version>1.0-SNAPSHOT</version>
-		</dependency>		
+		</dependency>
+
 		<dependency>
 			<groupId>com.netkombajn.store</groupId>
 			<artifactId>nk-domain-payment</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-  </dependencies>
+
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+	</dependencies>
 </project>
