@@ -10,6 +10,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.netkombajn.store.domain.shared.dao.BaseEntity;
+
 @Entity
 @Table(name = "product_family")
 public class ProductFamily extends BaseEntity {

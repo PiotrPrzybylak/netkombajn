@@ -11,8 +11,9 @@ import junit.framework.TestCase;
 
 import org.easymock.classextension.EasyMock;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import pl.netolution.sklep3.dao.ProductDao;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.web.jsf.utils.MessageHelper;
 

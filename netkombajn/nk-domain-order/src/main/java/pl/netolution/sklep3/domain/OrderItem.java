@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import org.apache.log4j.Logger;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 @Entity
 @Table(name = "order_items")
 public class OrderItem extends OrderItemBase implements Serializable, Cloneable {

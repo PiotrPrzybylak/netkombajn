@@ -2,7 +2,8 @@ package pl.netolution.sklep3.web.jsf;
 
 import java.lang.reflect.ParameterizedType;
 
-import pl.netolution.sklep3.dao.BaseDao;
+import com.netkombajn.store.domain.shared.dao.BaseDao;
+
 
 public class GenericEntityBackingBean<T> {
 

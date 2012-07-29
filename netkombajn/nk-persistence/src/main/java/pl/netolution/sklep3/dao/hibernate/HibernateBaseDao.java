@@ -10,7 +10,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.netolution.sklep3.dao.BaseDao;
+import com.netkombajn.store.domain.shared.dao.BaseDao;
+
 
 @Transactional
 public class HibernateBaseDao<T> extends HibernateDaoSupport implements BaseDao<T> {

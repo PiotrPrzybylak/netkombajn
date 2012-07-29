@@ -2,8 +2,9 @@ package pl.netolution.sklep3.test;
 
 import java.math.BigDecimal;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import junit.framework.TestCase;
-import pl.netolution.sklep3.domain.Price;
 
 public class PriceTest extends TestCase {
 

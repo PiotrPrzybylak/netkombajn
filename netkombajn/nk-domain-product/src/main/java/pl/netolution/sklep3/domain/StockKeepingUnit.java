@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import pl.netolution.sklep3.domain.Product.Availability;
 
 @SuppressWarnings("serial")

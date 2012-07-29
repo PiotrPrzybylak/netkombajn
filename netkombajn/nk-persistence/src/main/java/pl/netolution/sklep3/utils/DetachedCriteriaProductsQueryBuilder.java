@@ -10,12 +10,13 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 
+import com.netkombajn.store.domain.shared.price.Price;
+import com.netkombajn.store.domain.shared.sort.SortDirection;
+
 import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.Designer;
 import pl.netolution.sklep3.domain.Manufacturer;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.domain.enums.SortDirection;
 
 public class DetachedCriteriaProductsQueryBuilder implements ProductsQueryBuilder {
 

@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.domain.enums;
+package com.netkombajn.store.domain.shared.sort;
 
 public enum SortDirection {
 	asc, desc;

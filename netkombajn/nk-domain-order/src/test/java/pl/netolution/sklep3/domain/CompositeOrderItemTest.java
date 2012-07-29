@@ -3,6 +3,8 @@ package pl.netolution.sklep3.domain;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import junit.framework.TestCase;
 
 public class CompositeOrderItemTest extends TestCase {

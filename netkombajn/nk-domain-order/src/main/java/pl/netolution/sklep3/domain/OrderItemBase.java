@@ -6,6 +6,8 @@ import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.Type;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 @SuppressWarnings("serial")
 @MappedSuperclass
 public class OrderItemBase implements Serializable {

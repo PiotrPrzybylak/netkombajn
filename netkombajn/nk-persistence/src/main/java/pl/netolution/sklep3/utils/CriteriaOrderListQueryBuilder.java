@@ -5,9 +5,10 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
+import com.netkombajn.store.domain.shared.sort.SortDirection;
+
 import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.domain.OrderStatus;
-import pl.netolution.sklep3.domain.enums.SortDirection;
 
 public class CriteriaOrderListQueryBuilder implements OrderListQueryBuilder {
 

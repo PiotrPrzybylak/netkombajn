@@ -9,10 +9,11 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import pl.netolution.sklep3.dao.CompositeProductDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.CompositeProduct;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 
 public class CompositeAjaxController extends AbstractController {

@@ -3,10 +3,11 @@ package pl.netolution.sklep3.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.dao.ShipmentOptionDao;
 import pl.netolution.sklep3.domain.OrderItem;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.ShipmentOption;
 import pl.netolution.sklep3.domain.ShoppingCart;
 

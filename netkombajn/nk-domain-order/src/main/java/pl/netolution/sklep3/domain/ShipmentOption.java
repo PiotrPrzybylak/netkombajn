@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.annotations.Type;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 @Entity
 @Table(name = "shipment_options")
 public class ShipmentOption implements Serializable {

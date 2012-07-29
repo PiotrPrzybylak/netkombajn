@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 public class ShoppingCart {
 
 	private static final Logger log = Logger.getLogger(ShoppingCart.class);

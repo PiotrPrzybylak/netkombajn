@@ -22,6 +22,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import pl.netolution.sklep3.domain.payment.InternalPayment;
 
 @SuppressWarnings("serial")

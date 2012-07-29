@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import org.apache.log4j.Logger;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 @Entity
 @Table(name = "order_items")
 //TODO jeśli zwykłe OrderItem z produktem zostawnie to wydzilić typ generyczny

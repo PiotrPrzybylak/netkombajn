@@ -8,6 +8,8 @@ import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.Type;
 
+import com.netkombajn.store.domain.shared.payment.Money;
+
 import pl.netolution.sklep3.domain.PaymentForm;
 
 @SuppressWarnings("serial")

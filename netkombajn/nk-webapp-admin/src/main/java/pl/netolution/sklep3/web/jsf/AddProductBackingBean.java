@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import pl.netolution.sklep3.dao.DesignerDao;
 import pl.netolution.sklep3.dao.ManufacturerDao;
 import pl.netolution.sklep3.dao.PictureDao;
@@ -19,7 +21,6 @@ import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.Designer;
 import pl.netolution.sklep3.domain.Manufacturer;
 import pl.netolution.sklep3.domain.Picture;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.ProductPicture;
 import pl.netolution.sklep3.domain.StockKeepingUnit;

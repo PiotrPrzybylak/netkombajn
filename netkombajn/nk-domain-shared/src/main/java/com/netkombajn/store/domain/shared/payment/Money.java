@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.domain.payment;
+package com.netkombajn.store.domain.shared.payment;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

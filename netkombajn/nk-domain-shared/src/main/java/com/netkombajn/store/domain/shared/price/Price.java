@@ -1,9 +1,10 @@
-package pl.netolution.sklep3.domain;
+package com.netkombajn.store.domain.shared.price;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import pl.netolution.sklep3.domain.payment.Money;
+import com.netkombajn.store.domain.shared.payment.Money;
+
 
 @SuppressWarnings("serial")
 public class Price implements Comparable<Price>, Serializable {

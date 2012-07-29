@@ -12,6 +12,8 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
+import com.netkombajn.store.domain.shared.sort.SortDirection;
+
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.DesignerDao;
@@ -23,7 +25,6 @@ import pl.netolution.sklep3.domain.Designer;
 import pl.netolution.sklep3.domain.Manufacturer;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.comparator.ProductAvailabilityComparator;
-import pl.netolution.sklep3.domain.enums.SortDirection;
 import pl.netolution.sklep3.utils.ProductSortProperty;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 

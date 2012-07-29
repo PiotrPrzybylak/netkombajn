@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 @Entity
 @Table(name = "composite_product")
 @SuppressWarnings("serial")

@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.dao;
+package com.netkombajn.store.domain.shared.dao;
 
 import java.util.List;
 

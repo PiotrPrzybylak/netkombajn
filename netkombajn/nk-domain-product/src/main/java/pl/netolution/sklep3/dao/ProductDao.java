@@ -3,6 +3,8 @@ package pl.netolution.sklep3.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.netkombajn.store.domain.shared.dao.BaseDao;
+
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 

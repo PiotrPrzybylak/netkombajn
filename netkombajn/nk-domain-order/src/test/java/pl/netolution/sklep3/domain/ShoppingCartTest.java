@@ -6,6 +6,8 @@ import static org.mockito.Mockito.mock;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import junit.framework.TestCase;
 import pl.netolution.sklep3.domain.Product.Availability;
 

@@ -9,7 +9,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.usertype.UserType;
 
-import pl.netolution.sklep3.domain.payment.Money;
+import com.netkombajn.store.domain.shared.payment.Money;
+
 
 public class MoneyUserType extends AbstractUserType implements UserType {
 
