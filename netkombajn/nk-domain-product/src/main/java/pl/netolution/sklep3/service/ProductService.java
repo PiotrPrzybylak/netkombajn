@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.AdminConfiguration;
@@ -12,6 +11,12 @@ import pl.netolution.sklep3.domain.Picture;
 import pl.netolution.sklep3.domain.Product;
 
 public class ProductService {
+
+	public interface Configuration {
+
+		int getMaxNewProducts();
+
+	}
 
 	private PictureManager pictureManager;
 

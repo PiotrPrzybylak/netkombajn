@@ -10,9 +10,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 
-import pl.netolution.sklep3.configuration.Configuration;
+
 
 public class NetKombajnMailSender implements JavaMailSender {
+
+
 
 	private final Logger logger = Logger.getLogger(NetKombajnMailSender.class);
 
@@ -91,5 +93,11 @@ public class NetKombajnMailSender implements JavaMailSender {
 		}
 
 	}
+	
+	public interface Configuration {
+
+		boolean isDeveloperMode();
+
+	}	
 
 }
