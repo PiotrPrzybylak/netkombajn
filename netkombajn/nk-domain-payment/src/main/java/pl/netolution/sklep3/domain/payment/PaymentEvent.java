@@ -4,7 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Table;
 
-import pl.netolution.sklep3.domain.BaseEntity;
+import com.netkombajn.store.domain.shared.dao.BaseEntity;
+
 
 @javax.persistence.Entity
 @Table(name = "payment_events")

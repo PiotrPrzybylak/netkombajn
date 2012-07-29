@@ -9,7 +9,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.usertype.UserType;
 
-import pl.netolution.sklep3.domain.Price;
+import com.netkombajn.store.domain.shared.price.Price;
+
 
 public class PriceUserType extends AbstractUserType implements UserType {
 

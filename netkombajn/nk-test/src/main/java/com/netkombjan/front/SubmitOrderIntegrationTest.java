@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.netkombajn.store.domain.shared.price.Price;
 import com.netkombjan.customerActions.orderSubmition.SubmitOrderService;
 
 import pl.netolution.sklep3.configuration.Configuration;
@@ -19,7 +20,6 @@ import pl.netolution.sklep3.dao.SkuDao;
 import pl.netolution.sklep3.dao.TextDao;
 import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Order;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.Recipient;
 import pl.netolution.sklep3.domain.SkuOrderItem;

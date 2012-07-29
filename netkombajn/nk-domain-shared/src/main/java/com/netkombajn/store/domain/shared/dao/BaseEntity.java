@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.domain;
+package com.netkombajn.store.domain.shared.dao;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

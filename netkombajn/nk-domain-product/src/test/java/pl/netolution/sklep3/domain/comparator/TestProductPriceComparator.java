@@ -4,8 +4,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import junit.framework.TestCase;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 
 public class TestProductPriceComparator extends TestCase {

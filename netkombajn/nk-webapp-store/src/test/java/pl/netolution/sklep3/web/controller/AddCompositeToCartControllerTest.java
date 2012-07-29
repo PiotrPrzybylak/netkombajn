@@ -5,12 +5,13 @@ import static org.mockito.Mockito.when;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import junit.framework.TestCase;
 import pl.netolution.sklep3.dao.CompositeProductDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.CompositeOrderItem;
 import pl.netolution.sklep3.domain.CompositeProduct;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.ShoppingCart;
 

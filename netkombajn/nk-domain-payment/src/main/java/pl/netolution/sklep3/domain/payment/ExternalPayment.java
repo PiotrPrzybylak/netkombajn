@@ -1,5 +1,7 @@
 package pl.netolution.sklep3.domain.payment;
 
+import com.netkombajn.store.domain.shared.payment.Money;
+
 import pl.netolution.sklep3.domain.PaymentForm;
 
 public class ExternalPayment extends Payment {

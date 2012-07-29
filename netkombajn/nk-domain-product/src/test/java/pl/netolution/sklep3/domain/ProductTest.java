@@ -15,6 +15,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import pl.netolution.sklep3.domain.Product.Availability;
 
 public class ProductTest {

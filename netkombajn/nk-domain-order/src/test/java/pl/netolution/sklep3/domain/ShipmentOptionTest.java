@@ -10,6 +10,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 public class ShipmentOptionTest {
 
 	private ShipmentOption shipmentOption = new ShipmentOption();

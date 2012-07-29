@@ -13,6 +13,8 @@ import org.springframework.mail.MailException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.ManufacturerDao;
@@ -20,7 +22,6 @@ import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.Manufacturer;
-import pl.netolution.sklep3.domain.Price;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.Product.Availability;
 import pl.netolution.sklep3.service.EmailService;

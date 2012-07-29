@@ -8,7 +8,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
-import pl.netolution.sklep3.domain.Price;
+import com.netkombajn.store.domain.shared.price.Price;
+
 
 public class PriceConverter implements Converter {
 
