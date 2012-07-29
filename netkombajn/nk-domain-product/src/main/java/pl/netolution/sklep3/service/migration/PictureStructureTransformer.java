@@ -5,7 +5,6 @@ import java.io.FilenameFilter;
 
 import org.apache.log4j.Logger;
 
-import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.PictureDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.Product;
@@ -13,6 +12,12 @@ import pl.netolution.sklep3.domain.ProductPicture;
 import pl.netolution.sklep3.service.PictureManager;
 
 public class PictureStructureTransformer {
+
+	public interface Configuration {
+
+		String getPicturesUploadFolder();
+
+	}
 
 	private static final Logger log = Logger.getLogger(PictureStructureTransformer.class);
 

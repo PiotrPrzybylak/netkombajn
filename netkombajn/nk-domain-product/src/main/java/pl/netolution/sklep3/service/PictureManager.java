@@ -20,7 +20,6 @@ import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.PictureDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.ImageFormat;
@@ -299,4 +298,16 @@ public class PictureManager {
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
 	}
+	
+	public interface Configuration {
+
+		List<ImageFormat> getImageFormats();
+
+		ImageFormat getImageFormatByName(String formatName);
+
+		String getPicturesUploadFolder();
+
+		String getGeneratedPicturesFolder();
+
+	}	
 }

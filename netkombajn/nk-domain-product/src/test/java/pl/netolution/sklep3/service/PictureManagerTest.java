@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import junit.framework.TestCase;
-import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.PictureDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.ImageFormat;
@@ -22,6 +21,7 @@ import pl.netolution.sklep3.service.pictures.StandardPictureFileNameGenerator;
 
 public class PictureManagerTest extends TestCase {
 
+	PictureManager.Configuration configuration = mock(PictureManager.Configuration.class);
 	PictureManager pictureManager;
 	Picture picture456;
 
@@ -39,7 +39,7 @@ public class PictureManagerTest extends TestCase {
 
 		OutputStream os = null;
 		FileManager fileManager = mock(FileManager.class);
-		Configuration configuration = mock(Configuration.class);
+
 		when(configuration.getGeneratedPicturesFolder()).thenReturn("c:\\łobrazki\\generated");
 
 		pictureManager.setFileManager(fileManager);
@@ -63,7 +63,6 @@ public class PictureManagerTest extends TestCase {
 		//given
 		OutputStream os = null;
 		FileManager fileManager = mock(FileManager.class);
-		Configuration configuration = mock(Configuration.class);
 		when(configuration.getPicturesUploadFolder()).thenReturn("c:\\łobrazki\\generated");
 
 		pictureManager.setFileManager(fileManager);
@@ -89,7 +88,6 @@ public class PictureManagerTest extends TestCase {
 
 		FileManager fileManager = mock(FileManager.class);
 
-		Configuration configuration = mock(Configuration.class);
 		when(configuration.getGeneratedPicturesFolder()).thenReturn("c:\\łobrazki\\generated");
 		when(configuration.getImageFormatByName("small")).thenReturn(imageFormat);
 
@@ -119,7 +117,6 @@ public class PictureManagerTest extends TestCase {
 		pictureManager.setProductDao(productDao);
 		pictureManager.setFileManager(mock(FileManager.class));
 		pictureManager.setPictureDao(mock(PictureDao.class));
-		Configuration configuration = mock(Configuration.class);
 		when(configuration.getGeneratedPicturesFolder()).thenReturn("c:\\łobrazki\\generated");
 		pictureManager.setConfiguration(configuration);
 		StandardPictureFileNameGenerator standardPictureFileNameGenerator = new StandardPictureFileNameGenerator();

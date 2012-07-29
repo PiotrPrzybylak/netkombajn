@@ -5,7 +5,13 @@ import java.util.Map;
 
 import pl.netolution.sklep3.domain.ImageFormat;
 
-public interface Configuration {
+// TODO remove ?
+public interface Configuration extends 
+pl.netolution.sklep3.service.migration.PictureStructureTransformer.Configuration,
+pl.netolution.sklep3.service.EmailService.Configuration,
+pl.netolution.sklep3.service.PictureManager.Configuration,
+pl.netolution.sklep3.service.ProductService.Configuration,
+pl.netolution.sklep3.utils.mail.NetKombajnMailSender.Configuration {
 
 	void init();
 

@@ -12,9 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.mockito.Mock;
 
-import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.AdminConfiguration;
@@ -27,7 +25,7 @@ public class ProductServiceTest {
 	
 	private ProductDao productDao = mock(ProductDao.class);
 	private RandomService randomService = mock(RandomService.class);
-	private Configuration configuration = mock(Configuration.class);	
+	private ProductService.Configuration configuration = mock(ProductService.Configuration.class);	
 	private AdminConfiguration adminConfiguration= mock(AdminConfiguration.class);
 	private AdminConfigurationDao adminConfigurationDao= mock(AdminConfigurationDao.class);	
 	private ProductService productService = new ProductService(null, productDao, randomService, configuration, adminConfigurationDao);

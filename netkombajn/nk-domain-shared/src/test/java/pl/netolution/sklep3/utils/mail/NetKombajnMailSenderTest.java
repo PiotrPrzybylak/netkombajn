@@ -11,7 +11,6 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import pl.netolution.sklep3.configuration.Configuration;
 
 public class NetKombajnMailSenderTest extends TestCase {
 
@@ -49,7 +48,7 @@ public class NetKombajnMailSenderTest extends TestCase {
 		JavaMailSender sender = mock(JavaMailSender.class);
 		netKombajnMailSender.setMailSender(sender);
 
-		Configuration configuration = mock(Configuration.class);
+		NetKombajnMailSender.Configuration configuration = mock(NetKombajnMailSender.Configuration.class);
 		when(configuration.isDeveloperMode()).thenReturn(isDeveloperMode);
 
 		netKombajnMailSender.setConfiguration(configuration);
