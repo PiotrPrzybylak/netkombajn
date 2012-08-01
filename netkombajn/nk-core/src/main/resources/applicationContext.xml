@@ -108,6 +108,8 @@
 	<bean id="productRatingDao" class="pl.netolution.sklep3.dao.hibernate.HibernateProductRatingDao"
 		parent="daoBase" />
 
+	<bean id="adminConfigurationService" class="com.netkombjan.configuration.AdminConfigurationService" autowire="constructor"/>
+
 	<bean id="shopService" class="pl.netolution.sklep3.service.ShopService" autowire="constructor"/>
 
 	<bean id="shoppingCartService" class="pl.netolution.sklep3.service.ShoppingCartService">
@@ -120,7 +122,7 @@
 
 	<bean id="incomImportService" class="pl.netolution.sklep3.service.imports.IncomImportService">
 		<property name="categoryDao" ref="categoryDao" />
-		<property name="adminConfigurationDao" ref="adminConfigurationDao" />
+		<property name="configuration" ref="adminConfigurationService" />
 		<property name="productDao" ref="productDao" />
 		<property name="emailService" ref="emailService" />
 		<property name="manufacturerDao" ref="manufacturerDao"></property>
@@ -172,12 +174,7 @@
 		<property name="mailSender" ref="mailSender" />
 	</bean>
 
-	<bean id="emailService" class="pl.netolution.sklep3.service.EmailService">
-		<property name="mailSender" ref="netKombajnMailSender" />
-		<property name="adminConfigurationDao" ref="adminConfigurationDao" />
-		<property name="configuration" ref="configuration" />
-		<property name="textMessageService" ref="textMessageService" />
-	</bean>
+	<bean id="emailService" class="pl.netolution.sklep3.service.EmailService" autowire="constructor" />
 
 	<bean id="productService" class="pl.netolution.sklep3.service.ProductService" autowire="constructor"/>
 
@@ -195,13 +192,7 @@
 
 	<bean id="encryptionService" class="pl.netolution.sklep3.service.EncryptionService" />
 
-	<bean id="externalPaymentSystem"
-		class="pl.netolution.sklep3.service.payment.GeneralExternalPaymentSystem">
-		<property name="paymentDao" ref="paymentDao" />
-		<property name="encryptionService" ref="encryptionService" />
-		<property name="adminConfigurationDao" ref="adminConfigurationDao" />
-		<property name="paymentEventDao" ref="paymentEventDao" />
-	</bean>
+	<bean id="externalPaymentSystem" class="pl.netolution.sklep3.service.payment.GeneralExternalPaymentSystem" autowire="constructor"/>
 
 	<bean id="paymentService" class="pl.netolution.sklep3.service.PaymentService">
 		<property name="externalPaymentSystem" ref="externalPaymentSystem" />

@@ -22,7 +22,7 @@
 		<constructor-arg>
 			<bean class="pl.netolution.sklep3.service.OrderEmailService">
 				<constructor-arg ref="netKombajnMailSender" />
-				<constructor-arg ref="adminConfigurationDao" />
+				<constructor-arg ref="adminConfigurationService" />
 				<constructor-arg>
 					<bean class="pl.netolution.sklep3.service.OrderTextMessageService">
 						<property name="textDao" ref="textDao" />

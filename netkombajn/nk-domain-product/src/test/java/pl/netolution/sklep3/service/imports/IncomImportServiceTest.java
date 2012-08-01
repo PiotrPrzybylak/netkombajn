@@ -24,15 +24,14 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
 
-import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.ManufacturerDao;
 import pl.netolution.sklep3.dao.ProductDao;
-import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.Product.Availability;
 import pl.netolution.sklep3.service.EmailService;
+import pl.netolution.sklep3.service.imports.IncomImportService.Configuration;
 
 public class IncomImportServiceTest extends TestCase {
 	private static final String SOME_OLD_DESCRIPTION = "SOME OLD DESCRIPTION";
@@ -59,11 +58,11 @@ public class IncomImportServiceTest extends TestCase {
 
 	private Document document;
 
-	private AdminConfiguration adminConfiguration;
+	private Configuration configuration = mock(Configuration.class);
 
-	private ProductDao productDao;
+	private ProductDao productDao = mock(ProductDao.class);
 
-	EmailService emailService;
+	private EmailService emailService = mock(EmailService.class);
 
 	@Override
 	protected void setUp() throws Exception {
@@ -220,7 +219,7 @@ public class IncomImportServiceTest extends TestCase {
 	public void test_shouldCalculatePriceForNewProductsWithCategoryMargin() throws DocumentException {
 		// given
 		createProductImportMocks();
-		adminConfiguration.setProfitMargin(33);
+		when(configuration.getProfitMargin()).thenReturn(33);
 		category.setProfitMargin(200);
 
 		// when
@@ -283,21 +282,16 @@ public class IncomImportServiceTest extends TestCase {
 
 		document = getProductsImportDocument();
 
-		adminConfiguration = new AdminConfiguration();
-		adminConfiguration.setProfitMargin(50);
+		when(configuration.getProfitMargin()).thenReturn(50);
 
-		AdminConfigurationDao adminConfigurationDao = mock(AdminConfigurationDao.class);
-		when(adminConfigurationDao.getMainConfiguration()).thenReturn(adminConfiguration);
-
-		service.setAdminConfigurationDao(adminConfigurationDao);
+		service.setConfiguration(configuration);
 
 		CategoryDao categoryDao = mock(CategoryDao.class);
 		category = new Category();
 		when(categoryDao.findByExternalId(CATEGORY_EXTERNAL_ID)).thenReturn(category);
 
 		service.setCategoryDao(categoryDao);
-
-		productDao = Mockito.mock(ProductDao.class);
+		
 		when(productDao.findByCatalogNumber(CATALOG_ID_1)).thenReturn(null);
 		existingProduct = new Product(1);
 		oldCategory = new Category();
@@ -309,7 +303,6 @@ public class IncomImportServiceTest extends TestCase {
 		when(productDao.getRetiredProducts(Mockito.eq("INCOM"), Mockito.any(Date.class))).thenReturn(oldProducts);
 		service.setProductDao(productDao);
 
-		emailService = mock(EmailService.class);
 		service.setEmailService(emailService);
 
 		ManufacturerDao manufacturerDao = mock(ManufacturerDao.class);
