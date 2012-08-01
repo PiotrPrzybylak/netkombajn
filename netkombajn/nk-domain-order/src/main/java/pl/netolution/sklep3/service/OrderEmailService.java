@@ -7,8 +7,6 @@ import org.apache.log4j.Logger;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-import pl.netolution.sklep3.dao.AdminConfigurationDao;
-import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Order;
 
 public class OrderEmailService {
@@ -17,14 +15,14 @@ public class OrderEmailService {
 
 	private JavaMailSender mailSender;
 
-	private AdminConfigurationDao adminConfigurationDao;
+	private Configuration configuration;
 
 	private OrderTextMessageService textMessageService;
 
-	public OrderEmailService(JavaMailSender mailSender, AdminConfigurationDao adminConfigurationDao,
+	public OrderEmailService(JavaMailSender mailSender, Configuration configuration,
 			OrderTextMessageService textMessageService) {
 		this.mailSender = mailSender;
-		this.adminConfigurationDao = adminConfigurationDao;
+		this.configuration = configuration;
 		this.textMessageService = textMessageService;
 	}
 
@@ -56,25 +54,24 @@ public class OrderEmailService {
 	//	}
 	//
 	public void sendOrderEmailToRecipient(Order order) {
-		AdminConfiguration adminConfiguration = adminConfigurationDao.getMainConfiguration();
 		String content = textMessageService.getSimpleOrderEmail(order);
-		createAndSend(order, adminConfiguration, content, order.getRecipient().getEmail());
+		createAndSend(order, content, order.getRecipient().getEmail());
 
 	}
 
-	private void createAndSend(Order order, AdminConfiguration adminConfiguration, String content, String toEmail) {
+	private void createAndSend(Order order, String content, String toEmail) {
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, "UTF-8");
 		try {
 			messageHelper.setText(content, true);
-			messageHelper.setFrom(adminConfiguration.getEmail());
+			messageHelper.setFrom(configuration.getEmail());
 			messageHelper.setTo(toEmail);
 			messageHelper.setSubject("Potwierdzenie zamówienia nr: " + order.getId());
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
 
-		send(adminConfiguration, mimeMessage);
+		send(mimeMessage);
 	}
 
 	//
@@ -88,10 +85,10 @@ public class OrderEmailService {
 	//		}
 	//	}
 	//
-	private void send(AdminConfiguration adminConfiguration, MimeMessage message) {
+	private void send( MimeMessage message) {
 		logger.debug(message.toString());
 
-		if (adminConfiguration.isSendOrderEmail()) {
+		if (configuration.isSendOrderEmail()) {
 			mailSender.send(message);
 		} else {
 			logger.debug("sending order message is turned off");
@@ -108,5 +105,13 @@ public class OrderEmailService {
 	//		}
 	//		return content;
 	//	}
+	
+	public interface Configuration {
+
+		String getEmail();
+
+		boolean isSendOrderEmail();
+
+	}
 
 }

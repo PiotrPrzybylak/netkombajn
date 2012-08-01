@@ -13,20 +13,24 @@ import org.springframework.mail.MailException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import com.netkombajn.store.domain.shared.price.Price;
-
-import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.ManufacturerDao;
 import pl.netolution.sklep3.dao.ProductDao;
-import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.Manufacturer;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.Product.Availability;
 import pl.netolution.sklep3.service.EmailService;
 
+import com.netkombajn.store.domain.shared.price.Price;
+
 public class IncomImportService {
+
+	public interface Configuration {
+
+		int getProfitMargin();
+
+	}
 
 	private static final String INCOM = "INCOM";
 
@@ -38,14 +42,13 @@ public class IncomImportService {
 
 	private ManufacturerDao manufacturerDao;
 
-	private AdminConfigurationDao adminConfigurationDao;
+	private Configuration configuration;
 
 	private EmailService emailService;
 
 	@SuppressWarnings("unchecked")
 	public void importProducts(Document document, ImportStatus importStatus) {
-		AdminConfiguration adminConfiguration = adminConfigurationDao.getMainConfiguration();
-		BigDecimal marginAndVatScaleFactor = getMarginAndVatScaleFactor(adminConfiguration.getProfitMargin());
+		BigDecimal marginAndVatScaleFactor = getMarginAndVatScaleFactor(configuration.getProfitMargin());
 
 		log.debug("marginAndVatScaleFactor " + marginAndVatScaleFactor);
 
@@ -267,8 +270,8 @@ public class IncomImportService {
 		this.productDao = productDao;
 	}
 
-	public void setAdminConfigurationDao(AdminConfigurationDao adminConfigurationDao) {
-		this.adminConfigurationDao = adminConfigurationDao;
+	public void setConfiguration(Configuration configuration) {
+		this.configuration = configuration;
 	}
 
 	public void setEmailService(EmailService emailService) {

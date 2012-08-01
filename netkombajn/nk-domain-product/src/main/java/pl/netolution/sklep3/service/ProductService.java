@@ -4,19 +4,11 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.ProductDao;
-import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Picture;
 import pl.netolution.sklep3.domain.Product;
 
 public class ProductService {
-
-	public interface Configuration {
-
-		int getMaxNewProducts();
-
-	}
 
 	private PictureManager pictureManager;
 
@@ -26,18 +18,18 @@ public class ProductService {
 	
 	private Configuration configuration;
 
-	private AdminConfigurationDao adminConfigurationDao;
+	private HitsConfiguration hitsConfiguration;
 	
 	public ProductService() {
 	}
 
 	public ProductService(PictureManager pictureManager, ProductDao productDao, RandomService randomService, Configuration configuration,
-			AdminConfigurationDao adminConfigurationDao) {
+			HitsConfiguration hitsConfiguration) {
 		this.pictureManager = pictureManager;
 		this.productDao = productDao;
 		this.randomService = randomService;
 		this.configuration = configuration;
-		this.adminConfigurationDao = adminConfigurationDao;
+		this.hitsConfiguration = hitsConfiguration;
 	}
 
 	@Transactional
@@ -63,11 +55,10 @@ public class ProductService {
 	public List<Product> getHitProducts() {
 		List<Product> hits = productDao.getHitProducts();
 		//TODO zastanowić się cyz nie lepiej będzie ifa w DAO robic
-		AdminConfiguration configuration = adminConfigurationDao.getMainConfiguration();
-		if (!hitsNumberExceedsLimit(hits, configuration)) {
+		if (!hitsNumberExceedsLimit(hits)) {
 			return hits;
 		} else {
-			return hits.subList(0, configuration.getMaxHitsNumber());
+			return hits.subList(0, hitsConfiguration.getMaxHitsNumber());
 		}
 	}
 	
@@ -79,11 +70,23 @@ public class ProductService {
 		return hits.get(randomService.getRandomNumber(hits.size()));
 	}
 	
-	private boolean hitsNumberExceedsLimit(List<Product> hits, AdminConfiguration configuration) {
-		return configuration.getMaxHitsNumber() != null && hits.size() > configuration.getMaxHitsNumber();
+	private boolean hitsNumberExceedsLimit(List<Product> hits) {
+		return hitsConfiguration.getMaxHitsNumber() != null && hits.size() > hitsConfiguration.getMaxHitsNumber();
 	}
 
 	public List<Product> getNewProducts() {
 		return productDao.getNewProducts(configuration.getMaxNewProducts());
+	}
+	
+	public interface HitsConfiguration {
+
+		Integer getMaxHitsNumber();
+
+	}
+
+	public interface Configuration {
+
+		int getMaxNewProducts();
+
 	}
 }

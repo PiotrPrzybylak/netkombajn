@@ -13,10 +13,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.ProductDao;
-import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.Product;
+import pl.netolution.sklep3.service.ProductService.HitsConfiguration;
 
 
 public class ProductServiceTest {
@@ -26,9 +25,8 @@ public class ProductServiceTest {
 	private ProductDao productDao = mock(ProductDao.class);
 	private RandomService randomService = mock(RandomService.class);
 	private ProductService.Configuration configuration = mock(ProductService.Configuration.class);	
-	private AdminConfiguration adminConfiguration= mock(AdminConfiguration.class);
-	private AdminConfigurationDao adminConfigurationDao= mock(AdminConfigurationDao.class);	
-	private ProductService productService = new ProductService(null, productDao, randomService, configuration, adminConfigurationDao);
+	private HitsConfiguration hitsConfiguration= mock(HitsConfiguration.class);
+	private ProductService productService = new ProductService(null, productDao, randomService, configuration, hitsConfiguration);
 	
 
 
@@ -105,8 +103,7 @@ public class ProductServiceTest {
 		products.add(new Product());
 		when(productDao.getHitProducts()).thenReturn(products);
 
-		when(adminConfigurationDao.getMainConfiguration()).thenReturn(adminConfiguration);
-		when(adminConfiguration.getMaxHitsNumber()).thenReturn(2);
+		when(hitsConfiguration.getMaxHitsNumber()).thenReturn(2);
 
 
 		// when
@@ -126,8 +123,7 @@ public class ProductServiceTest {
 		products.add(new Product());
 		when(productDao.getHitProducts()).thenReturn(products);
 
-		when(adminConfigurationDao.getMainConfiguration()).thenReturn(adminConfiguration);
-		when(adminConfiguration.getMaxHitsNumber()).thenReturn(1);
+		when(hitsConfiguration.getMaxHitsNumber()).thenReturn(1);
 
 
 		// when

@@ -18,9 +18,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import pl.netolution.sklep3.dao.AdminConfigurationDao;
-import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.service.EmailService;
+import pl.netolution.sklep3.service.EmailService.EmailConfiguration;
 import pl.netolution.sklep3.service.TextMessageService;
 
 public class EmailServiceTest extends TestCase {
@@ -34,10 +33,7 @@ public class EmailServiceTest extends TestCase {
 	private JavaMailSender mailSender;
 
 	@Mock
-	private AdminConfigurationDao adminConfigurationDao;
-
-	@Mock
-	private AdminConfiguration adminConfiguration;
+	private EmailConfiguration emailConfiguration;
 
 	@Mock
 	private TextMessageService textMessageService;
@@ -46,15 +42,10 @@ public class EmailServiceTest extends TestCase {
 	protected void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 
-		emailService = new EmailService();
-		emailService.setMailSender(mailSender);
-		emailService.setAdminConfigurationDao(adminConfigurationDao);
+		emailService = new EmailService(mailSender, emailConfiguration, null, textMessageService);
 
-		given(adminConfiguration.getEmail()).willReturn(EMAIL_ADDRESS);
+		given(emailConfiguration.getEmail()).willReturn(EMAIL_ADDRESS);
 
-		given(adminConfigurationDao.getMainConfiguration()).willReturn(adminConfiguration);
-
-		emailService.setTextMessageService(textMessageService);
 	}
 
 	public void testShouldSendEmailWithRemindedPassword() throws IOException, MessagingException {

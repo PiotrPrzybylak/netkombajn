@@ -14,17 +14,16 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
-import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.dao.PaymentDao;
 import pl.netolution.sklep3.dao.PaymentEventDao;
 import pl.netolution.sklep3.domain.PaymentForm;
 import pl.netolution.sklep3.domain.payment.ExternalPayment;
 import pl.netolution.sklep3.domain.payment.InternalPayment;
+import pl.netolution.sklep3.domain.payment.Payment.Status;
 import pl.netolution.sklep3.domain.payment.PaymentEvent;
 import pl.netolution.sklep3.domain.payment.PaymentSystemType;
 import pl.netolution.sklep3.domain.payment.PosDetails;
 import pl.netolution.sklep3.domain.payment.TransactionDetails;
-import pl.netolution.sklep3.domain.payment.Payment.Status;
 import pl.netolution.sklep3.service.EncryptionService;
 
 public class GeneralExternalPaymentSystem implements ExternalPaymentSystem {
@@ -41,9 +40,21 @@ public class GeneralExternalPaymentSystem implements ExternalPaymentSystem {
 
 	private EncryptionService encryptionService;
 
-	private AdminConfigurationDao adminConfigurationDao;
+	private Configuration configuration;
 
 	private PaymentEventDao paymentEventDao;
+	
+	
+
+	
+	
+	public GeneralExternalPaymentSystem(PaymentDao paymentDao, EncryptionService encryptionService, Configuration configuration,
+			PaymentEventDao paymentEventDao) {
+		this.paymentDao = paymentDao;
+		this.encryptionService = encryptionService;
+		this.configuration = configuration;
+		this.paymentEventDao = paymentEventDao;
+	}
 
 	public TransactionDetails registerPayment(ExternalPayment payment, String description) {
 		// TODO zewnetrzne systemy rejestrowane jako beany springowe
@@ -183,11 +194,7 @@ public class GeneralExternalPaymentSystem implements ExternalPaymentSystem {
 	}
 
 	private PosDetails getPosDetails() {
-		return adminConfigurationDao.getMainConfiguration().getPosDetails();
-	}
-
-	public void setPaymentDao(PaymentDao paymentDao) {
-		this.paymentDao = paymentDao;
+		return configuration.getPosDetails();
 	}
 
 	private Document parse(URL url) {
@@ -225,18 +232,13 @@ public class GeneralExternalPaymentSystem implements ExternalPaymentSystem {
 			throw new RuntimeException("", ex);
 		}
 
+	}	
+
+	public interface Configuration {
+
+		PosDetails getPosDetails();
+
 	}
 
-	public void setEncryptionService(EncryptionService encryptionService) {
-		this.encryptionService = encryptionService;
-	}
-
-	public void setAdminConfigurationDao(AdminConfigurationDao adminConfigurationDao) {
-		this.adminConfigurationDao = adminConfigurationDao;
-	}
-
-	public void setPaymentEventDao(PaymentEventDao paymentEventDao) {
-		this.paymentEventDao = paymentEventDao;
-	}
 
 }

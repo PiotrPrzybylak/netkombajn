@@ -8,23 +8,32 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-import pl.netolution.sklep3.dao.AdminConfigurationDao;
-import pl.netolution.sklep3.domain.AdminConfiguration;
 import pl.netolution.sklep3.domain.NewsletterRecipient;
 
 public class EmailService {
 
 	private JavaMailSender mailSender;
 
-	private AdminConfigurationDao adminConfigurationDao;
+	private EmailConfiguration emailConfiguration;
 
 	private Configuration configuration;
 
 	private TextMessageService textMessageService;
+	
+	
+	private EmailService() {
+	}
+	
+
+	public EmailService(JavaMailSender mailSender, EmailConfiguration emailConfiguration, Configuration configuration,
+			TextMessageService textMessageService) {
+		this.mailSender = mailSender;
+		this.emailConfiguration = emailConfiguration;
+		this.configuration = configuration;
+		this.textMessageService = textMessageService;
+	}
 
 	public void sendEmailWithRemindedPassword(String email, String password) {
-
-		AdminConfiguration adminConfiguration = adminConfigurationDao.getMainConfiguration();
 
 		MimeMessage message = mailSender.createMimeMessage();
 
@@ -34,7 +43,7 @@ public class EmailService {
 
 			helper.setTo(email);
 			helper.setSubject("Zmiana hasła w GALERIADOMINO.pl");
-			helper.setFrom(adminConfiguration.getEmail());
+			helper.setFrom(emailConfiguration.getEmail());
 			helper.setText(textMessageService.getRemindedPasswordMessage(password, email), true);
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
@@ -43,19 +52,10 @@ public class EmailService {
 		mailSender.send(message);
 	}
 
-
-	public AdminConfigurationDao getAdminConfigurationDao() {
-		return adminConfigurationDao;
-	}
-
-	public void setAdminConfigurationDao(AdminConfigurationDao adminConfigurationDao) {
-		this.adminConfigurationDao = adminConfigurationDao;
-	}
-
 	public void sendImportFinishedEmail() throws MailException {
 
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setTo(adminConfigurationDao.getMainConfiguration().getEmail());
+		message.setTo(emailConfiguration.getEmail());
 		message.setFrom("admin_sklepu@netolution.pl");
 		message.setSubject("Import zakończony.");
 		message.setText("Import zakończony.");
@@ -64,7 +64,7 @@ public class EmailService {
 
 	public void sendNewsletterConfirmationEmail(NewsletterRecipient newsletterRecipient) {
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom(adminConfigurationDao.getMainConfiguration().getEmail());
+		message.setFrom(emailConfiguration.getEmail());
 		message.setTo(newsletterRecipient.getEmail());
 		message.setSubject("Prosze potwierdz subskrypcje newslettera");
 
@@ -81,7 +81,7 @@ public class EmailService {
 
 	public void sendNewsletterWelcomeEmail(NewsletterRecipient newsletterRecipient) {
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom(adminConfigurationDao.getMainConfiguration().getEmail());
+		message.setFrom(emailConfiguration.getEmail());
 		message.setTo(newsletterRecipient.getEmail());
 		message.setSubject("Subskrypcja newslettera potwierdzona!");
 
@@ -92,39 +92,25 @@ public class EmailService {
 
 	}
 
-	public Configuration getConfiguration() {
-		return configuration;
-	}
-
-	public void setConfiguration(Configuration configuration) {
-		this.configuration = configuration;
-	}
-
-	public void setTextMessageService(TextMessageService textMessageService) {
-		this.textMessageService = textMessageService;
-	}
-
 	public void sendContactMessageToShopOwner(String customerEmail, String messageText) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(customerEmail);
-		message.setTo(adminConfigurationDao.getMainConfiguration().getEmail());
+		message.setTo(emailConfiguration.getEmail());
 		message.setSubject("Wiadomość ze strony: kontakt");
 		message.setText(messageText);
 		mailSender.send(message);
 
 	}
 
-	public JavaMailSender getMailSender() {
-		return mailSender;
-	}
-
-	public void setMailSender(JavaMailSender mailSender) {
-		this.mailSender = mailSender;
-	}
-	
 	public interface Configuration {
 
 		String getApplicationURL();
+
+	}
+
+	public interface EmailConfiguration {
+
+		String getEmail();
 
 	}
 
