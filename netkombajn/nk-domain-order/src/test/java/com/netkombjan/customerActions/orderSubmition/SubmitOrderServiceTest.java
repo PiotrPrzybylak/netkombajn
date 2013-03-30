@@ -4,10 +4,10 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.netkombjan.customerActions.orderSubmition.EmptyOrderException;
-import com.netkombjan.customerActions.orderSubmition.SubmitOrderService;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.submission.EmptyOrderException;
+import com.netkombajn.eshop.ordering.submission.SubmitOrderService;
 
-import pl.netolution.sklep3.domain.Order;
 
 
 public class SubmitOrderServiceTest {

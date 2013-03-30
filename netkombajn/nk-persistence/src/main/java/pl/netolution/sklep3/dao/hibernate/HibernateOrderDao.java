@@ -7,13 +7,13 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.netkombjan.customerActions.orderSubmition.OrderHistory;
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.order.OrderDao;
+import com.netkombajn.eshop.ordering.order.OrderHistory;
+import com.netkombajn.eshop.ordering.order.OrderListQueryBuilder;
 
-import pl.netolution.sklep3.dao.OrderDao;
-import pl.netolution.sklep3.domain.Customer;
-import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.utils.CriteriaOrderListQueryBuilder;
-import pl.netolution.sklep3.utils.OrderListQueryBuilder;
 
 @Transactional
 public class HibernateOrderDao extends HibernateBaseDao<Order> implements OrderDao, OrderHistory {

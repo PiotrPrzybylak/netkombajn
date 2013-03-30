@@ -2,9 +2,10 @@ package pl.netolution.sklep3.web.jsf.shipment;
 
 import org.apache.commons.lang.StringUtils;
 
-import pl.netolution.sklep3.domain.ShipmentOption;
 import pl.netolution.sklep3.web.jsf.GenericEntityBackingBean;
 import pl.netolution.sklep3.web.jsf.utils.MessageHelper;
+
+import com.netkombajn.eshop.ordering.shipment.ShipmentOption;
 
 public class ShipmentOptionBackingBean extends GenericEntityBackingBean<ShipmentOption> {
 

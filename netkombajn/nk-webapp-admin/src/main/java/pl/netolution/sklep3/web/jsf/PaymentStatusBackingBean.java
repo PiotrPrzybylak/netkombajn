@@ -7,9 +7,10 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.log4j.Logger;
 
-import pl.netolution.sklep3.dao.PaymentDao;
-import pl.netolution.sklep3.domain.payment.InternalPayment;
 import pl.netolution.sklep3.service.payment.ExternalPaymentSystem;
+
+import com.netkombajn.eshop.payment.InternalPayment;
+import com.netkombajn.eshop.payment.PaymentDao;
 
 public class PaymentStatusBackingBean {
 

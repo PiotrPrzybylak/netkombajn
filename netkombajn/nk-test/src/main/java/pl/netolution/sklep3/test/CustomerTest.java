@@ -3,9 +3,9 @@ package pl.netolution.sklep3.test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import pl.netolution.sklep3.dao.CustomerDao;
-import pl.netolution.sklep3.domain.Customer;
-import pl.netolution.sklep3.domain.Nip;
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.customer.CustomerDao;
+import com.netkombajn.eshop.ordering.invoice.Nip;
 
 public class CustomerTest {
 

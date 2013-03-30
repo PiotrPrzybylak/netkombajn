@@ -10,9 +10,10 @@ import junit.framework.TestCase;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.netkombajn.eshop.ordering.cart.ShoppingCart;
+
 import pl.netolution.sklep3.dao.SkuDao;
 import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.domain.ShoppingCart;
 import pl.netolution.sklep3.domain.StockKeepingUnit;
 
 public class AddToCartControllerTest extends TestCase {

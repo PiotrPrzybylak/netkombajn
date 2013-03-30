@@ -4,6 +4,10 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.shipment.Recipient;
+
 import junit.framework.TestCase;
 
 public class CustomerTest extends TestCase {

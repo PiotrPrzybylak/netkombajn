@@ -3,7 +3,8 @@ package pl.netolution.sklep3.web.binding.convert;
 import org.apache.log4j.Logger;
 import org.springframework.binding.convert.converters.StringToObject;
 
-import pl.netolution.sklep3.domain.Nip;
+import com.netkombajn.eshop.ordering.invoice.Nip;
+
 
 public class StringToNip extends StringToObject {
 

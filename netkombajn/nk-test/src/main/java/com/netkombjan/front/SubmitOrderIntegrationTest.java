@@ -4,14 +4,10 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.netkombajn.store.domain.shared.price.Price;
-import com.netkombjan.customerActions.orderSubmition.SubmitOrderService;
 
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
@@ -19,12 +15,15 @@ import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.dao.SkuDao;
 import pl.netolution.sklep3.dao.TextDao;
 import pl.netolution.sklep3.domain.AdminConfiguration;
-import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.domain.Recipient;
-import pl.netolution.sklep3.domain.SkuOrderItem;
 import pl.netolution.sklep3.domain.StockKeepingUnit;
 import pl.netolution.sklep3.domain.Text;
+
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.order.item.SkuOrderItem;
+import com.netkombajn.eshop.ordering.shipment.Recipient;
+import com.netkombajn.eshop.ordering.submission.SubmitOrderService;
+import com.netkombajn.store.domain.shared.price.Price;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)

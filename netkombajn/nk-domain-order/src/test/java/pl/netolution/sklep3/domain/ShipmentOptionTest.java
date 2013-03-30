@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.netkombajn.eshop.ordering.shipment.ShipmentOption;
 import com.netkombajn.store.domain.shared.price.Price;
 
 public class ShipmentOptionTest {

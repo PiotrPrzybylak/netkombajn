@@ -9,10 +9,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.order.OrderDao;
+
 import junit.framework.TestCase;
-import pl.netolution.sklep3.dao.OrderDao;
-import pl.netolution.sklep3.domain.Customer;
-import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.web.session.CustomerSession;
 
 public class OrderHistoryControllerTest extends TestCase {

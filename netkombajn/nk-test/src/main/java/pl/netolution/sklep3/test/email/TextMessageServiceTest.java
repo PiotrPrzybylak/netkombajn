@@ -11,15 +11,15 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.netkombajn.store.domain.shared.price.Price;
-
 import pl.netolution.sklep3.dao.TextDao;
-import pl.netolution.sklep3.domain.Order;
 import pl.netolution.sklep3.domain.PaymentForm;
-import pl.netolution.sklep3.domain.ShipmentOption;
 import pl.netolution.sklep3.domain.Text;
-import pl.netolution.sklep3.domain.payment.InternalPayment;
-import pl.netolution.sklep3.service.OrderTextMessageService;
+
+import com.netkombajn.eshop.ordering.email.OrderTextMessageService;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.shipment.ShipmentOption;
+import com.netkombajn.eshop.payment.InternalPayment;
+import com.netkombajn.store.domain.shared.price.Price;
 
 public class TextMessageServiceTest {
 

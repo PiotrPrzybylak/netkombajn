@@ -3,7 +3,8 @@ package pl.netolution.sklep3.web.form;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import pl.netolution.sklep3.dao.CustomerDao;
+import com.netkombajn.eshop.ordering.customer.CustomerDao;
+
 
 public class RemindPasswordValidator implements Validator {
 

@@ -8,9 +8,9 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import pl.netolution.sklep3.domain.Order;
-import pl.netolution.sklep3.domain.OrderStatus;
-import pl.netolution.sklep3.utils.OrderListQueryBuilder;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.order.OrderListQueryBuilder;
+import com.netkombajn.eshop.ordering.order.OrderStatus;
 
 public class OrderListBackingBean extends OrderBackingBean {
 

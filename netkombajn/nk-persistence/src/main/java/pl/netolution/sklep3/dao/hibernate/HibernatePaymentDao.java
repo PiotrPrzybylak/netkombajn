@@ -2,8 +2,9 @@ package pl.netolution.sklep3.dao.hibernate;
 
 import org.hibernate.criterion.Restrictions;
 
-import pl.netolution.sklep3.dao.PaymentDao;
-import pl.netolution.sklep3.domain.payment.InternalPayment;
+import com.netkombajn.eshop.payment.InternalPayment;
+import com.netkombajn.eshop.payment.PaymentDao;
+
 
 public class HibernatePaymentDao extends HibernateBaseDao<InternalPayment> implements PaymentDao {
 

@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-import pl.netolution.sklep3.dao.PaymentDao;
+import com.netkombajn.eshop.payment.InternalPayment;
+import com.netkombajn.eshop.payment.PaymentDao;
+import com.netkombajn.eshop.payment.PaymentService;
+
 import pl.netolution.sklep3.dao.PaymentEventDao;
-import pl.netolution.sklep3.domain.payment.InternalPayment;
 import pl.netolution.sklep3.domain.payment.PaymentEvent;
 import pl.netolution.sklep3.domain.payment.Payment.Status;
 import pl.netolution.sklep3.service.EncryptionService;
-import pl.netolution.sklep3.service.PaymentService;
 import pl.netolution.sklep3.service.payment.ExternalPaymentSystem;
 
 public class RecievePaymentEventServlet implements Controller {

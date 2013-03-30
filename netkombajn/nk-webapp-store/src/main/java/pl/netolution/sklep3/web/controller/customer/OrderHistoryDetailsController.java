@@ -9,10 +9,11 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
-import pl.netolution.sklep3.dao.OrderDao;
-import pl.netolution.sklep3.domain.Customer;
-import pl.netolution.sklep3.domain.Order;
-import pl.netolution.sklep3.domain.OrderHistoryRecord;
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.order.OrderDao;
+import com.netkombajn.eshop.ordering.order.history.OrderHistoryRecord;
+
 import pl.netolution.sklep3.web.session.CustomerSession;
 
 public class OrderHistoryDetailsController extends ParameterizableViewController {

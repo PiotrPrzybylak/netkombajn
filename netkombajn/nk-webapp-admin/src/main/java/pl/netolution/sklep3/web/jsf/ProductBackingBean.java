@@ -14,13 +14,13 @@ import javax.faces.event.ActionEvent;
 import org.apache.log4j.Logger;
 import org.richfaces.model.selection.Selection;
 
-import com.netkombajn.store.domain.shared.price.Price;
-
 import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.service.ProductService;
 import pl.netolution.sklep3.utils.ProductsQueryBuilder;
 import pl.netolution.sklep3.web.jsf.utils.MessageHelper;
+
+import com.netkombajn.store.domain.shared.price.Price;
 
 public class ProductBackingBean extends ProductBackingBase {
 

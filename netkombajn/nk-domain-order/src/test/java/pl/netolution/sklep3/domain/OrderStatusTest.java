@@ -1,5 +1,7 @@
 package pl.netolution.sklep3.domain;
 
+import com.netkombajn.eshop.ordering.order.OrderStatus;
+
 import junit.framework.TestCase;
 
 public class OrderStatusTest extends TestCase {

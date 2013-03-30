@@ -1,6 +1,6 @@
 package pl.netolution.sklep3.web.session;
 
-import pl.netolution.sklep3.domain.Customer;
+import com.netkombajn.eshop.ordering.customer.Customer;
 
 public class CustomerSession {
 

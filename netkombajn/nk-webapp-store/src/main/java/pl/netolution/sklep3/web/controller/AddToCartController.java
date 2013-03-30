@@ -8,9 +8,10 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
+import com.netkombajn.eshop.ordering.cart.ShoppingCart;
+
 import pl.netolution.sklep3.dao.SkuDao;
 import pl.netolution.sklep3.domain.Picture;
-import pl.netolution.sklep3.domain.ShoppingCart;
 import pl.netolution.sklep3.domain.StockKeepingUnit;
 
 public class AddToCartController extends ParameterizableViewController {

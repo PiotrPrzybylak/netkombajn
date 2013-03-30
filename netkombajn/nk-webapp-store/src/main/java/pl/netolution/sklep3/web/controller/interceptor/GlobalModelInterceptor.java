@@ -5,12 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.netkombajn.eshop.ordering.cart.ShoppingCart;
+
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.DesignerDao;
 import pl.netolution.sklep3.dao.ManufacturerDao;
 import pl.netolution.sklep3.dao.TextDao;
-import pl.netolution.sklep3.domain.ShoppingCart;
 import pl.netolution.sklep3.domain.Text;
 import pl.netolution.sklep3.web.session.CustomerSession;
 

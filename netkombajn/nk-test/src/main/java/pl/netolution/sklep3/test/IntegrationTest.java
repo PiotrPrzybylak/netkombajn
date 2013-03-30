@@ -14,17 +14,18 @@ import org.springframework.transaction.TransactionStatus;
 
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.NewsletterRecipientDao;
-import pl.netolution.sklep3.dao.OrderDao;
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.Category;
-import pl.netolution.sklep3.domain.Customer;
-import pl.netolution.sklep3.domain.Order;
-import pl.netolution.sklep3.domain.OrderHistoryRecord;
-import pl.netolution.sklep3.domain.OrderStatus;
 import pl.netolution.sklep3.domain.PaymentForm;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.utils.DetachedCriteriaProductsQueryBuilder;
 import pl.netolution.sklep3.utils.ProductSortProperty;
+
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.order.OrderDao;
+import com.netkombajn.eshop.ordering.order.OrderStatus;
+import com.netkombajn.eshop.ordering.order.history.OrderHistoryRecord;
 
 public class IntegrationTest {
 

@@ -18,6 +18,7 @@
     http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<import resource="data-sources.xml" />
+	<import resource="order-context.xml" />	
 	<import resource="userActions-context.xml" />
 	
 	<context:annotation-config />
@@ -112,12 +113,6 @@
 
 	<bean id="shopService" class="pl.netolution.sklep3.service.ShopService" autowire="constructor"/>
 
-	<bean id="shoppingCartService" class="pl.netolution.sklep3.service.ShoppingCartService">
-		<constructor-arg ref="productDao"/>
-		<constructor-arg ref="shipmentOptionDao" />
-	</bean>
-
-
 	<bean id="randomService" class="pl.netolution.sklep3.service.RandomService" />
 
 	<bean id="incomImportService" class="pl.netolution.sklep3.service.imports.IncomImportService">
@@ -191,13 +186,6 @@
 	</bean>
 
 	<bean id="encryptionService" class="pl.netolution.sklep3.service.EncryptionService" />
-
-	<bean id="externalPaymentSystem" class="pl.netolution.sklep3.service.payment.GeneralExternalPaymentSystem" autowire="constructor"/>
-
-	<bean id="paymentService" class="pl.netolution.sklep3.service.PaymentService">
-		<property name="externalPaymentSystem" ref="externalPaymentSystem" />
-		<property name="paymentDao" ref="paymentDao" />
-	</bean>
 
 	<bean id="categoriesMigrationService"
 		class="pl.netolution.sklep3.service.migration.CategoriesMigrationService">

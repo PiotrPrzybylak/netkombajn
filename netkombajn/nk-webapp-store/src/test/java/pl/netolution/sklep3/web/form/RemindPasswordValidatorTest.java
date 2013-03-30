@@ -7,7 +7,8 @@ import junit.framework.TestCase;
 
 import org.springframework.validation.Errors;
 
-import pl.netolution.sklep3.dao.CustomerDao;
+import com.netkombajn.eshop.ordering.customer.CustomerDao;
+
 
 public class RemindPasswordValidatorTest extends TestCase {
 

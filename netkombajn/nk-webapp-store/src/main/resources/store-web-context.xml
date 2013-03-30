@@ -192,7 +192,7 @@ updateCart
 		<property name="configuration" ref="configuration"/>
 	</bean>	
 	
-	<bean name="shoppingCart" class="pl.netolution.sklep3.domain.ShoppingCart" scope="session">
+	<bean name="shoppingCart" class="com.netkombajn.eshop.ordering.cart.ShoppingCart" scope="session">
 		<aop:scoped-proxy/>
 	</bean>
 	
@@ -237,7 +237,7 @@ updateCart
 	
 	<bean id="formAction" class="org.springframework.webflow.action.FormAction">
 		<property name="formObjectName" value="order" />	
-		<property name="formObjectClass" value="pl.netolution.sklep3.domain.Order" />
+		<property name="formObjectClass" value="com.netkombajn.eshop.ordering.order.Order" />
 		<property name="formObjectScope" value="FLOW" />			
 	</bean>
 	
