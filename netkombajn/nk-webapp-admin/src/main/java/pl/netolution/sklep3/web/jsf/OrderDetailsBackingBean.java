@@ -7,8 +7,8 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.log4j.Logger;
 
-import pl.netolution.sklep3.domain.Order;
-import pl.netolution.sklep3.domain.OrderStatus;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.order.OrderStatus;
 
 public class OrderDetailsBackingBean extends OrderBackingBean {
 

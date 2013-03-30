@@ -6,8 +6,8 @@ import java.util.PropertyResourceBundle;
 
 import javax.faces.model.SelectItem;
 
-import pl.netolution.sklep3.dao.OrderDao;
-import pl.netolution.sklep3.domain.OrderStatus;
+import com.netkombajn.eshop.ordering.order.OrderDao;
+import com.netkombajn.eshop.ordering.order.OrderStatus;
 
 public class OrderBackingBean {
 

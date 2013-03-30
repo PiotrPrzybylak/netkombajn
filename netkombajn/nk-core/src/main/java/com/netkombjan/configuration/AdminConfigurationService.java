@@ -3,10 +3,11 @@ package com.netkombjan.configuration;
 import pl.netolution.sklep3.dao.AdminConfigurationDao;
 import pl.netolution.sklep3.domain.payment.PosDetails;
 import pl.netolution.sklep3.service.EmailService.EmailConfiguration;
-import pl.netolution.sklep3.service.OrderEmailService.Configuration;
+
+import com.netkombajn.eshop.ordering.email.OrderEmailService.Configuration;
 
 public class AdminConfigurationService implements Configuration,
-		pl.netolution.sklep3.service.payment.GeneralExternalPaymentSystem.Configuration ,
+		com.netkombajn.eshop.payment.GeneralExternalPaymentSystem.Configuration ,
 		pl.netolution.sklep3.service.ProductService.HitsConfiguration,
 		EmailConfiguration,
 		pl.netolution.sklep3.service.imports.IncomImportService.Configuration {

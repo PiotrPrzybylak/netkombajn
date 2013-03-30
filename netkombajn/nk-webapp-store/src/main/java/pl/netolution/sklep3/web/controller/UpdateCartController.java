@@ -8,7 +8,8 @@ import org.apache.log4j.Logger;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import pl.netolution.sklep3.domain.ShoppingCart;
+import com.netkombajn.eshop.ordering.cart.ShoppingCart;
+
 
 public class UpdateCartController {
 

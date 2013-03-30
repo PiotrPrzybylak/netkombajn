@@ -7,10 +7,11 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-import pl.netolution.sklep3.dao.PaymentDao;
+import com.netkombajn.eshop.payment.InternalPayment;
+import com.netkombajn.eshop.payment.PaymentDao;
+
 import pl.netolution.sklep3.domain.PaymentForm;
 import pl.netolution.sklep3.domain.payment.ExternalPayment;
-import pl.netolution.sklep3.domain.payment.InternalPayment;
 import pl.netolution.sklep3.domain.payment.TransactionDetails;
 import pl.netolution.sklep3.service.payment.ExternalPaymentSystem;
 

@@ -7,8 +7,9 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
-import pl.netolution.sklep3.dao.OrderDao;
-import pl.netolution.sklep3.domain.Customer;
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.order.OrderDao;
+
 import pl.netolution.sklep3.web.session.CustomerSession;
 
 public class OrderHistoryController extends ParameterizableViewController {

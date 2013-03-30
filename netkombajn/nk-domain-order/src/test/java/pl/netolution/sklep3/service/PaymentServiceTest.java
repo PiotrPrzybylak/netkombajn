@@ -9,9 +9,11 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import pl.netolution.sklep3.dao.PaymentDao;
+import com.netkombajn.eshop.payment.InternalPayment;
+import com.netkombajn.eshop.payment.PaymentDao;
+import com.netkombajn.eshop.payment.PaymentService;
+
 import pl.netolution.sklep3.domain.payment.ExternalPayment;
-import pl.netolution.sklep3.domain.payment.InternalPayment;
 import pl.netolution.sklep3.domain.payment.Payment.Status;
 import pl.netolution.sklep3.service.payment.ExternalPaymentSystem;
 

@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Embedded;
 
-import pl.netolution.sklep3.domain.Invoice;
-import pl.netolution.sklep3.domain.Order;
-import pl.netolution.sklep3.domain.Recipient;
+import com.netkombajn.eshop.ordering.invoice.Invoice;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.shipment.Recipient;
+
 
 @SuppressWarnings("serial")
 public class WebOrder implements Serializable {

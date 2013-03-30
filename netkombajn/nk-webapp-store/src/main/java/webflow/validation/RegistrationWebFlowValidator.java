@@ -4,8 +4,9 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 
-import pl.netolution.sklep3.dao.CustomerDao;
-import pl.netolution.sklep3.domain.Customer;
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.customer.CustomerDao;
+
 import pl.netolution.sklep3.service.ValidationService;
 import pl.netolution.sklep3.web.form.RegistrationForm;
 

@@ -2,7 +2,8 @@ package pl.netolution.sklep3.web.form;
 
 import java.io.Serializable;
 
-import pl.netolution.sklep3.domain.Customer;
+import com.netkombajn.eshop.ordering.customer.Customer;
+
 
 @SuppressWarnings("serial")
 public class RegistrationForm implements Serializable {

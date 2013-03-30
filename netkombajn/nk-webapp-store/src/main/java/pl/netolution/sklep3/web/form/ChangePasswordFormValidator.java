@@ -4,7 +4,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import pl.netolution.sklep3.domain.Customer;
+import com.netkombajn.eshop.ordering.customer.Customer;
+
 import pl.netolution.sklep3.service.EncryptionService;
 import pl.netolution.sklep3.web.session.CustomerSession;
 
@@ -14,8 +15,7 @@ public class ChangePasswordFormValidator implements Validator {
 
 	private CustomerSession customerSession;
 
-	@SuppressWarnings("unchecked")
-	public boolean supports(Class clazz) {
+	public boolean supports(@SuppressWarnings("rawtypes") Class clazz) {
 		return clazz.equals(ChangePasswordForm.class);
 	}
 

@@ -9,7 +9,8 @@ import org.mockito.Matchers;
 import org.mockito.Mockito;
 import org.springframework.validation.Errors;
 
-import pl.netolution.sklep3.domain.Customer;
+import com.netkombajn.eshop.ordering.customer.Customer;
+
 import pl.netolution.sklep3.service.EncryptionService;
 import pl.netolution.sklep3.web.session.CustomerSession;
 

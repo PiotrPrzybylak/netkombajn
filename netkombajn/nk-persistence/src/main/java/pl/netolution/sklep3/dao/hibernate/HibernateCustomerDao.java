@@ -2,8 +2,9 @@ package pl.netolution.sklep3.dao.hibernate;
 
 import org.hibernate.criterion.Restrictions;
 
-import pl.netolution.sklep3.dao.CustomerDao;
-import pl.netolution.sklep3.domain.Customer;
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.customer.CustomerDao;
+
 
 public class HibernateCustomerDao extends HibernateBaseDao<Customer> implements CustomerDao {
 

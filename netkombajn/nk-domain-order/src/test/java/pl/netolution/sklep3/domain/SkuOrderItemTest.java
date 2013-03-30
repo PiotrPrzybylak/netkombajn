@@ -2,6 +2,7 @@ package pl.netolution.sklep3.domain;
 
 import java.math.BigDecimal;
 
+import com.netkombajn.eshop.ordering.order.item.SkuOrderItem;
 import com.netkombajn.store.domain.shared.price.Price;
 
 import junit.framework.TestCase;

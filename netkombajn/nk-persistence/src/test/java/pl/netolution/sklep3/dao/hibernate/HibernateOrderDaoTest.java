@@ -6,7 +6,8 @@ import org.easymock.EasyMock;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
-import pl.netolution.sklep3.domain.Order;
+import com.netkombajn.eshop.ordering.order.Order;
+
 
 public class HibernateOrderDaoTest extends TestCase {
 

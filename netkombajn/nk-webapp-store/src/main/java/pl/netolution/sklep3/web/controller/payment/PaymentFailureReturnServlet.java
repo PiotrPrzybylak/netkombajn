@@ -7,9 +7,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.view.RedirectView;
 
-import pl.netolution.sklep3.dao.PaymentDao;
-import pl.netolution.sklep3.domain.Order;
-import pl.netolution.sklep3.domain.payment.InternalPayment;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.payment.InternalPayment;
+import com.netkombajn.eshop.payment.PaymentDao;
+
 
 public class PaymentFailureReturnServlet implements Controller {
 

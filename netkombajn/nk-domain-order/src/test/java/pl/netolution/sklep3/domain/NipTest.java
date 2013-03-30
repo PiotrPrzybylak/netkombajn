@@ -1,5 +1,7 @@
 package pl.netolution.sklep3.domain;
 
+import com.netkombajn.eshop.ordering.invoice.Nip;
+
 import junit.framework.TestCase;
 
 public class NipTest extends TestCase {

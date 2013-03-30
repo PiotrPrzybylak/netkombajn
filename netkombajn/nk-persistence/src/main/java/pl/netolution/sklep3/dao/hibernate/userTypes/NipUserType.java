@@ -8,7 +8,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.usertype.UserType;
 
-import pl.netolution.sklep3.domain.Nip;
+import com.netkombajn.eshop.ordering.invoice.Nip;
+
 
 public class NipUserType extends AbstractUserType implements UserType {
 

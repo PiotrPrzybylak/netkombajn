@@ -8,12 +8,13 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
+import com.netkombajn.eshop.ordering.cart.ShoppingCart;
+import com.netkombajn.eshop.ordering.order.item.CompositeOrderItem;
+
 import pl.netolution.sklep3.dao.CompositeProductDao;
 import pl.netolution.sklep3.dao.ProductDao;
-import pl.netolution.sklep3.domain.CompositeOrderItem;
 import pl.netolution.sklep3.domain.CompositeProduct;
 import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.domain.ShoppingCart;
 
 public class AddCompositeToCartController extends ParameterizableViewController {
 

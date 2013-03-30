@@ -11,7 +11,8 @@ import junit.framework.TestCase;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
 
-import pl.netolution.sklep3.domain.ShoppingCart;
+import com.netkombajn.eshop.ordering.cart.ShoppingCart;
+
 
 public class UpdateCartControllerTest extends TestCase {
 

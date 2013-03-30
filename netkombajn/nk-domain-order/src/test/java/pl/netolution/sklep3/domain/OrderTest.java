@@ -8,6 +8,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.netkombajn.eshop.ordering.cart.ShoppingCart;
+import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.ordering.order.OrderStatus;
+import com.netkombajn.eshop.ordering.order.item.CompositeOrderItem;
+import com.netkombajn.eshop.ordering.order.item.SkuOrderItem;
+import com.netkombajn.eshop.ordering.shipment.ShipmentOption;
 import com.netkombajn.store.domain.shared.price.Price;
 
 import junit.framework.TestCase;

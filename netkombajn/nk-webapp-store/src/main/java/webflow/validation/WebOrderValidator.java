@@ -7,7 +7,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 
-import pl.netolution.sklep3.domain.ShipmentOption;
+import com.netkombajn.eshop.ordering.shipment.ShipmentOption;
+
 import pl.netolution.sklep3.service.ValidationService;
 import pl.netolution.sklep3.web.domain.WebOrder;
 

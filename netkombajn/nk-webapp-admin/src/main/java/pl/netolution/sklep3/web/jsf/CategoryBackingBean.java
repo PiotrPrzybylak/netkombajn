@@ -11,7 +11,6 @@ import org.richfaces.model.TreeNodeImpl;
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.service.CategoryService;
-import pl.netolution.sklep3.service.ShopService;
 
 public class CategoryBackingBean {
 

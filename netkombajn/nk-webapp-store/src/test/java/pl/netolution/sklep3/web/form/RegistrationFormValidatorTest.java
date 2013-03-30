@@ -8,8 +8,9 @@ import junit.framework.TestCase;
 
 import org.springframework.validation.Errors;
 
-import pl.netolution.sklep3.dao.CustomerDao;
-import pl.netolution.sklep3.domain.Customer;
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.customer.CustomerDao;
+
 import pl.netolution.sklep3.service.ValidationService;
 
 public class RegistrationFormValidatorTest extends TestCase {

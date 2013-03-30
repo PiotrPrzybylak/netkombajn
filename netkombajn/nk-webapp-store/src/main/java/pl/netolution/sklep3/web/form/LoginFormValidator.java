@@ -4,8 +4,9 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import pl.netolution.sklep3.dao.CustomerDao;
-import pl.netolution.sklep3.domain.Customer;
+import com.netkombajn.eshop.ordering.customer.Customer;
+import com.netkombajn.eshop.ordering.customer.CustomerDao;
+
 import pl.netolution.sklep3.service.EncryptionService;
 
 public class LoginFormValidator implements Validator {

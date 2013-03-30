@@ -9,11 +9,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-import com.netkombajn.store.domain.shared.price.Price;
-
 import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.Manufacturer;
 import pl.netolution.sklep3.domain.Product;
+
+import com.netkombajn.store.domain.shared.price.Price;
 
 public class OsCommerceExporter extends JdbcDaoSupport {
 
