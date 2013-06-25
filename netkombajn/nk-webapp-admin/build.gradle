@@ -1,0 +1,25 @@
+
+
+description = 'Netkombajn Admin Webapp'
+
+apply plugin: 'war'
+
+dependencies {
+  compile project(':nk-common-web')
+    compile group: 'org.apache.myfaces.core', name: 'myfaces-api', version:'1.2.7'
+    compile group: 'org.apache.myfaces.core', name: 'myfaces-impl', version:'1.2.5'
+    compile group: 'com.sun.facelets', name: 'jsf-facelets', version:'1.1.11'
+    compile group: 'org.richfaces.ui', name: 'richfaces-ui', version:'3.3.2.CR1'
+    compile(group: 'org.apache.myfaces.tomahawk', name: 'tomahawk', version:'1.1.9') {
+exclude(module: 'jstl')
+    }
+    compile group: 'org.apache.myfaces.trinidad', name: 'trinidad-api', version:'1.2.9'
+    compile group: 'org.apache.myfaces.trinidad', name: 'trinidad-impl', version:'1.2.9'
+    testCompile group: 'org.springframework', name: 'spring-test', version:'2.5.6'
+    testCompile group: 'org.easymock', name: 'easymockclassextension', version:'2.4'
+    providedCompile group: 'javax.servlet', name: 'servlet-api', version:'2.4'
+    providedCompile group: 'javax.servlet.jsp', name: 'jsp-api', version:'2.1'
+    providedCompile group: 'org.mortbay.jetty', name: 'jetty', version:'6.1.4'
+    providedCompile group: 'org.mortbay.jetty', name: 'jetty-util', version:'6.1.4'
+    providedCompile group: 'org.mortbay.jetty', name: 'jetty-management', version:'6.1.4'
+}

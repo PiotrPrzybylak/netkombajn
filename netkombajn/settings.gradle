@@ -1,0 +1,13 @@
+rootProject.name = 'nk-parent'
+include ':nk-core', ':nk-persistence', ':nk-common-web', ':nk-webapp-store', ':nk-webapp-admin', ':nk-test', ':nk-domain-order', ':nk-domain-shared', ':nk-domain-payment', ':nk-domain-product'
+
+project(':nk-core').projectDir = "$rootDir/nk-core" as File
+project(':nk-persistence').projectDir = "$rootDir/nk-persistence" as File
+project(':nk-common-web').projectDir = "$rootDir/nk-common-web" as File
+project(':nk-webapp-store').projectDir = "$rootDir/nk-webapp-store" as File
+project(':nk-webapp-admin').projectDir = "$rootDir/nk-webapp-admin" as File
+project(':nk-test').projectDir = "$rootDir/nk-test" as File
+project(':nk-domain-order').projectDir = "$rootDir/nk-domain-order" as File
+project(':nk-domain-shared').projectDir = "$rootDir/nk-domain-shared" as File
+project(':nk-domain-payment').projectDir = "$rootDir/nk-domain-payment" as File
+project(':nk-domain-product').projectDir = "$rootDir/nk-domain-product" as File

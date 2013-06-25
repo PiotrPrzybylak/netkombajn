@@ -1,0 +1,51 @@
+
+
+description = 'Netkombajn Common Web'
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-core', version:'3.1.1.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context-support', version:'3.1.1.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version:'3.1.1.RELEASE'
+    compile group: 'org.springframework', name: 'spring-aop', version:'3.1.1.RELEASE'
+    compile group: 'org.springframework', name: 'spring-aspects', version:'3.1.1.RELEASE'
+    compile group: 'org.aspectj', name: 'aspectjrt', version:'1.6.1'
+    compile(group: 'org.springframework.security', name: 'spring-security-core', version:'3.1.0.RELEASE') {
+exclude(module: 'spring-core')
+exclude(module: 'spring-expression')
+exclude(module: 'spring-context')
+exclude(module: 'spring-tx')
+exclude(module: 'spring-aop')
+    }
+    compile(group: 'org.springframework.security', name: 'spring-security-web', version:'3.1.0.RELEASE') {
+exclude(module: 'spring-core')
+exclude(module: 'spring-expression')
+exclude(module: 'spring-context')
+exclude(module: 'spring-tx')
+exclude(module: 'spring-aop')
+    }
+    compile group: 'org.springframework.security', name: 'spring-security-config', version:'3.1.0.RELEASE'
+    compile group: 'javax.servlet', name: 'jstl', version:'1.1.2'
+    compile group: 'taglibs', name: 'standard', version:'1.1.2'
+    compile group: 'taglibs', name: 'string', version:'1.1.0'
+    compile group: 'org.apache.tiles', name: 'tiles-jsp', version:'2.1.2'
+  compile project(':nk-core')
+  compile project(':nk-domain-order')
+    compile group: 'org.springframework.webflow', name: 'spring-webflow', version:'2.0.7.RELEASE'
+    compile group: 'org.springframework.webflow', name: 'spring-binding', version:'2.0.7.RELEASE'
+    compile group: 'ognl', name: 'ognl', version:'2.7.3'
+    compile group: 'dom4j', name: 'dom4j', version:'1.6.1'
+    compile group: 'javax.mail', name: 'mail', version:'1.4'
+    compile group: 'org.directwebremoting', name: 'dwr', version:'2.0.3'
+  runtime project(':nk-persistence')
+    testCompile group: 'org.easymock', name: 'easymockclassextension', version:'2.4'
+    compile(group: 'javax.servlet', name: 'servlet-api', version:'2.4') {
+       /* This dependency was originally in the Maven provided scope, but the project was not of type war.
+       This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
+       Please review and delete this closure when resolved. */
+    }
+    compile(group: 'javax.servlet', name: 'jsp-api', version:'2.0') {
+       /* This dependency was originally in the Maven provided scope, but the project was not of type war.
+       This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
+       Please review and delete this closure when resolved. */
+    }
+}

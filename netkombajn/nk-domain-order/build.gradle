@@ -1,0 +1,11 @@
+
+
+description = 'nk-domain-order'
+
+dependencies {
+  compile project(':nk-domain-shared')
+  compile project(':nk-domain-product')
+  compile project(':nk-domain-payment')
+    compile group: 'dom4j', name: 'dom4j', version:'1.6.1'
+    compile group: 'jaxen', name: 'jaxen', version:'1.1.1'
+}
