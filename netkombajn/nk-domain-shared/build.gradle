@@ -1,0 +1,10 @@
+
+
+description = 'nk-domain-shared'
+
+dependencies {
+    compile group: 'javax.persistence', name: 'persistence-api', version:'1.0.2'
+    compile group: 'javax.mail', name: 'mail', version:'1.4'
+    compile group: 'org.springframework', name: 'spring-context-support', version:'3.1.1.RELEASE'
+    testCompile group: 'mockobjects', name: 'mockobjects', version:'0.1'
+}

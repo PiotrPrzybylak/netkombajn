@@ -46,3 +46,4 @@ netkombajn/nk-domain-payment/.project
 .settings
 netkombajn/nk-domain-product/target/
 netkombajn/nk-domain-product/logs/
+.gradle
