@@ -1,0 +1,21 @@
+
+
+description = 'Netkombajn System Tests'
+
+dependencies {
+  compile project(':nk-core')
+  compile project(':nk-persistence')
+  compile project(':nk-common-web')
+    compile group: 'dom4j', name: 'dom4j', version:'1.6.1'
+    compile group: 'org.springframework.ws', name: 'spring-ws-core', version:'2.0.0-M1'
+    compile group: 'velocity', name: 'velocity', version:'1.5'
+    compile group: 'net.sourceforge.jtds', name: 'jtds', version:'1.2'
+    compile group: 'org.dbunit', name: 'dbunit', version:'2.4.6'
+    compile group: 'org.slf4j', name: 'slf4j-api', version:'1.5.8'
+    compile group: 'org.slf4j', name: 'slf4j-nop', version:'1.5.8'
+    compile group: 'mysql', name: 'mysql-connector-java', version:'5.0.4'
+    compile group: 'org.springframework', name: 'spring-test', version:'3.1.1.RELEASE'
+    compile group: 'junit', name: 'junit', version:'4.10'
+    compile group: 'org.mockito', name: 'mockito-core', version:'1.8.0'	
+    compile group: 'org.easymock', name: 'easymock', version:'2.5.1'		
+}

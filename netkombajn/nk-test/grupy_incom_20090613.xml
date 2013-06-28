@@ -1,0 +1,1268 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<xml>
+	<grupy>
+		<id>1575</id>
+		<idh>1503</idh>
+		<name>Access Point</name>
+	</grupy>
+	<grupy>
+		<id>1715</id>
+		<idh>1503</idh>
+		<name>Akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>1622</id>
+		<idh>1490</idh>
+		<name>Akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>1858</id>
+		<idh></idh>
+		<name>Akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>1494</id>
+		<idh>1464</idh>
+		<name>Akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>1512</id>
+		<idh>1474</idh>
+		<name>Akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>1530</id>
+		<idh>1478</idh>
+		<name>Akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>1525</id>
+		<idh>1477</idh>
+		<name>Akcesoria CD</name>
+	</grupy>
+	<grupy>
+		<id>1726</id>
+		<idh>1725</idh>
+		<name>Akcesoria czyszczące</name>
+	</grupy>
+	<grupy>
+		<id>1984</id>
+		<idh>1831</idh>
+		<name>Akcesoria do aparatów cyfrowych</name>
+	</grupy>
+	<grupy>
+		<id>1860</id>
+		<idh>1858</idh>
+		<name>Akcesoria do notebooków</name>
+	</grupy>
+	<grupy>
+		<id>22692</id>
+		<idh>1485</idh>
+		<name>Akcesoria do projektorów</name>
+	</grupy>
+	<grupy>
+		<id>1714</id>
+		<idh>1486</idh>
+		<name>Akcesoria do skanerów</name>
+	</grupy>
+	<grupy>
+		<id>12841</id>
+		<idh>11591</idh>
+		<name>Akcesoria do telefonów i palmtopów</name>
+	</grupy>
+	<grupy>
+		<id>1864</id>
+		<idh>1858</idh>
+		<name>Akcesoria GSM</name>
+	</grupy>
+	<grupy>
+		<id>8281</id>
+		<idh>1868</idh>
+		<name>Akumulatorki</name>
+	</grupy>
+	<grupy>
+		<id>1839</id>
+		<idh>1490</idh>
+		<name>Akumulatory</name>
+	</grupy>
+	<grupy>
+		<id>8278</id>
+		<idh>1868</idh>
+		<name>Alkaliczne</name>
+	</grupy>
+	<grupy>
+		<id>30766</id>
+		<idh>1473</idh>
+		<name>All In One</name>
+	</grupy>
+	<grupy>
+		<id>1872</id>
+		<idh>1482</idh>
+		<name>AMD</name>
+	</grupy>
+	<grupy>
+		<id>1594</id>
+		<idh>1484</idh>
+		<name>AMD Athlon</name>
+	</grupy>
+	<grupy>
+		<id>1595</id>
+		<idh>1484</idh>
+		<name>AMD Opteron</name>
+	</grupy>
+	<grupy>
+		<id>1542</id>
+		<idh>1482</idh>
+		<name>AMD Opteron</name>
+	</grupy>
+	<grupy>
+		<id>12663</id>
+		<idh>1484</idh>
+		<name>AMD Phenom</name>
+	</grupy>
+	<grupy>
+		<id>1596</id>
+		<idh>1484</idh>
+		<name>AMD Sempron</name>
+	</grupy>
+	<grupy>
+		<id>1545</id>
+		<idh>1483</idh>
+		<name>AMD Socket 754</name>
+	</grupy>
+	<grupy>
+		<id>1546</id>
+		<idh>1483</idh>
+		<name>AMD Socket 939</name>
+	</grupy>
+	<grupy>
+		<id>1832</id>
+		<idh>1651</idh>
+		<name>AMD Socket 939</name>
+	</grupy>
+	<grupy>
+		<id>1547</id>
+		<idh>1651</idh>
+		<name>AMD Socket 940</name>
+	</grupy>
+	<grupy>
+		<id>1548</id>
+		<idh>1483</idh>
+		<name>AMD Socket A (462)</name>
+	</grupy>
+	<grupy>
+		<id>1933</id>
+		<idh>1651</idh>
+		<name>AMD Socket AM2</name>
+	</grupy>
+	<grupy>
+		<id>1867</id>
+		<idh>1483</idh>
+		<name>AMD Socket AM2 (940)</name>
+	</grupy>
+	<grupy>
+		<id>1931</id>
+		<idh>1651</idh>
+		<name>AMD Socket F</name>
+	</grupy>
+	<grupy>
+		<id>1642</id>
+		<idh>1479</idh>
+		<name>Antywirusy</name>
+	</grupy>
+	<grupy>
+		<id>1985</id>
+		<idh>1831</idh>
+		<name>Aparaty cyfrowe</name>
+	</grupy>
+	<grupy>
+		<id>1831</id>
+		<idh>1463</idh>
+		<name>Aparaty cyfrowe i akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>1756</id>
+		<idh>1474</idh>
+		<name>ATA / S-ATA</name>
+	</grupy>
+	<grupy>
+		<id>1823</id>
+		<idh>1821</idh>
+		<name>ATA/Ultra ATA</name>
+	</grupy>
+	<grupy>
+		<id>1854</id>
+		<idh>1498</idh>
+		<name>atramentowe</name>
+	</grupy>
+	<grupy>
+		<id>1495</id>
+		<idh>1464</idh>
+		<name>Atramentowe</name>
+	</grupy>
+	<grupy>
+		<id>1463</id>
+		<idh></idh>
+		<name>Audio Video</name>
+	</grupy>
+	<grupy>
+		<id>2519</id>
+		<idh>1466</idh>
+		<name>AV</name>
+	</grupy>
+	<grupy>
+		<id>1507</id>
+		<idh>1473</idh>
+		<name>Barebone</name>
+	</grupy>
+	<grupy>
+		<id>1670</id>
+		<idh>1473</idh>
+		<name>Barebone - akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>1868</id>
+		<idh>1463</idh>
+		<name>Baterie i akumulatorki</name>
+	</grupy>
+	<grupy>
+		<id>9822</id>
+		<idh>1479</idh>
+		<name>Biurowe</name>
+	</grupy>
+	<grupy>
+		<id>1716</id>
+		<idh>1503</idh>
+		<name>Bluetooth</name>
+	</grupy>
+	<grupy>
+		<id>1519</id>
+		<idh>1476</idh>
+		<name>CD-ROM</name>
+	</grupy>
+	<grupy>
+		<id>1520</id>
+		<idh>1476</idh>
+		<name>CD-RW</name>
+	</grupy>
+	<grupy>
+		<id>1662</id>
+		<idh>1469</idh>
+		<name>Chipset ATI</name>
+	</grupy>
+	<grupy>
+		<id>1663</id>
+		<idh>1469</idh>
+		<name>Chipset NVIDIA</name>
+	</grupy>
+	<grupy>
+		<id>1665</id>
+		<idh>1469</idh>
+		<name>Chipset QUADRO</name>
+	</grupy>
+	<grupy>
+		<id>1521</id>
+		<idh>1476</idh>
+		<name>COMBO</name>
+	</grupy>
+	<grupy>
+		<id>1762</id>
+		<idh>1480</idh>
+		<name>Compact Flash (CF)</name>
+	</grupy>
+	<grupy>
+		<id>1515</id>
+		<idh>1475</idh>
+		<name>CRT</name>
+	</grupy>
+	<grupy>
+		<id>8279</id>
+		<idh>1868</idh>
+		<name>Cynkowe</name>
+	</grupy>
+	<grupy>
+		<id>1745</id>
+		<idh>1480</idh>
+		<name>Czytniki kart pamięci</name>
+	</grupy>
+	<grupy>
+		<id>1588</id>
+		<idh>1480</idh>
+		<name>DDR</name>
+	</grupy>
+	<grupy>
+		<id>1534</id>
+		<idh>1480</idh>
+		<name>DDR2</name>
+	</grupy>
+	<grupy>
+		<id>9140</id>
+		<idh>1480</idh>
+		<name>DDR3</name>
+	</grupy>
+	<grupy>
+		<id>1499</id>
+		<idh>1466</idh>
+		<name>Desktop</name>
+	</grupy>
+	<grupy>
+		<id>1508</id>
+		<idh>1473</idh>
+		<name>Desktop PC</name>
+	</grupy>
+	<grupy>
+		<id>1701</id>
+		<idh>1473</idh>
+		<name>Desktop PC - akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>9479</id>
+		<idh>1479</idh>
+		<name>Dla komputerów ADAX</name>
+	</grupy>
+	<grupy>
+		<id>2500</id>
+		<idh>1485</idh>
+		<name>DLP</name>
+	</grupy>
+	<grupy>
+		<id>1554</id>
+		<idh>1485</idh>
+		<name>DMD</name>
+	</grupy>
+	<grupy>
+		<id>1567</id>
+		<idh>1489</idh>
+		<name>Do obudowy</name>
+	</grupy>
+	<grupy>
+		<id>1565</id>
+		<idh>1489</idh>
+		<name>Do procesorów AMD</name>
+	</grupy>
+	<grupy>
+		<id>1566</id>
+		<idh>1489</idh>
+		<name>Do procesorów INTEL</name>
+	</grupy>
+	<grupy>
+		<id>27452</id>
+		<idh>1489</idh>
+		<name>Do procesorów -uniwersalne</name>
+	</grupy>
+	<grupy>
+		<id>1464</id>
+		<idh></idh>
+		<name>Drukarki</name>
+	</grupy>
+	<grupy>
+		<id>1522</id>
+		<idh>1476</idh>
+		<name>DVD</name>
+	</grupy>
+	<grupy>
+		<id>1523</id>
+		<idh>1476</idh>
+		<name>DVD-RW</name>
+	</grupy>
+	<grupy>
+		<id>27751</id>
+		<idh>1466</idh>
+		<name>Dyski SSD</name>
+	</grupy>
+	<grupy>
+		<id>1466</id>
+		<idh></idh>
+		<name>Dyski twarde</name>
+	</grupy>
+	<grupy>
+		<id>1526</id>
+		<idh>1477</idh>
+		<name>Dyskietki</name>
+	</grupy>
+	<grupy>
+		<id>1656</id>
+		<idh>1480</idh>
+		<name>ECC</name>
+	</grupy>
+	<grupy>
+		<id>1537</id>
+		<idh>1480</idh>
+		<name>ECC Registered</name>
+	</grupy>
+	<grupy>
+		<id>11591</id>
+		<idh></idh>
+		<name>Elektronika użytkowa</name>
+	</grupy>
+	<grupy>
+		<id>1581</id>
+		<idh>1504</idh>
+		<name>Elementy instalacji</name>
+	</grupy>
+	<grupy>
+		<id>1734</id>
+		<idh>1725</idh>
+		<name>Etykiety samoprzylepne</name>
+	</grupy>
+	<grupy>
+		<id>1524</id>
+		<idh>1476</idh>
+		<name>FDD</name>
+	</grupy>
+	<grupy>
+		<id>1829</id>
+		<idh>1821</idh>
+		<name>FIREWIRE</name>
+	</grupy>
+	<grupy>
+		<id>1733</id>
+		<idh>1725</idh>
+		<name>Folie do faksów</name>
+	</grupy>
+	<grupy>
+		<id>1735</id>
+		<idh>1725</idh>
+		<name>Folie do rzutników</name>
+	</grupy>
+	<grupy>
+		<id>1605</id>
+		<idh>1488</idh>
+		<name>GamePady</name>
+	</grupy>
+	<grupy>
+		<id>1600</id>
+		<idh>1463</idh>
+		<name>Głośniki 2+0</name>
+	</grupy>
+	<grupy>
+		<id>1601</id>
+		<idh>1463</idh>
+		<name>Głośniki 2+1</name>
+	</grupy>
+	<grupy>
+		<id>1603</id>
+		<idh>1463</idh>
+		<name>Głośniki 5+1</name>
+	</grupy>
+	<grupy>
+		<id>1772</id>
+		<idh>1504</idh>
+		<name>Gniazda i wtyki</name>
+	</grupy>
+	<grupy>
+		<id>1928</id>
+		<idh>1476</idh>
+		<name>HD DVD/Blu-Ray</name>
+	</grupy>
+	<grupy>
+		<id>1496</id>
+		<idh>1464</idh>
+		<name>Igłowe</name>
+	</grupy>
+	<grupy>
+		<id>1759</id>
+		<idh>1474</idh>
+		<name>Inne</name>
+	</grupy>
+	<grupy>
+		<id>1568</id>
+		<idh>1489</idh>
+		<name>Inne</name>
+	</grupy>
+	<grupy>
+		<id>1597</id>
+		<idh>1484</idh>
+		<name>Intel Celeron</name>
+	</grupy>
+	<grupy>
+		<id>27746</id>
+		<idh>1484</idh>
+		<name>Intel Core i7</name>
+	</grupy>
+	<grupy>
+		<id>25704</id>
+		<idh>1484</idh>
+		<name>Intel Core2Quad</name>
+	</grupy>
+	<grupy>
+		<id>1598</id>
+		<idh>1484</idh>
+		<name>Intel Dual Core/Core2Duo</name>
+	</grupy>
+	<grupy>
+		<id>4005</id>
+		<idh>1482</idh>
+		<name>INTEL Pentium D/ Core 2 Duo</name>
+	</grupy>
+	<grupy>
+		<id>27747</id>
+		<idh>1483</idh>
+		<name>Intel Socket 1366</name>
+	</grupy>
+	<grupy>
+		<id>30187</id>
+		<idh>1651</idh>
+		<name>INTEL Socket 1366</name>
+	</grupy>
+	<grupy>
+		<id>1653</id>
+		<idh>1651</idh>
+		<name>INTEL Socket 478</name>
+	</grupy>
+	<grupy>
+		<id>1549</id>
+		<idh>1483</idh>
+		<name>INTEL Socket 478</name>
+	</grupy>
+	<grupy>
+		<id>1550</id>
+		<idh>1651</idh>
+		<name>INTEL Socket 604</name>
+	</grupy>
+	<grupy>
+		<id>1964</id>
+		<idh>1651</idh>
+		<name>INTEL Socket 771</name>
+	</grupy>
+	<grupy>
+		<id>1652</id>
+		<idh>1651</idh>
+		<name>INTEL Socket 775</name>
+	</grupy>
+	<grupy>
+		<id>1551</id>
+		<idh>1483</idh>
+		<name>INTEL Socket 775</name>
+	</grupy>
+	<grupy>
+		<id>1599</id>
+		<idh>1484</idh>
+		<name>Intel Xeon</name>
+	</grupy>
+	<grupy>
+		<id>1544</id>
+		<idh>1482</idh>
+		<name>INTEL Xeon</name>
+	</grupy>
+	<grupy>
+		<id>1606</id>
+		<idh>1488</idh>
+		<name>Joysticki</name>
+	</grupy>
+	<grupy>
+		<id>2001</id>
+		<idh>1463</idh>
+		<name>Kable i przewody</name>
+	</grupy>
+	<grupy>
+		<id>1821</id>
+		<idh></idh>
+		<name>Kable komputerowe</name>
+	</grupy>
+	<grupy>
+		<id>1492</id>
+		<idh>1463</idh>
+		<name>Kamery internetowe</name>
+	</grupy>
+	<grupy>
+		<id>1865</id>
+		<idh>1463</idh>
+		<name>Kamery video</name>
+	</grupy>
+	<grupy>
+		<id>1557</id>
+		<idh>1463</idh>
+		<name>Karty dźwiękowe</name>
+	</grupy>
+	<grupy>
+		<id>1469</id>
+		<idh></idh>
+		<name>Karty graficzne</name>
+	</grupy>
+	<grupy>
+		<id>1578</id>
+		<idh>1504</idh>
+		<name>Karty sieciowe</name>
+	</grupy>
+	<grupy>
+		<id>1576</id>
+		<idh>1503</idh>
+		<name>Karty sieciowe</name>
+	</grupy>
+	<grupy>
+		<id>1607</id>
+		<idh>1488</idh>
+		<name>Kierownice</name>
+	</grupy>
+	<grupy>
+		<id>1754</id>
+		<idh>1466</idh>
+		<name>Kieszenie HDD</name>
+	</grupy>
+	<grupy>
+		<id>1493</id>
+		<idh>1463</idh>
+		<name>Kino domowe</name>
+	</grupy>
+	<grupy>
+		<id>1561</id>
+		<idh>1488</idh>
+		<name>Klawiatury</name>
+	</grupy>
+	<grupy>
+		<id>1856</id>
+		<idh>1497</idh>
+		<name>kolorowe</name>
+	</grupy>
+	<grupy>
+		<id>1473</id>
+		<idh></idh>
+		<name>Komputery</name>
+	</grupy>
+	<grupy>
+		<id>30621</id>
+		<idh>1473</idh>
+		<name>Konsole do gier</name>
+	</grupy>
+	<grupy>
+		<id>1474</id>
+		<idh></idh>
+		<name>Kontrolery</name>
+	</grupy>
+	<grupy>
+		<id>1929</id>
+		<idh>11591</idh>
+		<name>Krótkofalówki</name>
+	</grupy>
+	<grupy>
+		<id>1853</id>
+		<idh>1498</idh>
+		<name>laserowe</name>
+	</grupy>
+	<grupy>
+		<id>1497</id>
+		<idh>1464</idh>
+		<name>Laserowe</name>
+	</grupy>
+	<grupy>
+		<id>1516</id>
+		<idh>1475</idh>
+		<name>LCD</name>
+	</grupy>
+	<grupy>
+		<id>1555</id>
+		<idh>1485</idh>
+		<name>LCD</name>
+	</grupy>
+	<grupy>
+		<id>1851</id>
+		<idh>1848</idh>
+		<name>LCD</name>
+	</grupy>
+	<grupy>
+		<id>1517</id>
+		<idh>1475</idh>
+		<name>LCD TV</name>
+	</grupy>
+	<grupy>
+		<id>9824</id>
+		<idh>1642</idh>
+		<name>licencje</name>
+	</grupy>
+	<grupy>
+		<id>1874</id>
+		<idh>1624</idh>
+		<name>Listwy zasilające</name>
+	</grupy>
+	<grupy>
+		<id>1624</id>
+		<idh></idh>
+		<name>Listwy zasilające</name>
+	</grupy>
+	<grupy>
+		<id>1769</id>
+		<idh>1624</idh>
+		<name>Listwy zasilające z gniazdem RJ</name>
+	</grupy>
+	<grupy>
+		<id>1825</id>
+		<idh>1821</idh>
+		<name>LPT/RS232</name>
+	</grupy>
+	<grupy>
+		<id>8283</id>
+		<idh>1868</idh>
+		<name>Ładowarki do akumulatorków</name>
+	</grupy>
+	<grupy>
+		<id>1838</id>
+		<idh>1490</idh>
+		<name>Ładowarki sieciowe</name>
+	</grupy>
+	<grupy>
+		<id>1540</id>
+		<idh>1481</idh>
+		<name>Macierze dyskowe</name>
+	</grupy>
+	<grupy>
+		<id>1725</id>
+		<idh></idh>
+		<name>Materiały eksploatacyjne</name>
+	</grupy>
+	<grupy>
+		<id>12309</id>
+		<idh>1473</idh>
+		<name>Media Center</name>
+	</grupy>
+	<grupy>
+		<id>12486</id>
+		<idh>1473</idh>
+		<name>MediaCenter-akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>8967</id>
+		<idh>1480</idh>
+		<name>Memory Stick (MS)</name>
+	</grupy>
+	<grupy>
+		<id>1558</id>
+		<idh>1463</idh>
+		<name>Mikrofony</name>
+	</grupy>
+	<grupy>
+		<id>1475</id>
+		<idh></idh>
+		<name>Monitory</name>
+	</grupy>
+	<grupy>
+		<id>1855</id>
+		<idh>1497</idh>
+		<name>monochromatyczne</name>
+	</grupy>
+	<grupy>
+		<id>1604</id>
+		<idh>1463</idh>
+		<name>MP3/MP4 Playery</name>
+	</grupy>
+	<grupy>
+		<id>1763</id>
+		<idh>1480</idh>
+		<name>MultiMedia Card (MMC)</name>
+	</grupy>
+	<grupy>
+		<id>1643</id>
+		<idh>1479</idh>
+		<name>Multimedialne</name>
+	</grupy>
+	<grupy>
+		<id>1563</id>
+		<idh>1488</idh>
+		<name>Myszy komputerowe</name>
+	</grupy>
+	<grupy>
+		<id>1476</id>
+		<idh></idh>
+		<name>Napędy</name>
+	</grupy>
+	<grupy>
+		<id>1777</id>
+		<idh>1504</idh>
+		<name>Narzędzia</name>
+	</grupy>
+	<grupy>
+		<id>9828</id>
+		<idh>1479</idh>
+		<name>Narzędzia programistyczne</name>
+	</grupy>
+	<grupy>
+		<id>8452</id>
+		<idh>11591</idh>
+		<name>Nawigacja GPS</name>
+	</grupy>
+	<grupy>
+		<id>1661</id>
+		<idh>1490</idh>
+		<name>Niezarządzalne</name>
+	</grupy>
+	<grupy>
+		<id>1477</id>
+		<idh></idh>
+		<name>Nośniki danych</name>
+	</grupy>
+	<grupy>
+		<id>1500</id>
+		<idh>1466</idh>
+		<name>Notebook</name>
+	</grupy>
+	<grupy>
+		<id>1509</id>
+		<idh></idh>
+		<name>Notebooki</name>
+	</grupy>
+	<grupy>
+		<id>1478</id>
+		<idh></idh>
+		<name>Obudowy</name>
+	</grupy>
+	<grupy>
+		<id>9825</id>
+		<idh>1642</idh>
+		<name>oem, box</name>
+	</grupy>
+	<grupy>
+		<id>1479</id>
+		<idh></idh>
+		<name>Oprogramowanie</name>
+	</grupy>
+	<grupy>
+		<id>4652</id>
+		<idh>11591</idh>
+		<name>Palmtopy i smartphony</name>
+	</grupy>
+	<grupy>
+		<id>1480</id>
+		<idh></idh>
+		<name>Pamięci</name>
+	</grupy>
+	<grupy>
+		<id>1732</id>
+		<idh>1725</idh>
+		<name>Papiery</name>
+	</grupy>
+	<grupy>
+		<id>1760</id>
+		<idh>1480</idh>
+		<name>PenDrive</name>
+	</grupy>
+	<grupy>
+		<id>1830</id>
+		<idh>1488</idh>
+		<name>Piloty</name>
+	</grupy>
+	<grupy>
+		<id>1482</id>
+		<idh></idh>
+		<name>Platformy serwerowe</name>
+	</grupy>
+	<grupy>
+		<id>1518</id>
+		<idh>1475</idh>
+		<name>Plazmowe</name>
+	</grupy>
+	<grupy>
+		<id>1849</id>
+		<idh>1848</idh>
+		<name>Plazmowe</name>
+	</grupy>
+	<grupy>
+		<id>18142</id>
+		<idh>1477</idh>
+		<name>Płyty Blue-Ray</name>
+	</grupy>
+	<grupy>
+		<id>1527</id>
+		<idh>1477</idh>
+		<name>Płyty CD-R</name>
+	</grupy>
+	<grupy>
+		<id>1528</id>
+		<idh>1477</idh>
+		<name>Płyty CD-RW</name>
+	</grupy>
+	<grupy>
+		<id>1529</id>
+		<idh>1477</idh>
+		<name>Płyty DVD-/+R</name>
+	</grupy>
+	<grupy>
+		<id>1655</id>
+		<idh>1477</idh>
+		<name>Płyty DVD-/+RW</name>
+	</grupy>
+	<grupy>
+		<id>1483</id>
+		<idh></idh>
+		<name>Płyty główne</name>
+	</grupy>
+	<grupy>
+		<id>28347</id>
+		<idh>28346</idh>
+		<name>Płyty główne</name>
+	</grupy>
+	<grupy>
+		<id>15046</id>
+		<idh>1483</idh>
+		<name>Płyty główne- akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>1651</id>
+		<idh></idh>
+		<name>Płyty główne serwerowe</name>
+	</grupy>
+	<grupy>
+		<id>28620</id>
+		<idh>28346</idh>
+		<name>Płyty główne serwerowe</name>
+	</grupy>
+	<grupy>
+		<id>1758</id>
+		<idh>1474</idh>
+		<name>Portable</name>
+	</grupy>
+	<grupy>
+		<id>1484</id>
+		<idh></idh>
+		<name>Procesory</name>
+	</grupy>
+	<grupy>
+		<id>1485</id>
+		<idh></idh>
+		<name>Projektory</name>
+	</grupy>
+	<grupy>
+		<id>1818</id>
+		<idh>1504</idh>
+		<name>Przełączniki KVM</name>
+	</grupy>
+	<grupy>
+		<id>1837</id>
+		<idh>1821</idh>
+		<name>PS2</name>
+	</grupy>
+	<grupy>
+		<id>4649</id>
+		<idh>1463</idh>
+		<name>Ramki multimedialne</name>
+	</grupy>
+	<grupy>
+		<id>1583</id>
+		<idh>1504</idh>
+		<name>Routery</name>
+	</grupy>
+	<grupy>
+		<id>1577</id>
+		<idh>1503</idh>
+		<name>Routery</name>
+	</grupy>
+	<grupy>
+		<id>1833</id>
+		<idh>1821</idh>
+		<name>SATA</name>
+	</grupy>
+	<grupy>
+		<id>1757</id>
+		<idh>1474</idh>
+		<name>SATA/SAS RAID</name>
+	</grupy>
+	<grupy>
+		<id>1513</id>
+		<idh>1474</idh>
+		<name>SCSI</name>
+	</grupy>
+	<grupy>
+		<id>1538</id>
+		<idh>1480</idh>
+		<name>SD-RAM</name>
+	</grupy>
+	<grupy>
+		<id>1761</id>
+		<idh>1480</idh>
+		<name>Secure Digital (SD)</name>
+	</grupy>
+	<grupy>
+		<id>1501</id>
+		<idh>1466</idh>
+		<name>Serwer</name>
+	</grupy>
+	<grupy>
+		<id>1625</id>
+		<idh>1478</idh>
+		<name>Serwerowe</name>
+	</grupy>
+	<grupy>
+		<id>1511</id>
+		<idh>1473</idh>
+		<name>Serwery</name>
+	</grupy>
+	<grupy>
+		<id>1702</id>
+		<idh>1473</idh>
+		<name>Serwery - akcesoria</name>
+	</grupy>
+	<grupy>
+		<id>1582</id>
+		<idh>1504</idh>
+		<name>Serwery wydruku</name>
+	</grupy>
+	<grupy>
+		<id>1503</id>
+		<idh></idh>
+		<name>Sieci bezprzewodowe</name>
+	</grupy>
+	<grupy>
+		<id>1504</id>
+		<idh></idh>
+		<name>Sieci przewodowe</name>
+	</grupy>
+	<grupy>
+		<id>1486</id>
+		<idh></idh>
+		<name>Skanery</name>
+	</grupy>
+	<grupy>
+		<id>1657</id>
+		<idh>1486</idh>
+		<name>Skanery A3</name>
+	</grupy>
+	<grupy>
+		<id>1658</id>
+		<idh>1486</idh>
+		<name>Skanery A4</name>
+	</grupy>
+	<grupy>
+		<id>1869</id>
+		<idh>1486</idh>
+		<name>Skanery A8</name>
+	</grupy>
+	<grupy>
+		<id>1559</id>
+		<idh>1463</idh>
+		<name>Słuchawki</name>
+	</grupy>
+	<grupy>
+		<id>1589</id>
+		<idh>1480</idh>
+		<name>SO-DIMM</name>
+	</grupy>
+	<grupy>
+		<id>11592</id>
+		<idh>11591</idh>
+		<name>Stacje pogodowe</name>
+	</grupy>
+	<grupy>
+		<id>15405</id>
+		<idh>1473</idh>
+		<name>Stacje Robocze</name>
+	</grupy>
+	<grupy>
+		<id>1531</id>
+		<idh>1478</idh>
+		<name>Standard ATX</name>
+	</grupy>
+	<grupy>
+		<id>1532</id>
+		<idh>1478</idh>
+		<name>Standard microATX</name>
+	</grupy>
+	<grupy>
+		<id>25996</id>
+		<idh>1481</idh>
+		<name>Storage HDD</name>
+	</grupy>
+	<grupy>
+		<id>1584</id>
+		<idh>1504</idh>
+		<name>Switche niezarządzalne</name>
+	</grupy>
+	<grupy>
+		<id>1585</id>
+		<idh>1504</idh>
+		<name>Switche zarządzalne</name>
+	</grupy>
+	<grupy>
+		<id>1629</id>
+		<idh>1479</idh>
+		<name>Systemy operacyjne</name>
+	</grupy>
+	<grupy>
+		<id>1481</id>
+		<idh></idh>
+		<name>Systemy przechowywania danych</name>
+	</grupy>
+	<grupy>
+		<id>1635</id>
+		<idh>1479</idh>
+		<name>Systemy serwerowe</name>
+	</grupy>
+	<grupy>
+		<id>26871</id>
+		<idh>1504</idh>
+		<name>Szafy</name>
+	</grupy>
+	<grupy>
+		<id>1862</id>
+		<idh>1488</idh>
+		<name>Tablety</name>
+	</grupy>
+	<grupy>
+		<id>1730</id>
+		<idh>1725</idh>
+		<name>Tasiemki do drukarek</name>
+	</grupy>
+	<grupy>
+		<id>1775</id>
+		<idh></idh>
+		<name>Telefonia internetowa</name>
+	</grupy>
+	<grupy>
+		<id>1927</id>
+		<idh>1775</idh>
+		<name>Telefony i adaptery VoIP</name>
+	</grupy>
+	<grupy>
+		<id>1776</id>
+		<idh>1775</idh>
+		<name>Telefony USB</name>
+	</grupy>
+	<grupy>
+		<id>1848</id>
+		<idh></idh>
+		<name>Telewizory</name>
+	</grupy>
+	<grupy>
+		<id>1753</id>
+		<idh>1473</idh>
+		<name>Terminale sieciowe</name>
+	</grupy>
+	<grupy>
+		<id>1727</id>
+		<idh>1725</idh>
+		<name>Tonery do drukarek</name>
+	</grupy>
+	<grupy>
+		<id>1731</id>
+		<idh>1725</idh>
+		<name>Tonery do kserokopiarek</name>
+	</grupy>
+	<grupy>
+		<id>1564</id>
+		<idh>1488</idh>
+		<name>Trackballe</name>
+	</grupy>
+	<grupy>
+		<id>1586</id>
+		<idh></idh>
+		<name>Tunery telewizyjne</name>
+	</grupy>
+	<grupy>
+		<id>1668</id>
+		<idh>1586</idh>
+		<name>Tunery wewnętrzne</name>
+	</grupy>
+	<grupy>
+		<id>1669</id>
+		<idh>1586</idh>
+		<name>Tunery zewnętrzne</name>
+	</grupy>
+	<grupy>
+		<id>1729</id>
+		<idh>1725</idh>
+		<name>Tusze</name>
+	</grupy>
+	<grupy>
+		<id>1498</id>
+		<idh>1464</idh>
+		<name>Urządzenia wielofunkcyjne</name>
+	</grupy>
+	<grupy>
+		<id>1488</id>
+		<idh></idh>
+		<name>Urządzenia wskazujące</name>
+	</grupy>
+	<grupy>
+		<id>1822</id>
+		<idh>1821</idh>
+		<name>USB</name>
+	</grupy>
+	<grupy>
+		<id>1514</id>
+		<idh>1474</idh>
+		<name>USB / FireWire</name>
+	</grupy>
+	<grupy>
+		<id>1824</id>
+		<idh>1821</idh>
+		<name>VGA</name>
+	</grupy>
+	<grupy>
+		<id>1587</id>
+		<idh>1463</idh>
+		<name>Video Capture</name>
+	</grupy>
+	<grupy>
+		<id>1489</id>
+		<idh></idh>
+		<name>Wentylatory</name>
+	</grupy>
+	<grupy>
+		<id>1982</id>
+		<idh>1479</idh>
+		<name>Wersje obcojęzyczne</name>
+	</grupy>
+	<grupy>
+		<id>4651</id>
+		<idh>1488</idh>
+		<name>Wskaźniki</name>
+	</grupy>
+	<grupy>
+		<id>28346</id>
+		<idh></idh>
+		<name>Wyprzedaż poserwisowa</name>
+	</grupy>
+	<grupy>
+		<id>1766</id>
+		<idh>1480</idh>
+		<name>xD Picture Card (XD)</name>
+	</grupy>
+	<grupy>
+		<id>21716</id>
+		<idh>1503</idh>
+		<name>Zabezpieczenia</name>
+	</grupy>
+	<grupy>
+		<id>1626</id>
+		<idh>1504</idh>
+		<name>Zabezpieczenia</name>
+	</grupy>
+	<grupy>
+		<id>1660</id>
+		<idh>1490</idh>
+		<name>Zarządzalne</name>
+	</grupy>
+	<grupy>
+		<id>1490</id>
+		<idh></idh>
+		<name>Zasilacze awaryjne</name>
+	</grupy>
+	<grupy>
+		<id>1704</id>
+		<idh>1478</idh>
+		<name>Zasilacze komputerowe</name>
+	</grupy>
+	<grupy>
+		<id>1835</id>
+		<idh>1478</idh>
+		<name>Zasilacze serwerowe</name>
+	</grupy>
+	<grupy>
+		<id>1870</id>
+		<idh>1821</idh>
+		<name>Zasilające</name>
+	</grupy>
+	<grupy>
+		<id>1736</id>
+		<idh>1725</idh>
+		<name>Zestawy do napełniania</name>
+	</grupy>
+	<grupy>
+		<id>1700</id>
+		<idh>1488</idh>
+		<name>Zestawy klawiatura+mysz</name>
+	</grupy>
+	<grupy>
+		<id>1502</id>
+		<idh>1466</idh>
+		<name>Zewnętrzne</name>
+	</grupy>
+</xml>

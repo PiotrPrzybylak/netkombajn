@@ -1,0 +1,10 @@
+
+
+description = 'nk-domain-payment'
+
+dependencies {
+  compile project(':nk-domain-shared')
+    compile(group: 'org.hibernate', name: 'hibernate-annotations', version:'3.3.0.ga') {
+exclude(module: 'hibernate')
+    }
+}

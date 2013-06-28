@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"	
+	>
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+	
+
+	<h1>Dodaj nowy zestaw</h1>
+	
+	<t:div styleClass="message" rendered="#{not empty compositeBacking.infoMessage}">
+		#{compositeBacking.infoMessage}
+	</t:div>
+	
+	<ui:include src="fragments/composite/instruction.xhtml"/>
+								
+	<div  class="fieldset" id="compositeProductDetails">	
+		<h:form>
+			<p id="compositeName">
+				<h:message for="name" styleClass="errorFieldSet"/>
+				<label>Nazwa zestawu:</label>
+				<h:inputText id="name" value="#{compositeBacking.compositeProduct.name}" required="true" />
+				
+			</p>
+			<p>
+				<h:message for="description" styleClass="errorFieldSet"/>
+				<label>Opis:</label>
+				<h:inputTextarea id="description" value="#{compositeBacking.compositeProduct.description}" 
+				required="true" class="standardTextArea" />
+				
+			</p>
+			<p id="profitPercent">
+				<h:message for="profitPercent" styleClass="errorFieldSet"/>
+				<label title="o tyle procent będzie zwiększona cena zestawuw  stosunku do pozostałych częsci">Procent zysku za zestaw:</label>
+				<h:inputText id="profitPercent" value="#{compositeBacking.compositeProduct.profitPercent}" required="true"/> %
+				
+			</p>
+			<p>
+				<h:commandButton value="Zapisz zestaw" action="#{compositeBacking.updateCompositeProduct}" 
+									rendered="#{!compositeBacking.compositeProductDirty}"/>
+				<h:commandButton value="Zapisz zestaw" styleClass="noticableButton" action="#{compositeBacking.updateCompositeProduct}" 
+									rendered="#{compositeBacking.compositeProductDirty}"/>
+				 <t:graphicImage value="../images/pencil.png"  border="0" alt="" 
+			               			rendered="#{compositeBacking.compositeProductDirty}"/>
+			</p>
+		</h:form>
+	</div>
+	
+	<div id="addGroupPanel">
+		<h:form>
+		 	<t:togglePanel>
+					<t:toggleLink for="addGroup" styleClass="importantLink">
+						Dodaj Grupę.
+					</t:toggleLink>
+					<t:div id="addGroup">
+						<div class="fieldset">
+							<p id="compositeName">
+								<h:message for="groupName" styleClass="errorFieldSet"/>
+								<label>Nazwa grupy:</label>
+								<h:inputText id="groupName" value="#{compositeBacking.productGroup.name}" required="true"/>
+							</p>
+							<p>
+								<div><h:message for="groupPriority" styleClass="errorFieldSet"/></div>
+								<label title="okresla która w kolejnści pokaze się dana grupa gdy klientowi zostanie wyświetlony zestaw(1-pierwsza,2-druga itd">
+									Priorytet:
+								</label>
+								<h:inputText id="groupPriority" value="#{compositeBacking.productGroup.priority}" required="true"/>
+							</p>
+							<p>
+								<h:commandButton value="dodaj" action="#{compositeBacking.addGroup}"/>
+							</p>
+						</div>
+					</t:div>
+			</t:togglePanel>
+	</h:form>
+		
+	</div>
+
+	<t:div id="compositeProductCategories" forceId="true" rendered="#{not empty compositeBacking.compositeProduct.productGroups}">
+		<ui:include src="fragments/composite/groups.xhtml"/>
+	</t:div>
+
+
+	
+</ui:define>
+</ui:composition>
+</html>

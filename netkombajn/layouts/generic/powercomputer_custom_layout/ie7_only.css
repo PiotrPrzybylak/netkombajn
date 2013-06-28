@@ -1,0 +1,28 @@
+
+
+.product-information, .product-small-picture {
+	float: left;
+}
+
+#productsList {
+	float: left;
+}
+
+#categoryProducts .box-content, #searchResult .box-content {
+	float: left;
+}
+
+.product-information .product-name, .product-information .product-price, .product-information .cart {
+	float: left;
+	display: block;
+}
+
+#productsList .product-information .cart {
+	margin-left: 3px;
+	width: 30px;
+	float: right;	
+} 
+
+.product {
+	float: left;
+}

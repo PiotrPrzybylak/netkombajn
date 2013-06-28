@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+    
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+<h1>Rodziny produktów</h1>
+    
+    
+    <div id="categoryWrappper">
+	<div id="categeriesTree">
+		<h:form> 
+			<rich:tree switchType="client"  value="#{categoryBacking.categoriesTreeModel}" var="category">
+	            <rich:treeNode icon="../images/yellow-folder-open.png">
+	                <h:commandLink value="#{category.name}" styleClass="nodeFolder" action="#{productFamilyBacking.chooseCategory}">
+								<f:param name="categoryId" value="#{category.id}"/>
+					</h:commandLink>
+	            </rich:treeNode>
+        	</rich:tree>
+		</h:form>
+	</div>
+	<div id="productsGroups">
+		<h:messages styleClass="messages"/>
+		<h3>
+			<h:outputText value="Wybierz kategorię produktów." rendered="#{empty productFamilyBacking.category}"/>
+			<h:outputText value="Produkty z kategorii #{productFamilyBacking.category.name}" rendered="#{not empty productFamilyBacking.category}"/>
+		</h3>
+		<h:form styleClass="productGroupsComponent">
+			
+	        <rich:scrollableDataTable value="#{productFamilyBacking.categoryItems}" var="product"
+   					rows="40" columnClasses="massEditProductCell" frozenColCount="1" width="750px"
+   					 selection="#{productFamilyBacking.productSelection}" id="categoryProducts">
+   					 <rich:column> 
+		               <f:facet name="header">
+		                   Nazwa
+		               </f:facet>
+		              #{product.name}
+		        </rich:column>
+		        <rich:column> 
+		               <f:facet name="header">
+		                   Cena
+		               </f:facet>
+		              <span class="price"><s3:price price="#{product.retailGrossPrice}"/></span> 
+		        </rich:column>	
+		        <rich:column> 
+		               <f:facet name="header">
+		                   Narzut
+		               </f:facet>
+		              <h:outputText value="#{product.markup}%" rendered="#{not empty product.markup}"/>
+		              <h:panelGroup rendered="#{product.markup&lt;0}">
+		              	  <div class="error">
+			              	Narzut tego produktu jest ujemny!
+			              </div>
+		              </h:panelGroup>
+		        </rich:column>	
+		        <rich:column> 
+		               <f:facet name="header">
+		                  Waga
+		               </f:facet>
+		               <h:panelGroup rendered="#{not empty product.weight}">
+		              		#{product.weight}&nbsp;kg
+		              </h:panelGroup>
+		        </rich:column>
+		         <rich:column> 
+		               <f:facet name="header">
+		                  Producent
+		               </f:facet>
+		              #{product.manufacturer}
+		        </rich:column>
+		         <rich:column> 
+		               <f:facet name="header">
+		                  Ilość
+		               </f:facet>
+		               #{product.quantityInStock}
+		        </rich:column>
+		         <rich:column> 
+		               <f:facet name="header">
+		                  Gwarancja
+		               </f:facet>
+		               #{product.warranty}
+		        </rich:column>
+		        <rich:column sortBy="#{product.manualAvailability}"> 
+		               <f:facet name="header">
+		                  Narzucona dostępność
+		               </f:facet>
+		               #{product.manualAvailability}
+		        </rich:column>
+   				</rich:scrollableDataTable>
+	        
+	        
+	        	<span>
+	        		<a4j:commandButton value="Dodaj produkty do rodziny" reRender="productsToEdit" action="#{productFamilyBacking.takeSelection}"/>
+	        	</span>
+	        	<span><h:commandButton value="wróć do edycji rodzin produktów" action="productFamily"/></span>
+   		</h:form>
+   		
+   		
+   		<div id="products">
+   		
+		 <h:form id="productsToEdit">
+		 		<rich:dataTable  var="product" value="#{productFamilyBacking.familyItems}" 
+        			rows="20" reRender="ds,rowsOnPage" rendered="#{not empty productFamilyBacking.productFamilyDetails.products}">
+        			
+        		 <rich:column sortBy="#{product.name}"> 
+		               <f:facet name="header">
+		                   Nazwa
+		               </f:facet>
+		              #{product.name}
+		             
+		        </rich:column>	
+		         <rich:column sortBy="#{product.retailGrossPrice}"> 
+		               <f:facet name="header">
+		                   Cena
+		               </f:facet>
+		              <span class="price"><s3:price price="#{product.retailGrossPrice}"/></span> 
+		        </rich:column>	
+		       
+		 
+		         <rich:column> 
+		               <f:facet name="header">
+		                 Usuń z listy
+		               </f:facet>
+		               <h:commandLink actionListener="#{productFamilyBacking.removeProductFromList}"> Usuń z listy
+				              	<f:param name="productId" value="#{product.id}" />
+							  </h:commandLink>
+		        </rich:column>
+		         
+        		 <f:facet name="footer">
+		         		<h:panelGroup>
+			                <rich:datascroller id="ds" maxPages="7"/>
+			           	</h:panelGroup>
+		         </f:facet>	
+        		</rich:dataTable>
+		       </h:form> 
+   		</div>
+	</div>
+</div>
+  
+    
+</ui:define>
+    
+</ui:composition>
+    
+</html>	

@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <pictures id="1" originalName="obrazek pierwszy" discriminator="rudimentary"/>
+  <manufacturer id="1" name="Roman Pierwszy" picture_id="1"/>
+</dataset>

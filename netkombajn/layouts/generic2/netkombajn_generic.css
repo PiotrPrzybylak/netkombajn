@@ -1,0 +1,29 @@
+@import url(shop3_general_layout/style.css);
+@import url(shop3_general_layout/availability.css);
+@import url(powercomputer_custom_layout/custom_style.css);
+@import url(breadcrumbs.css);
+
+#shoplogo a {
+	width: 788px;
+	margin: auto;
+	height: 70px;
+	background: none;
+}
+
+#shoplogo span {
+ display: block;
+ font-size: 20px;
+ color: white;
+ margin: auto;
+ text-align: center;
+ margin-top: 30px;
+ font-family: Arial;
+}
+
+.searchButton span {
+ display: none;
+}
+
+.categoryToogleGadget {
+	display: none;
+} 

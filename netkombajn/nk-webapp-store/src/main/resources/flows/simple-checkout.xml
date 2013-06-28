@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+		http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+		
+		
+	<var name="orderModel" class="pl.netolution.sklep3.web.domain.WebOrder" />
+	
+	<decision-state id="shoppingCartEmptyChecl">
+		<if test="!shoppingCart.isEmpty()" then="initializeOrder" else="shop" />		
+	</decision-state>
+		
+	<action-state id="initializeOrder">
+		<evaluate expression="submitOrderService.prepareOrderForSimpleCheckoutProcess(orderModel.order)" />
+		<transition to="simpleCheckout" />
+	</action-state>	
+		
+	<!-- If not specified, the start state is the first state specified. -->
+	<view-state id="simpleCheckout" view="simpleCheckout" model="orderModel">
+		
+		<binder>
+			<!--  <binding property="order.customer.customerType" />	-->		
+			<binding property="order.recipient.companyName" />		
+			<binding property="order.recipient.firstName"  required="true" />
+			<binding property="order.recipient.lastName"  required="true" />
+			<binding property="order.recipient.phone"  required="true" />
+			<binding property="order.recipient.email"  required="true" />	
+			<binding property="order.comments" />	
+		</binder>
+
+		<on-render>
+						<evaluate expression="orderModel.order.fillFromShoppingCart(shoppingCart)"/>	
+			<!-- 
+			
+			<evaluate expression='orderModel.order.recipient.shipmentAddress.setCity("utka")'/>			
+			<set name="orderModel.order.recipient.shipmentAddress.streetName" value="'a'"></set>
+			<set name="orderModel.order.recipient.shipmentAddress.streetNumber" value="'a'"></set>
+			<set name="orderModel.order.recipient.shipmentAddress.postalCode" value="'a'"></set>			
+					 -->		
+
+		</on-render>
+		
+		<transition on="continue" to="thankYou">
+			<evaluate expression="submitOrderService.submit(orderModel.order)"/>
+			<evaluate expression="shoppingCart.clear()"/>
+		</transition>
+				
+		<transition on="back" to="shop" bind="false"/>
+				
+	</view-state>
+
+	<end-state id="thankYou" view="simpleCheckoutThanks" />
+		
+	<end-state id="shop" view="externalRedirect:/home.html"/>
+	
+	<global-transitions>
+		<transition on="cancelCheckout" to="shop"/>
+	</global-transitions>
+</flow>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+		http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd" >
+		
+		
+	<var name="orderModel" class="pl.netolution.sklep3.web.domain.WebOrder" />
+	
+	<decision-state id="shoppingCartEmptyChecl">
+		<if test="!shoppingCart.isEmpty()" then="shipmentAddress" else="shop" />
+	</decision-state>
+	
+	<!-- If not specified, the start state is the first state specified. -->
+	<view-state id="shipmentAddress" view="shipmentAddress" model="orderModel" >
+	
+		<binder>
+			<binding property="order.recipient.firstName" required="true"  />
+			<binding property="order.recipient.lastName" required="true"  />
+		 	<binding property="order.recipient.shipmentAddress.streetName" required="true" />
+		 	<binding property="order.recipient.shipmentAddress.streetNumber"  />
+ 		 	<binding property="order.recipient.shipmentAddress.flatNumber"  />
+			<binding property="order.recipient.shipmentAddress.postalCode" />			
+			<binding property="order.recipient.shipmentAddress.city"  required="true"/>
+			<binding property="customerEmail"  />
+			<binding property="order.recipient.phone" required="true" />
+
+			<binding property="rulesAccepted" />
+
+			<binding property="sendInvoiceAddress" />
+			<binding property="invoice.companyName" required="false"/>
+			<binding property="invoice.nip" converter="nip" required="false"/>
+			<binding property="invoice.invoiceAddress.streetName" required="false"/>
+			<binding property="invoice.invoiceAddress.streetNumber" required="false"/>
+			<binding property="invoice.invoiceAddress.flatNumber" required="false"/>
+			<binding property="invoice.invoiceAddress.postalCode" required="false"/>
+			<binding property="invoice.invoiceAddress.city" required="false"/>
+		</binder>
+
+		<on-render>
+			<set name="requestScope.acceptShopPolicyText" value="textDao.findTextByName('ACCEPT_POLICY_TEXT')"/>
+		</on-render>
+		
+		<transition on="continue" to="shipmentOptions">
+			<evaluate expression="orderModelValidator.validateInvoiceData(orderModel,messageContext)"/>
+		</transition>		
+		<transition on="back" to="shoppingCart" bind="false"/>		
+	</view-state>
+
+	<view-state id="shipmentOptions" view="shipmentOptions" model="orderModel">
+		<binder>
+			<binding property="order.shipmentOption"  required="true" />
+			<binding property="order.comments" />			
+		</binder>	
+		
+		<on-render>
+			<set name="requestScope.shipmentOptions" value="shoppingCartService.getShipmentOptions(shoppingCart)"/>
+			<evaluate expression="orderModel.order.fillFromShoppingCart(shoppingCart)"/>		
+			<!--<set name="orderModel.order.totalWeight" value="shoppingCart.getTotalWeight()"/>
+		--></on-render>
+				
+		<transition on="continue" to="paymentOptions"/>		
+		<transition on="back" to="shipmentAddress" validate="false"/>		
+				
+	</view-state>
+
+	<view-state id="paymentOptions" view="paymentOptions" model="orderModel">
+		<binder>
+			<binding property="order.payment.form"  required="true" />
+			<binding property="order.saleDocument"  required="true" />		
+		</binder>		
+		<transition on="continue" to="confirmOrder">		
+			<evaluate expression="shoppingCartService.refreshProducts(shoppingCart)"/>
+		</transition>
+		<transition on="back" to="shipmentOptions" validate="false"/>		
+	</view-state>
+	
+	<view-state id="confirmOrder" view="confirmOrder">
+		<!--<on-render>
+			<evaluate expression="orderModel.order.fillFromShoppingCart(shoppingCart)"/>		
+		</on-render>
+		--><transition on="continue" to="thankYou">	
+			<evaluate expression="orderModel.copyInvoice()"/>
+			<evaluate expression="orderModel.order.setCustomerWithEmail(customerDao.findByEmail(orderModel.getCustomerEmail()),orderModel.getCustomerEmail())"/>
+			<evaluate expression="shopService.processOrder(orderModel.order)"/>
+			<evaluate expression="shoppingCart.clear()"/>
+		</transition>
+		<transition on="back" to="paymentOptions" />				
+	</view-state>	
+	
+	<end-state id="thankYou" view="thanks" />
+		
+	<end-state id="shop" view="externalRedirect:/home.html"/>
+	
+	<end-state id="shoppingCart" view="externalRedirect:/cart.html"/>
+	
+	<global-transitions>
+		<transition on="cancelCheckout" to="shop"/>
+		<transition on="breadCrumbs-shipmentAddress" to="shipmentAddress" validate="false"/>
+		<transition on="breadCrumbs-shipmentOptions" to="shipmentOptions" validate="false"/>
+		<transition on="breadCrumbs-paymentOptions" to="paymentOptions" validate="false"/>
+		<transition on="breadCrumbs-confirmOrder" to="confirmOrder" validate="false"/>
+	</global-transitions>
+</flow>

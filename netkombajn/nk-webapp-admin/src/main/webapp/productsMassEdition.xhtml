@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"	
+	>
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+
+<h1>edycja grupowa</h1>
+ 
+<div id="categoryWrappper">
+	<div id="categeriesTree">
+		<h:form>
+			<rich:tree switchType="client"  value="#{categoryBacking.categoriesTreeModel}" var="category">
+	            <rich:treeNode icon="../images/yellow-folder-open.png">
+	                <h:commandLink value="#{category.name} (#{category.allProductsNumber})" styleClass="nodeFolder" actionListener="#{productBacking.chooseGroupCategory}">
+								<f:attribute name="categoryId" value="#{category.id}"/>
+					</h:commandLink>
+	            </rich:treeNode>
+        	</rich:tree>
+		</h:form>
+	</div>
+	<div id="productsGroups">
+		<h:messages styleClass="messages"/>
+		<h3>
+			<h:outputText value="Wybierz kategorię produktów." rendered="#{empty productBacking.choosenMassEditCategory.name}"/>
+			<h:outputText value="Produkty z kategorii #{productBacking.choosenMassEditCategory.name} ." rendered="#{not empty productBacking.choosenMassEditCategory.name}"/>
+		</h3>
+		<h:form styleClass="productGroupsComponent">
+			
+   				<rich:scrollableDataTable value="#{productBacking.massEditCategoryProducts}" var="product"
+   					rows="40" columnClasses="massEditProductCell" frozenColCount="1" width="750px"
+   					 selection="#{productBacking.selectionForMassEdit}" id="categoryProducts">
+   					 <rich:column> 
+		               <f:facet name="header">
+		                   Nazwa
+		               </f:facet>
+		              #{product.name}
+		        </rich:column>
+		        <rich:column> 
+		               <f:facet name="header">
+		                   Cena
+		               </f:facet>
+		              <span class="price"><s3:price price="#{product.retailGrossPrice}"/></span> 
+		        </rich:column>	
+		        <rich:column> 
+		               <f:facet name="header">
+		                   Narzut
+		               </f:facet>
+		              <h:outputText value="#{product.markup}%" rendered="#{not empty product.markup}"/>
+		              <h:panelGroup rendered="#{product.markup&lt;0}">
+		              	  <div class="error">
+			              	Narzut tego produktu jest ujemny!
+			              </div>
+		              </h:panelGroup>
+		        </rich:column>	
+		        <rich:column> 
+		               <f:facet name="header">
+		                  Waga
+		               </f:facet>
+		               <h:panelGroup rendered="#{not empty product.weight}">
+		              		#{product.weight}&nbsp;kg
+		              </h:panelGroup>
+		        </rich:column>
+		         <rich:column> 
+		               <f:facet name="header">
+		                  Producent
+		               </f:facet>
+		              #{product.manufacturer}
+		        </rich:column>
+		         <rich:column> 
+		               <f:facet name="header">
+		                  Ilość
+		               </f:facet>
+		               #{product.quantityInStock}
+		        </rich:column>
+		         <rich:column> 
+		               <f:facet name="header">
+		                  Gwarancja
+		               </f:facet>
+		               #{product.warranty}
+		        </rich:column>
+		        <rich:column sortBy="#{product.manualAvailability}"> 
+		               <f:facet name="header">
+		                  Narzucona dostępność
+		               </f:facet>
+		               #{product.manualAvailability}
+		        </rich:column>
+   				</rich:scrollableDataTable>
+   			
+   			<div id="chooseMassProductsButton">
+   			<a4j:commandButton value="Dodaj produkty" reRender="productsToEdit" 
+                action="#{productBacking.takeSelection}"/>
+            </div>
+   		</h:form>
+   		
+   		<h:form>
+   			
+   			<div id="productsMassEdition">
+   				<rich:dataTable value="#{productBacking.productsForMassEdit}" var="product" 
+        			rows="#{productBacking.rowsOnPage}" id="productsToEdit" reRender="ds,rowsOnPage" width="750px">
+        			
+        		 <rich:column sortBy="#{product.name}"> 
+		               <f:facet name="header">
+		                   Nazwa
+		               </f:facet>
+		              #{product.name}
+		              <rich:toolTip rendered="#{not empty product.pictureUrl}">
+               			<div class="detailsPopup">
+                			<img src="#{product.pictureUrl}"  border="0" alt=""/>
+                    		<div>#{product.shortDescription}</div>
+                		</div>
+               	 	 </rich:toolTip>
+		        </rich:column>	
+		         <rich:column sortBy="#{product.retailGrossPrice}"> 
+		               <f:facet name="header">
+		                   Cena
+		               </f:facet>
+		              <span class="price"><s3:price price="#{product.retailGrossPrice}"/></span> 
+		        </rich:column>	
+		        <rich:column sortBy="#{product.markup}"> 
+		               <f:facet name="header">
+		                   Narzut
+		               </f:facet>
+		              <h:outputText value="#{product.markup}%" rendered="#{not empty product.markup}"/>
+		              <h:panelGroup rendered="#{product.markup&lt;0}">
+		              	  <div class="error">
+			              	Narzut tego produktu jest ujemny!
+			              </div>
+		              </h:panelGroup>
+		        </rich:column>	
+		        <rich:column sortBy="#{product.weight}"> 
+		               <f:facet name="header">
+		                  Waga
+		               </f:facet>
+		               <h:panelGroup rendered="#{not empty product.weight}">
+		              		#{product.weight}&nbsp;kg
+		              </h:panelGroup>
+		        </rich:column>
+		         <rich:column sortBy="#{product.manufacturer}"> 
+		               <f:facet name="header">
+		                  Producent
+		               </f:facet>
+		              #{product.manufacturer}
+		        </rich:column>
+		         <rich:column sortBy="#{product.quantityInStock}"> 
+		               <f:facet name="header">
+		                  Ilość
+		               </f:facet>
+		               #{product.quantityInStock}
+		        </rich:column>
+		         <rich:column sortBy="#{product.warranty}"> 
+		               <f:facet name="header">
+		                  Gwarancja
+		               </f:facet>
+		               #{product.warranty}
+		        </rich:column>
+		        <rich:column sortBy="#{product.manualAvailability}"> 
+		               <f:facet name="header">
+		                  Narzucona dostępność
+		               </f:facet>
+		               #{product.manualAvailability}
+		        </rich:column>
+		        
+		        
+		         <rich:column> 
+		               <f:facet name="header">
+		                 	Usuń z listy
+		               </f:facet>
+		                <a4j:commandButton action="#{productBacking.removeProductFromList}" value="Usuń z listy" reRender="productsToEdit">
+		                	<a4j:actionparam name="productId" value="#{product.id}" />
+						  </a4j:commandButton>
+		        </rich:column>
+		        
+        		 <f:facet name="footer">
+		         		<h:panelGroup>
+			                <rich:datascroller id="ds" maxPages="7"/>
+			                <h:selectOneMenu value="#{productBacking.rowsOnPage}" onchange="submit()" id="rowsOnPage">
+				           		<f:selectItem itemValue="10" itemLabel="10 wierszy"/>
+				           		<f:selectItem itemValue="20" itemLabel="20 wierszy"/>
+				           		<f:selectItem itemValue="50" itemLabel="50 wierszy"/>
+				           	</h:selectOneMenu>
+			           	</h:panelGroup>
+		         </f:facet>	
+        		</rich:dataTable>
+   		</div>	
+   		</h:form>
+   		
+   		
+   		<t:div id="groupEditionForm" styleClass="fieldset" forceId="true">
+	   		<div>Zaznacz które pola chcesz uaktualnić w wybranej grupie produktów.</div>
+	   		<p>
+	   			<h:form>
+	   			<label title="waga wybranych produktów">waga:</label>
+	   			<h:inputText value="#{productBacking.templateMassEditProduct.weight}" styleClass="massEditFormInput"/>
+	   			<a4j:commandButton action="#{productBacking.editGroupWeight}" value="zmień wagę" 
+	   				styleClass="massEditFormButton" reRender="productsToEdit,categoryProducts"/>
+	   			</h:form>
+	   		</p>
+	   		<p>
+	   			<h:form>
+		   			<label 
+		   					title="Po wpisaniu '20' cena zwiększy się o 20, po wpisaniu '-20' cena zmniejszy się o 20">Zmień cenę o (w PLN) +/-:</label>
+		   			<h:inputText value="#{productBacking.massEditPriceAddition}" styleClass="massEditFormInput">
+		   				<f:converter converterId="productPriceConverter"/>
+		   			</h:inputText>
+		   			<a4j:commandButton action="#{productBacking.editGroupPrice}" value="zmień cenę (o x PLN)" 
+		   			 styleClass="massEditFormButton" reRender="productsToEdit,categoryProducts"/>
+		   		</h:form>
+	   		</p>
+	   		<p>
+	   			<h:form>
+		   			<label 
+		   					title="Po wpisaniu '20' cena zwiększy się o 20%, po wpisaniu '-20' cena zmniejszy się o 20%">Zmień cenę o procent +/-:</label>
+		   			<h:inputText value="#{productBacking.massEditionPercentageChange}" styleClass="massEditFormInput"/>
+		   			
+		   			<a4j:commandButton action="#{productBacking.editGroupPriceByPercentage}" value="zmień cenę procent" 
+		   				styleClass="massEditFormButton" reRender="productsToEdit,categoryProducts"/>
+		   		</h:form>
+	   		</p>
+	   		<p>
+	   			<h:form>
+		   			<label title="producent">producent:</label>
+		   			<h:inputText value="#{productBacking.templateMassEditProduct.manufacturer}" styleClass="massEditFormInput"/>
+		   			
+		   			<a4j:commandButton action="#{productBacking.editGroupManufacturer}" value="zmień producenta" 
+		   				styleClass="massEditFormButton" reRender="productsToEdit,categoryProducts"/>
+		   			
+	   			</h:form>
+	   		</p>
+	   		 <p>
+	   		 	<h:form>
+	   		 		<label>Narzucona dostępność:</label>
+                    <h:selectOneMenu value="#{productBacking.templateMassEditProduct.manualAvailability}" styleClass="massEditFormInput">
+             			<f:selectItems value="#{productBacking.availabilityStatuses}" />       
+              		</h:selectOneMenu>
+              		<a4j:commandButton action="#{productBacking.editGroupManualAvailability}" value="zmień status" 
+              			styleClass="massEditFormButton" reRender="productsToEdit,categoryProducts"/>
+              	</h:form>
+              </p>
+  			</t:div>
+   		
+	</div>
+</div>
+
+
+
+</ui:define>
+</ui:composition>
+
+
+</html>

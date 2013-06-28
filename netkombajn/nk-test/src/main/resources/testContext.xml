@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jndi="http://www.springframework.org/schema/jndi" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-2.0.xsd 
+    http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    http://www.springframework.org/schema/jndi 
+    http://www.springframework.org/schema/jndi/spring-jndi.xsd 
+    http://www.springframework.org/schema/util 
+    http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>jdbc:mysql://localhost/skleptest</value>
+		</property>
+		<property name="user">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>admin</value>
+		</property>
+		<property name="minPoolSize">
+			<value>4</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>30</value>
+		</property>
+		<property name="checkoutTimeout">
+			<value>20000</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>3600</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>300</value>
+		</property>
+		<property name="automaticTestTable">
+			<value>jdbc_pool_check</value>
+		</property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
+		<property name="packagesToScan">
+			<list>
+				<value>pl.netolution.sklep3.domain</value>
+				<value>pl.netolution.sklep3.domain.payment</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQL5Dialect
+				</prop>
+				<prop key="hibernate.show_sql">
+					true
+				</prop>
+				<prop key="hibernate.format_sql">
+					true
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- setup transaction manager	-->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--
+		Tells Spring to put transactional advice on any class or method that
+		has an @Transactional annotation on it
+	-->
+	<tx:annotation-driven />
+
+	<bean id="daoBase" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="manufacturerDao"
+		class="pl.netolution.sklep3.dao.hibernate.HibernateManufacturerDao"
+		parent="daoBase" />
+	<bean id="textDao" class="pl.netolution.sklep3.dao.hibernate.HibernateTextDao"
+		parent="daoBase" />
+
+	<bean id="textMessageService" class="pl.netolution.sklep3.service.TextMessageService">
+		<property name="textDao" ref="textDao" />
+		<property name="orderEmailsNames">
+			<map>
+				<entry key="SELF">
+					<map key-type="pl.netolution.sklep3.domain.enums.PaymentFormType">
+						<entry key="NORMAL_TRANSFER" value="SelfTransferEmail"/>
+						<entry key="ONLINE_TRANSFER" value="SelfTransferOnlineEmail"/>
+					</map>
+				</entry>
+				<entry key="COURIER_PAID">
+					<map key-type="pl.netolution.sklep3.domain.enums.PaymentFormType">
+						<entry key="NORMAL_TRANSFER" value="CourierPaidTransferEmail"/>
+						<entry key="ONLINE_TRANSFER" value="CourierPaidTransferOnlineEmail"/>
+					</map>
+				</entry>
+				<entry key="COURIER_GRATIS">
+						<map key-type="pl.netolution.sklep3.domain.enums.PaymentFormType">
+						<entry key="NORMAL_TRANSFER" value="CourierGratisTransferEmail"/>
+						<entry key="ONLINE_TRANSFER" value="CourierGratisTransferOnlineEmail"/>
+					</map>
+				</entry>
+				<entry key="COURIER_CASH_PAID">
+						<map key-type="pl.netolution.sklep3.domain.enums.PaymentFormType">
+						<entry key="SELF" value="CourierCashPaidTransferEmail"/>
+					</map>
+				</entry>
+				<entry key="COURIER_CASH_GRATIS">
+						<map key-type="pl.netolution.sklep3.domain.enums.PaymentFormType">
+						<entry key="SELF" value="CourierCashGratisTransferEmail"/>
+					</map>
+				</entry>
+				
+				
+			</map>
+		</property>
+	</bean>
+</beans>

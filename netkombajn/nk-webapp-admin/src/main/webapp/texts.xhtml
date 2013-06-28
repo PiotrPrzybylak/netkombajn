@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:s3="http://netolution.pl/jsf/sklep3"
+    xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/admin_layout.xhtml">
+
+<ui:define name="content">
+
+<h1>Teksty</h1>
+
+
+	<h:form>
+		<rich:dataTable value="#{textListBacking.texts}" var="text" 
+        	rows="30" reRender="ds" columnClasses="ordersColumn" id="texts">
+       	
+        <rich:column> 
+               <f:facet name="header">
+                   <h:outputText value="Id tekstu"/>
+               </f:facet>
+               <div class="identifier">
+               
+               <h:outputText value="${text.id}" />
+
+				</div>
+        </rich:column>
+    
+        <rich:column> 
+               <f:facet name="header">
+                   <h:outputText value="Nazwa"/>
+               </f:facet>
+               <h:commandLink action="#{textBacking.chooseText}">
+		              <f:param name="textId" value="#{text.id}" />
+						${text.name} 
+				</h:commandLink>
+        </rich:column>
+
+        <rich:column> 
+               <f:facet name="header">
+                   <h:outputText value="Tytuł"/>
+               </f:facet>
+              #{text.title}
+        </rich:column>   
+            
+        <rich:column> 
+               <f:facet name="header">
+                   <h:outputText value="Styl"/>
+               </f:facet>
+              #{text.style}
+        </rich:column>   
+        	
+         <f:facet name="footer">
+               <h:panelGroup>
+	                <rich:datascroller id="ds" maxPages="7"/>
+			   </h:panelGroup>
+         </f:facet>
+        </rich:dataTable> 	
+      </h:form>
+</ui:define>
+</ui:composition>
+</html>
