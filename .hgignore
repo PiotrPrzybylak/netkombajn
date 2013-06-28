@@ -47,3 +47,13 @@ netkombajn/nk-domain-payment/.project
 netkombajn/nk-domain-product/target/
 netkombajn/nk-domain-product/logs/
 .gradle
+netkombajn/nk-common-web/build/
+netkombajn/nk-core/build
+netkombajn/nk-domain-order/build/
+netkombajn/nk-domain-payment/build/
+netkombajn/nk-domain-product/build/
+netkombajn/nk-domain-shared/build/
+netkombajn/nk-persistence/build/
+netkombajn/nk-test/build/
+netkombajn/nk-webapp-admin/build/
+netkombajn/nk-webapp-store/build/
