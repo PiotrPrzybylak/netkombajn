@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.dao;
+package com.netkombajn.eshop.payment;
 
 import com.netkombajn.store.domain.shared.dao.BaseDao;
 

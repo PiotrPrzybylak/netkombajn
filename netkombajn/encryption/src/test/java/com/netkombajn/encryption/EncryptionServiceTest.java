@@ -1,4 +1,6 @@
-package pl.netolution.sklep3.service;
+package com.netkombajn.encryption;
+
+import com.netkombajn.encryption.EncryptionService;
 
 import junit.framework.TestCase;
 

@@ -1,19 +1,16 @@
-package pl.netolution.sklep3.domain.payment;
+package com.netkombajn.eshop.payment.api;
 
 import java.io.Serializable;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.Type;
 
-import com.netkombajn.store.domain.shared.payment.Money;
-
 import pl.netolution.sklep3.domain.PaymentForm;
 
-@SuppressWarnings("serial")
-@MappedSuperclass
+import com.netkombajn.store.domain.shared.payment.Money;
+
 public class Payment implements Serializable {
 
 	@Type(type = "pl.netolution.sklep3.dao.hibernate.userTypes.MoneyUserType")

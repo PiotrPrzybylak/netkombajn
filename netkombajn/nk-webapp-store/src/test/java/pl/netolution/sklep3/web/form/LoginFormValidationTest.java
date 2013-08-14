@@ -7,10 +7,10 @@ import junit.framework.TestCase;
 
 import org.springframework.validation.Errors;
 
+import com.netkombajn.encryption.EncryptionService;
 import com.netkombajn.eshop.ordering.customer.Customer;
 import com.netkombajn.eshop.ordering.customer.CustomerDao;
 
-import pl.netolution.sklep3.service.EncryptionService;
 
 public class LoginFormValidationTest extends TestCase {
 
