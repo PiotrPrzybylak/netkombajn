@@ -10,7 +10,8 @@ public class AdminConfigurationService implements Configuration,
 		com.netkombajn.eshop.payment.GeneralExternalPaymentSystem.Configuration ,
 		pl.netolution.sklep3.service.ProductService.HitsConfiguration,
 		EmailConfiguration,
-		pl.netolution.sklep3.service.imports.IncomImportService.Configuration {
+		pl.netolution.sklep3.service.imports.IncomImportService.Configuration,
+		com.netkombajn.eshop.payment.provider.payu.PayUAdapter.Configuration {
 
 	private AdminConfigurationDao adminConfigurationDao;
 

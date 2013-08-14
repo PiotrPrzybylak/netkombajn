@@ -185,7 +185,7 @@
 		<property name="productDao" ref="productDao" />
 	</bean>
 
-	<bean id="encryptionService" class="pl.netolution.sklep3.service.EncryptionService" />
+	<bean id="encryptionService" class="com.netkombajn.encryption.EncryptionService" />
 
 	<bean id="categoriesMigrationService"
 		class="pl.netolution.sklep3.service.migration.CategoriesMigrationService">

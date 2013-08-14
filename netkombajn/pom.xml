@@ -19,6 +19,8 @@
     <module>nk-domain-shared</module>
     <module>nk-domain-payment</module>
     <module>nk-domain-product</module>
+    <module>payu-integration</module>
+    <module>encryption</module>		
   </modules>
   
   	<properties>

@@ -9,9 +9,9 @@ import org.mockito.Matchers;
 import org.mockito.Mockito;
 import org.springframework.validation.Errors;
 
+import com.netkombajn.encryption.EncryptionService;
 import com.netkombajn.eshop.ordering.customer.Customer;
 
-import pl.netolution.sklep3.service.EncryptionService;
 import pl.netolution.sklep3.web.session.CustomerSession;
 
 public class ChangePasswordValidatorTest extends TestCase {

@@ -7,10 +7,10 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.log4j.Logger;
 
-import pl.netolution.sklep3.service.payment.ExternalPaymentSystem;
 
 import com.netkombajn.eshop.payment.InternalPayment;
 import com.netkombajn.eshop.payment.PaymentDao;
+import com.netkombajn.eshop.payment.api.ExternalPaymentSystem;
 
 public class PaymentStatusBackingBean {
 
@@ -50,6 +50,6 @@ public class PaymentStatusBackingBean {
 	}
 
 	public String getStatus() {
-		return externalPaymentSystem.getPayment(payment.getToken()).getStatus().toString();
+		return externalPaymentSystem.getPaymentStatus(payment.getToken()).toString();
 	}
 }

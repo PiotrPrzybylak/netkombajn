@@ -47,6 +47,8 @@ netkombajn/nk-domain-payment/.project
 netkombajn/nk-domain-product/target/
 netkombajn/nk-domain-product/logs/
 .gradle
+netkombajn/payu-integration/target/
+netkombajn/encryption/target
 netkombajn/nk-common-web/build/
 netkombajn/nk-core/build
 netkombajn/nk-domain-order/build/
