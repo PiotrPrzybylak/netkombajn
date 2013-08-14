@@ -3,12 +3,12 @@ package com.netkombajn.eshop.ordering.submission;
 import java.util.Date;
 
 import pl.netolution.sklep3.domain.PaymentForm;
-import pl.netolution.sklep3.domain.payment.Payment.Status;
 
 import com.netkombajn.eshop.ordering.email.OrderEmailService;
 import com.netkombajn.eshop.ordering.order.Order;
 import com.netkombajn.eshop.ordering.order.OrderHistory;
 import com.netkombajn.eshop.ordering.order.OrderStatus;
+import com.netkombajn.eshop.payment.api.Payment.Status;
 
 public class SubmitOrderService {
 

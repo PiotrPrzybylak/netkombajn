@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.service;
+package com.netkombajn.encryption;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

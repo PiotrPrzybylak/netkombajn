@@ -7,13 +7,12 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import pl.netolution.sklep3.domain.PaymentForm;
+
 import com.netkombajn.eshop.payment.InternalPayment;
 import com.netkombajn.eshop.payment.PaymentDao;
-
-import pl.netolution.sklep3.domain.PaymentForm;
-import pl.netolution.sklep3.domain.payment.ExternalPayment;
-import pl.netolution.sklep3.domain.payment.TransactionDetails;
-import pl.netolution.sklep3.service.payment.ExternalPaymentSystem;
+import com.netkombajn.eshop.payment.api.ExternalPaymentSystem;
+import com.netkombajn.eshop.payment.api.TransactionDetails;
 
 public class RedirectToPaymentController implements Controller {
 
@@ -41,9 +40,8 @@ public class RedirectToPaymentController implements Controller {
 			return new ModelAndView(thanksPersonallyView);
 		}
 
-		ExternalPayment externalPayment = new ExternalPayment(internalPayment, request.getRemoteAddr());
 		String description = "Zamowienie: " + internalPayment.getOrder().getId();
-		TransactionDetails transactionDetails = externalPaymentSystem.registerPayment(externalPayment, description);
+		TransactionDetails transactionDetails = externalPaymentSystem.registerPayment(internalPayment, description, request.getRemoteAddr());
 
 		internalPayment.setToken(transactionDetails.getToken());
 		paymentDao.makePersistent(internalPayment);

@@ -1,6 +1,6 @@
 package com.netkombajn.eshop.ordering.customer;
 
-import pl.netolution.sklep3.service.EncryptionService;
+import com.netkombajn.encryption.EncryptionService;
 
 
 public class CustomerEncryptionService {

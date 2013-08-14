@@ -12,10 +12,8 @@ import org.mockito.MockitoAnnotations;
 import com.netkombajn.eshop.payment.InternalPayment;
 import com.netkombajn.eshop.payment.PaymentDao;
 import com.netkombajn.eshop.payment.PaymentService;
-
-import pl.netolution.sklep3.domain.payment.ExternalPayment;
-import pl.netolution.sklep3.domain.payment.Payment.Status;
-import pl.netolution.sklep3.service.payment.ExternalPaymentSystem;
+import com.netkombajn.eshop.payment.api.ExternalPaymentSystem;
+import com.netkombajn.eshop.payment.api.Payment.Status;
 
 public class PaymentServiceTest {
 
@@ -39,15 +37,13 @@ public class PaymentServiceTest {
 		paymentService.setExternalPaymentSystem(externalPaymentSystem);
 		String token = "aaaaaaaaa-bbbbbb-1232434555";
 
-		ExternalPayment externalPayment = mock(ExternalPayment.class);
-		when(externalPayment.getStatus()).thenReturn(Status.REJECTED);
-		when(externalPaymentSystem.getPayment(token)).thenReturn(externalPayment);
+		when(externalPaymentSystem.getPaymentStatus(token)).thenReturn(Status.REJECTED);
 
 		InternalPayment internalPayment = mock(InternalPayment.class);
 		when(paymentDao.getPayment(token)).thenReturn(internalPayment);
 
 		// when
-		paymentService.updateInternalPaymentWithStatusFromPlatnosciPl(token);
+		paymentService.updateInternalPaymentWithStatusFromExternalPaymentSystem(token);
 
 		// then
 		verify(internalPayment).setStatus(Status.REJECTED);
