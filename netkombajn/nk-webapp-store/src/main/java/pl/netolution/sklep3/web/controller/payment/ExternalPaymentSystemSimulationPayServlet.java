@@ -6,25 +6,23 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-import pl.netolution.sklep3.domain.payment.ExternalPayment;
-import pl.netolution.sklep3.domain.payment.Payment.Status;
-import pl.netolution.sklep3.service.payment.ExternalPaymentSystem;
+import com.netkombajn.eshop.payment.provider.demo.DemoExternalPaymentSystem;
+
 
 public class ExternalPaymentSystemSimulationPayServlet implements Controller {
 
-	private ExternalPaymentSystem externalPaymentSystem;
+	private DemoExternalPaymentSystem externalPaymentSystem;
 
 	private String succesUrl;
 
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String token = request.getParameter("token");
-		ExternalPayment payment = externalPaymentSystem.getPayment(token);
-		payment.setStatus(Status.FINAL);
+		externalPaymentSystem.markAsPaid(token);
 		response.sendRedirect(getSuccesUrl() + "?token=" + token);
 		return null;
 	}
 
-	public void setExternalPaymentSystem(ExternalPaymentSystem externalPaymentSystem) {
+	public void setExternalPaymentSystem(DemoExternalPaymentSystem externalPaymentSystem) {
 		this.externalPaymentSystem = externalPaymentSystem;
 	}
 

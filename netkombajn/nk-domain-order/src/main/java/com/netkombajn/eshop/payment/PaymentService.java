@@ -1,20 +1,17 @@
 package com.netkombajn.eshop.payment;
 
 
-import pl.netolution.sklep3.domain.payment.ExternalPayment;
-import pl.netolution.sklep3.domain.payment.Payment.Status;
-import pl.netolution.sklep3.service.payment.ExternalPaymentSystem;
+import com.netkombajn.eshop.payment.api.ExternalPaymentSystem;
+
 
 public class PaymentService {
 
 	private PaymentDao paymentDao;
 	private ExternalPaymentSystem externalPaymentSystem;
 
-	public void updateInternalPaymentWithStatusFromPlatnosciPl(String token) {
-		ExternalPayment externalPayment = externalPaymentSystem.getPayment(token);
-		Status status = externalPayment.getStatus();
+	public void updateInternalPaymentWithStatusFromExternalPaymentSystem(String token) {
 		InternalPayment internalPayment = paymentDao.getPayment(token);
-		internalPayment.setStatus(status);
+		internalPayment.setStatus(externalPaymentSystem.getPaymentStatus(token));
 		// Zapisuję zmiany w makePersistent żeby nie dawać @Transactional na cała metodę, która zawiera request sieciowy do zewnętrznego systemu, który nie wiadomo ile potrwa.
 		paymentDao.makePersistent(internalPayment);
 

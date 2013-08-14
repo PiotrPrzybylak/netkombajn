@@ -8,8 +8,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.netkombajn.eshop.ordering.order.Order;
+import com.netkombajn.eshop.payment.api.Payment;
 
-import pl.netolution.sklep3.domain.payment.Payment;
 
 @SuppressWarnings("serial")
 @Entity

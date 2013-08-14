@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.domain.payment;
+package com.netkombajn.eshop.payment.api;
 
 public class TransactionDetails {
 

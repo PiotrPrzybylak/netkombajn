@@ -5,10 +5,10 @@ import java.security.NoSuchAlgorithmException;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
+import com.netkombajn.encryption.EncryptionService;
 import com.netkombajn.eshop.ordering.customer.Customer;
 import com.netkombajn.eshop.ordering.customer.CustomerDao;
 
-import pl.netolution.sklep3.service.EncryptionService;
 import pl.netolution.sklep3.web.form.RegistrationForm;
 import pl.netolution.sklep3.web.session.CustomerSession;
 

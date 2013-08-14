@@ -26,7 +26,17 @@
 		<constructor-arg ref="shipmentOptionDao" />
 	</bean>
 
-	<bean id="externalPaymentSystem" class="com.netkombajn.eshop.payment.GeneralExternalPaymentSystem" autowire="constructor"/>
+	<bean id="externalPaymentSystem" class="com.netkombajn.eshop.payment.GeneralExternalPaymentSystem" autowire="constructor">
+		<property name="payU" ref="payUExternalPaymentSystem" />
+		<property name="demo" ref="demoExternalPaymentSystem" />	
+	</bean>
+	
+	<bean id="demoExternalPaymentSystem" class="com.netkombajn.eshop.payment.provider.demo.DemoExternalPaymentSystem"/>
+	<bean id="payUExternalPaymentSystem" class="com.netkombajn.eshop.payment.provider.payu.PayUAdapter" autowire="constructor"/>
+	<bean class="com.netkombajn.payu.PayUIntegration" autowire="constructor">
+			<property name="paymentEventListener" ref="paymentEventListener" />
+	</bean>	
+	<bean id="paymentEventListener" class="com.netkombajn.eshop.payment.provider.payu.PaymentEventListenerImpl" autowire="constructor"/>
 
 	<bean id="paymentService" class="com.netkombajn.eshop.payment.PaymentService">
 		<property name="externalPaymentSystem" ref="externalPaymentSystem" />
