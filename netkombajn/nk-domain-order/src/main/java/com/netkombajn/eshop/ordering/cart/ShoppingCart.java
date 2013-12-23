@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.veripacks.Export;
+
 
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.StockKeepingUnit;
@@ -16,6 +18,7 @@ import com.netkombajn.eshop.ordering.order.item.OrderItem;
 import com.netkombajn.eshop.ordering.order.item.SkuOrderItem;
 import com.netkombajn.store.domain.shared.price.Price;
 
+@Export
 public class ShoppingCart {
 
 	private static final Logger log = Logger.getLogger(ShoppingCart.class);
