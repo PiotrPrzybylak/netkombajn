@@ -59,3 +59,15 @@ netkombajn/nk-persistence/build/
 netkombajn/nk-test/build/
 netkombajn/nk-webapp-admin/build/
 netkombajn/nk-webapp-store/build/
+netkombajn/.idea/
+netkombajn/nk-webapp-store/nk-webapp-store.iml
+netkombajn/nk-webapp-admin/nk-webapp-admin.iml
+netkombajn/nk-common-web/nk-common-web.iml
+netkombajn/nk-test/nk-test.iml
+netkombajn/nk-core/nk-core.iml
+netkombajn/nk-domain-order/nk-domain-order.iml
+netkombajn/nk-domain-payment/nk-domain-payment.iml
+netkombajn/nk-domain-product/nk-domain-product.iml
+netkombajn/nk-domain-shared/nk-domain-shared.iml
+netkombajn/nk-parent.iml
+netkombajn/nk-persistence/nk-persistence.iml
