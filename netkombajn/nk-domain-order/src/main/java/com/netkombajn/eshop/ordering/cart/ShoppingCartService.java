@@ -3,6 +3,8 @@ package com.netkombajn.eshop.ordering.cart;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.veripacks.Export;
+
 import com.netkombajn.eshop.ordering.order.item.OrderItem;
 import com.netkombajn.eshop.ordering.shipment.ShipmentOption;
 import com.netkombajn.eshop.ordering.shipment.ShipmentOptionDao;
@@ -10,6 +12,7 @@ import com.netkombajn.store.domain.shared.price.Price;
 
 import pl.netolution.sklep3.dao.ProductDao;
 
+@Export
 public class ShoppingCartService {
 
 	private ProductDao productDao;
