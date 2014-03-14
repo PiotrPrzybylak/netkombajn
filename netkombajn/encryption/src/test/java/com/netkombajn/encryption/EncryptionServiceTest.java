@@ -1,19 +1,15 @@
 package com.netkombajn.encryption;
 
-import com.netkombajn.encryption.EncryptionService;
+import org.junit.Test;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
-public class EncryptionServiceTest extends TestCase {
+public class EncryptionServiceTest {
 
-	private EncryptionService encryptionService;
+	private EncryptionService encryptionService = new EncryptionService();
 
-	@Override
-	protected void setUp() throws Exception {
-		encryptionService = new EncryptionService();
-	}
-
-	public void test_shouldCodeStringProperly() {
+    @Test
+	public void shouldCodeStringProperly() {
 		//given
 		String baseString = "123";
 
