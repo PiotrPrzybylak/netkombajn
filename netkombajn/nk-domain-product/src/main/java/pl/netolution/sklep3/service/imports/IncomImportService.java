@@ -33,8 +33,6 @@ public class IncomImportService {
 
 	private CategoryDao categoryDao;
 
-    private IncomImportCategoriesService incomImportCategoriesService;
-
 	private ProductDao productDao;
 
 	private ManufacturerDao manufacturerDao;
@@ -200,15 +198,6 @@ public class IncomImportService {
 		return shortDescription;
 	}
 
-	/************************************************* KATEGORIE **********************/
-	// TODO zastanowic sie czy skladanie drzewa powinno byc w tym komponencie
-	@Transactional
-	public void mergeImportCategories(Map<String, List<String>> categoriesTree, Map<String, String> names) {
-
-        incomImportCategoriesService.mergeImportCategories(categoriesTree, names);
-    }
-
-
 	private Product getProductByCatalogNumber(String catalogNumber, Date now) {
 		// TODO What about existing products which matching catalogNumebr and source != INCOM ??
 		Product product = productDao.findByCatalogNumber(catalogNumber);
@@ -226,7 +215,6 @@ public class IncomImportService {
 	}
 
 	public void setCategoryDao(CategoryDao categoryDao) {
-        this.incomImportCategoriesService = new IncomImportCategoriesService(categoryDao);
 		this.categoryDao = categoryDao;
 	}
 

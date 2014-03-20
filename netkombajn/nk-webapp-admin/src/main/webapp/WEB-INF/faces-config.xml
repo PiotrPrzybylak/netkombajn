@@ -346,6 +346,10 @@
             <property-name>incomImportService</property-name>
             <value>#{incomImportService}</value>
         </managed-property>
+        <managed-property>
+            <property-name>incomImportCategoriesService</property-name>
+            <value>#{incomImportCategoriesService}</value>
+        </managed-property>
 		<managed-property>
             <property-name>importDao</property-name>
             <value>#{importDao}</value>

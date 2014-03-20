@@ -7,10 +7,7 @@ import org.dom4j.io.SAXReader;
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.ImportDao;
 import pl.netolution.sklep3.domain.Import;
-import pl.netolution.sklep3.service.imports.CategoriesInfo;
-import pl.netolution.sklep3.service.imports.ImportStatus;
-import pl.netolution.sklep3.service.imports.IncomImportService;
-import pl.netolution.sklep3.service.imports.IncomProductXmlParser;
+import pl.netolution.sklep3.service.imports.*;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -28,6 +25,8 @@ public class ImportBackingBean {
 	private UploadedFile productUploadedFile;
 
 	private IncomImportService incomImportService;
+
+    private IncomImportCategoriesService incomImportCategoriesService;
 
 	private String categoryMessage;
 
@@ -90,7 +89,7 @@ public class ImportBackingBean {
 		Document document = reader.read(categoryUploadedFile.getInputStream());
 		CategoriesInfo categoriesInfo = new CategoriesInfo(document);
 
-		incomImportService.mergeImportCategories(categoriesInfo.getCategories(), categoriesInfo.getNames());
+        incomImportCategoriesService.mergeImportCategories(categoriesInfo.getCategories(), categoriesInfo.getNames());
 
 		categoryMessage = "Kategorie zaimportowano poprawnie.";
 	}
@@ -165,7 +164,11 @@ public class ImportBackingBean {
 		this.incomImportService = incomImportService;
 	}
 
-	public void setCategoryMessage(String message) {
+    public void setIncomImportCategoriesService(IncomImportCategoriesService incomImportCategoriesService) {
+        this.incomImportCategoriesService = incomImportCategoriesService;
+    }
+
+    public void setCategoryMessage(String message) {
 		this.categoryMessage = message;
 	}
 
