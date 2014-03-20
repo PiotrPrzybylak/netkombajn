@@ -73,3 +73,4 @@ netkombajn/nk-parent.iml
 netkombajn/nk-persistence/nk-persistence.iml
 netkombajn/classes/
 *.iml
+netkombajn/logs/
