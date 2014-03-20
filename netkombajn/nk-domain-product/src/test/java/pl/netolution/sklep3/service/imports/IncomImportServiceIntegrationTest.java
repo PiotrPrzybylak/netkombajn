@@ -32,7 +32,7 @@ public class IncomImportServiceIntegrationTest extends TestCase {
 
 	private static final String CATEGORY_EXTERNAL_ID = "1985";
 
-	private IncomImportService service;
+	private IncomImportService service = new IncomImportService();;
 
 	private Category category;
 
@@ -51,18 +51,6 @@ public class IncomImportServiceIntegrationTest extends TestCase {
 	private ProductDao productDao = mock(ProductDao.class);
 
 	private EmailService emailService = mock(EmailService.class);
-
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-		service = new IncomImportService();
-	}
-
-	@Override
-	protected void tearDown() throws Exception {
-		service = null;
-		super.tearDown();
-	}
 
 	private Map<String, String> createNames() {
 
