@@ -21,14 +21,14 @@ import java.util.*;
 
 import static org.mockito.Mockito.*;
 
-public class IncomImportServiceTest extends TestCase {
+public class IncomImportServiceIntegrationTest extends TestCase {
 	private static final String SOME_OLD_DESCRIPTION = "SOME OLD DESCRIPTION";
 
 	private static final String CATALOG_ID_1 = "CATALOG_ID_1";
 
 	private static final String CATALOG_ID_2 = "CATALOG_ID_2";
 
-	private static final Logger log = Logger.getLogger(IncomImportServiceTest.class);
+	private static final Logger log = Logger.getLogger(IncomImportServiceIntegrationTest.class);
 
 	private static final String CATEGORY_EXTERNAL_ID = "1985";
 
