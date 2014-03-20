@@ -1,28 +1,23 @@
 package pl.netolution.sklep3.web.jsf;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Date;
-
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-
 import org.apache.log4j.Logger;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.dom4j.Document;
 import org.dom4j.io.SAXReader;
-
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.ImportDao;
 import pl.netolution.sklep3.domain.Import;
 import pl.netolution.sklep3.service.imports.CategoriesInfo;
 import pl.netolution.sklep3.service.imports.ImportStatus;
 import pl.netolution.sklep3.service.imports.IncomImportService;
+import pl.netolution.sklep3.service.imports.IncomProductXmlParser;
+
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import java.io.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class ImportBackingBean {
 
@@ -121,7 +116,8 @@ public class ImportBackingBean {
 					// productMessage = "Importing " + document.getRootElement().elements().size() + " products";
 					globalImportBackingBean.setImportStatus(new ImportStatus());
 					globalImportBackingBean.getImportStatus().setTotalElements(document.getRootElement().elements().size());
-					incomImportService.importProducts(document, globalImportBackingBean.getImportStatus());
+                    final List<Map<String,String>> products = new IncomProductXmlParser().convertXmlToListOfMaps(document);
+                    incomImportService.importProducts(products, globalImportBackingBean.getImportStatus());
 
 					currentImport.setStatus("IMPORT_FINISHED");
 					currentImport.setDuration(System.currentTimeMillis() - startTime);

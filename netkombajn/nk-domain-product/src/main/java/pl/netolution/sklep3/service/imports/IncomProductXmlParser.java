@@ -7,7 +7,7 @@ import java.util.*;
 
 public class IncomProductXmlParser {
 
-    List<Map<String, String>> convertXmlToListOfMaps(Document document) {
+    public List<Map<String, String>> convertXmlToListOfMaps(Document document) {
         final List<Map<String, String>> products = new ArrayList<Map<String, String>>();
         for (Iterator<Element> i = document.getRootElement().elementIterator(); i.hasNext(); ) {
             products.add(convertDomElementToHashMap(i.next()));
@@ -15,7 +15,7 @@ public class IncomProductXmlParser {
         return products;
     }
 
-    HashMap<String, String> convertDomElementToHashMap(Element element) {
+    private HashMap<String, String> convertDomElementToHashMap(Element element) {
         final HashMap<String, String> productDetails = new HashMap<String, String>();
         productDetails.put("cena", element.elementTextTrim("cena"));
         productDetails.put("symbol_produktu", element.elementTextTrim("symbol_produktu"));
