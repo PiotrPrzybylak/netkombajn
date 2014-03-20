@@ -22,17 +22,17 @@ import java.util.*;
 import static org.mockito.Mockito.*;
 
 public class IncomImportServiceIntegrationTest extends TestCase {
+    private static final Logger log = Logger.getLogger(IncomImportServiceIntegrationTest.class);
+
 	private static final String SOME_OLD_DESCRIPTION = "SOME OLD DESCRIPTION";
 
 	private static final String CATALOG_ID_1 = "CATALOG_ID_1";
 
 	private static final String CATALOG_ID_2 = "CATALOG_ID_2";
 
-	private static final Logger log = Logger.getLogger(IncomImportServiceIntegrationTest.class);
-
 	private static final String CATEGORY_EXTERNAL_ID = "1985";
 
-	private IncomImportService service = new IncomImportService();;
+	private IncomImportService service = new IncomImportService();
 
 	private Category category;
 
@@ -51,52 +51,6 @@ public class IncomImportServiceIntegrationTest extends TestCase {
 	private ProductDao productDao = mock(ProductDao.class);
 
 	private EmailService emailService = mock(EmailService.class);
-
-	private Map<String, String> createNames() {
-
-		Map<String, String> names = new HashMap<String, String>();
-
-		names.put("root", "rootName");
-		names.put("rootChild1", "rootChild1Name");
-		names.put("rootChild2", "rootChild2Name");
-		names.put("child11", "child11Name");
-		names.put("child12", "child12Name");
-		names.put("child13", "child13Name");
-		names.put("child21", "child21Name");
-
-		return names;
-	}
-
-	private Map<String, List<String>> createImportedStructure() {
-		Map<String, List<String>> categoriesTree = new HashMap<String, List<String>>();
-
-		categoriesTree.put("", Arrays.asList(new String[] { "root" }));
-		categoriesTree.put("root", Arrays.asList(new String[] { "rootChild1", "rootChild2" }));
-		categoriesTree.put("rootChild1", Arrays.asList(new String[] { "child11", "child12", "child13" }));
-		categoriesTree.put("rootChild2", Arrays.asList(new String[] { "child21" }));
-
-		return categoriesTree;
-	}
-
-	public void testMergeImportedCategories_db_with_only_root() {
-		// given
-		Map<String, String> names = createNames();
-
-		Map<String, List<String>> categoriesTree = createImportedStructure();
-
-		CategoryDao categoryDao = mock(CategoryDao.class);
-		Category root = new Category();
-		when(categoryDao.findByExternalId("root")).thenReturn(root);
-		service.setCategoryDao(categoryDao);
-
-		// when
-		service.mergeImportCategories(categoriesTree, names);
-
-		// then
-		assertEquals(2, root.getChildren().size());
-		assertEquals(3, root.getChildren().get(0).getChildren().size());
-		assertEquals(1, root.getChildren().get(1).getChildren().size());
-	}
 
 	public void test_shouldCreateNewProductsFromImportedXml() {
 

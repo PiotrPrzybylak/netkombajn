@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 public class IncomImportCategoriesServiceTest {
 
     private CategoryDao categoryDao = mock(CategoryDao.class);
-    private IncomImportCategoriesService service = new IncomImportCategoriesService(categoryDao);
+    private IncomImportCategoriesService service = new IncomImportCategoriesServiceImpl(categoryDao);
 
     private Map<String, String> createNames() {
 
