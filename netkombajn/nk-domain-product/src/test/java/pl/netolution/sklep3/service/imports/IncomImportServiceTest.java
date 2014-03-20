@@ -1,21 +1,6 @@
 package pl.netolution.sklep3.service.imports;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import junit.framework.TestCase;
-
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -23,7 +8,6 @@ import org.dom4j.io.SAXReader;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
-
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.ManufacturerDao;
 import pl.netolution.sklep3.dao.ProductDao;
@@ -32,6 +16,10 @@ import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.Product.Availability;
 import pl.netolution.sklep3.service.EmailService;
 import pl.netolution.sklep3.service.imports.IncomImportService.Configuration;
+
+import java.util.*;
+
+import static org.mockito.Mockito.*;
 
 public class IncomImportServiceTest extends TestCase {
 	private static final String SOME_OLD_DESCRIPTION = "SOME OLD DESCRIPTION";
@@ -56,7 +44,7 @@ public class IncomImportServiceTest extends TestCase {
 
 	private ImportStatus importStatus;
 
-	private Document document;
+	private List<Map<String, String>> productsFromXml;
 
 	private Configuration configuration = mock(Configuration.class);
 
@@ -122,13 +110,13 @@ public class IncomImportServiceTest extends TestCase {
 		assertEquals(1, root.getChildren().get(1).getChildren().size());
 	}
 
-	public void test_shouldCreateNewProductsFromImportedXml() throws MalformedURLException, DocumentException {
+	public void test_shouldCreateNewProductsFromImportedXml() {
 
 		// given
 		createProductImportMocks();
 
 		// when
-		service.importProducts(document, importStatus);
+		service.importProducts(productsFromXml, importStatus);
 
 		//then
 
@@ -144,7 +132,7 @@ public class IncomImportServiceTest extends TestCase {
 
 	}
 
-	public void test_shouldUpdateExistingProductsFromImportedXml() throws MalformedURLException, DocumentException {
+	public void test_shouldUpdateExistingProductsFromImportedXml() {
 		// given
 		createProductImportMocks();
 
@@ -153,7 +141,7 @@ public class IncomImportServiceTest extends TestCase {
 		existingProduct.setDescription(SOME_OLD_DESCRIPTION);
 
 		// when 
-		service.importProducts(document, importStatus);
+		service.importProducts(productsFromXml, importStatus);
 
 		// then
 
@@ -162,7 +150,7 @@ public class IncomImportServiceTest extends TestCase {
 		assertEquals(SOME_OLD_DESCRIPTION, existingProduct.getDescription());
 	}
 
-	public void test_shouldSetVisibleFalseForProductsNotFoundInXmlAnymore() throws DocumentException {
+	public void test_shouldSetVisibleFalseForProductsNotFoundInXmlAnymore() {
 
 		//given
 		createProductImportMocks();
@@ -173,7 +161,7 @@ public class IncomImportServiceTest extends TestCase {
 		}
 
 		// when 
-		service.importProducts(document, importStatus);
+		service.importProducts(productsFromXml, importStatus);
 
 		// then
 		for (int i = 0; i < 3; i++) {
@@ -182,13 +170,13 @@ public class IncomImportServiceTest extends TestCase {
 
 	}
 
-	public void test_shouldFillImportStatusDuringImport() throws DocumentException {
+	public void test_shouldFillImportStatusDuringImport() {
 
 		// given
 		createProductImportMocks();
 
 		// when 
-		service.importProducts(document, importStatus);
+		service.importProducts(productsFromXml, importStatus);
 
 		// then
 
@@ -196,17 +184,21 @@ public class IncomImportServiceTest extends TestCase {
 		assertEquals(100, importStatus.getProgressInPrecents());
 	}
 
-	private Document getProductsImportDocument() throws DocumentException {
-		return new SAXReader().read(Thread.currentThread().getContextClassLoader().getResourceAsStream("cennik_maly.xml"));
-	}
+	private Document getProductsImportDocument() {
+        try {
+            return new SAXReader().read(Thread.currentThread().getContextClassLoader().getResourceAsStream("cennik_maly.xml"));
+        } catch (DocumentException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-	public void test_shouldSetDefaultCategoryManualAvailabilityForNewProducts() throws DocumentException {
+	public void test_shouldSetDefaultCategoryManualAvailabilityForNewProducts() {
 		// given
 		createProductImportMocks();
 
 		category.setDefaultManualAvailability(Availability.SOON);
 		// when
-		service.importProducts(document, importStatus);
+		service.importProducts(productsFromXml, importStatus);
 
 		// then
 		ArgumentCaptor<Product> argument = new ArgumentCaptor<Product>();
@@ -216,14 +208,14 @@ public class IncomImportServiceTest extends TestCase {
 
 	}
 
-	public void test_shouldCalculatePriceForNewProductsWithCategoryMargin() throws DocumentException {
+	public void test_shouldCalculatePriceForNewProductsWithCategoryMargin() {
 		// given
 		createProductImportMocks();
 		when(configuration.getProfitMargin()).thenReturn(33);
 		category.setProfitMargin(200);
 
 		// when
-		service.importProducts(document, importStatus);
+		service.importProducts(productsFromXml, importStatus);
 		// then
 		ArgumentCaptor<Product> argument = new ArgumentCaptor<Product>();
 		verify(productDao, times(2)).makePersistent(argument.capture());
@@ -233,13 +225,13 @@ public class IncomImportServiceTest extends TestCase {
 
 	}
 
-	public void test_shouldSetDefaultCategoryWeightForNewProducts() throws DocumentException {
+	public void test_shouldSetDefaultCategoryWeightForNewProducts() {
 		// given
 		createProductImportMocks();
 		category.setWeight(2.5);
 
 		// when
-		service.importProducts(document, importStatus);
+		service.importProducts(productsFromXml, importStatus);
 
 		// then
 		ArgumentCaptor<Product> argument = new ArgumentCaptor<Product>();
@@ -248,8 +240,7 @@ public class IncomImportServiceTest extends TestCase {
 		assertEquals(2.5, newProduct.getWeight());
 	}
 
-	public void test_shouldSetManualAvailability_TEMPORARY_UNAVIALABLE_ForExistingProductsWhenQuantityInStockIsZeroAndYesterdayWasNot()
-			throws DocumentException {
+	public void test_shouldSetManualAvailability_TEMPORARY_UNAVIALABLE_ForExistingProductsWhenQuantityInStockIsZeroAndYesterdayWasNot() {
 		// given
 		createProductImportMocks();
 		existingProduct.setQuantityInStock(11L);
@@ -259,28 +250,28 @@ public class IncomImportServiceTest extends TestCase {
 		existingProduct.setLastUpdate(yesterday);
 
 		// when
-		service.importProducts(document, importStatus);
+		service.importProducts(productsFromXml, importStatus);
 
 		// then
 		assertEquals(Availability.TEMPORARY_SHORTAGE, existingProduct.getManualAvailability());
 
 	}
 
-	public void test_shouldSendEmailAfterSuccessfulImport() throws DocumentException {
+	public void test_shouldSendEmailAfterSuccessfulImport() {
 		// given
 		createProductImportMocks();
 
 		// when
-		service.importProducts(document, importStatus);
+		service.importProducts(productsFromXml, importStatus);
 
 		// then
 		verify(emailService).sendImportFinishedEmail();
 
 	}
 
-	private void createProductImportMocks() throws DocumentException {
+	private void createProductImportMocks() {
 
-		document = getProductsImportDocument();
+        productsFromXml = new IncomProductXmlParser().convertXmlToListOfMaps(getProductsImportDocument());
 
 		when(configuration.getProfitMargin()).thenReturn(50);
 

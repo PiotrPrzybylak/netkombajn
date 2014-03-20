@@ -2,7 +2,6 @@ package pl.netolution.sklep3.service.imports;
 
 import com.netkombajn.store.domain.shared.price.Price;
 import org.apache.log4j.Logger;
-import org.dom4j.Document;
 import org.springframework.mail.MailException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -45,7 +44,7 @@ public class IncomImportService {
 	private EmailService emailService;
 
 	@SuppressWarnings("unchecked")
-	public void importProducts(Document document, ImportStatus importStatus) {
+	public void importProducts(List<Map<String, String>> products, ImportStatus importStatus) {
 		BigDecimal marginAndVatScaleFactor = getMarginAndVatScaleFactor(configuration.getProfitMargin());
 
 		log.debug("marginAndVatScaleFactor " + marginAndVatScaleFactor);
@@ -54,7 +53,7 @@ public class IncomImportService {
 
 		Date now = new Date();
 
-		for (Map<String, String> productDetails : incomProductXmlParser.convertXmlToListOfMaps(document)) {
+		for (Map<String, String> productDetails : products) {
 			importStatus.increaseProcessedElements();
 			saveProduct(marginAndVatScaleFactor, productDetails, now);
 		}
