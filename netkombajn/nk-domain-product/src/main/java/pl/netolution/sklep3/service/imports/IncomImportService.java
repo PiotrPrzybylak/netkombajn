@@ -1,18 +1,12 @@
 package pl.netolution.sklep3.service.imports;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+import com.netkombajn.store.domain.shared.price.Price;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.springframework.mail.MailException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.ManufacturerDao;
 import pl.netolution.sklep3.dao.ProductDao;
@@ -22,7 +16,8 @@ import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.Product.Availability;
 import pl.netolution.sklep3.service.EmailService;
 
-import com.netkombajn.store.domain.shared.price.Price;
+import java.math.BigDecimal;
+import java.util.*;
 
 public class IncomImportService {
 
@@ -57,13 +52,13 @@ public class IncomImportService {
 		Element root = document.getRootElement();
 
 		Date now = new Date();
-		// log.fatal(message)
 
 		for (Iterator<Element> i = root.elementIterator(); i.hasNext();) {
 			importStatus.increaseProcessedElements();
 			Element element = i.next();
 
-			saveProduct(marginAndVatScaleFactor, element, now);
+            Map<String, String> productDetails = convertDomElementToHashMap(element);
+			saveProduct(marginAndVatScaleFactor, productDetails, now);
 
 		}
 
@@ -80,30 +75,43 @@ public class IncomImportService {
 		}
 	}
 
-	private BigDecimal getMarginAndVatScaleFactor(int marginInPercents) {
+    private HashMap<String, String> convertDomElementToHashMap(Element element) {
+        final HashMap<String, String> productDetails = new HashMap<String, String>();
+        productDetails.put("cena", element.elementTextTrim("cena"));
+        productDetails.put("symbol_produktu", element.elementTextTrim("symbol_produktu"));
+        productDetails.put("nazwa_produktu", element.elementTextTrim("nazwa_produktu"));
+        productDetails.put("nazwa_producenta", element.elementTextTrim("nazwa_producenta"));
+        productDetails.put("grupa_towarowa", element.elementTextTrim("grupa_towarowa"));
+        productDetails.put("stan_magazynowy", element.elementTextTrim("stan_magazynowy"));
+        productDetails.put("link_do_zdjecia_produktu", element.elementTextTrim("link_do_zdjecia_produktu"));
+        productDetails.put("opis_produktu", element.elementTextTrim("opis_produktu"));
+        return productDetails;
+    }
+
+    private BigDecimal getMarginAndVatScaleFactor(int marginInPercents) {
 		BigDecimal marginScaleFactor = new BigDecimal(100 + marginInPercents).divide(new BigDecimal(100));
 		return marginScaleFactor.multiply(Price.VAT_RATE);
 	}
 
 	@Transactional
-	private void saveProduct(BigDecimal marginAndVatScaleFactor, Element element, Date now) {
+	private void saveProduct(BigDecimal marginAndVatScaleFactor, Map<String, String> productDetails, Date now) {
 
-		if (!isValidProduct(element)) {
+		if (!isValidProduct(productDetails)) {
 			return;
 		}
 
-		Product product = getProductByCatalogNumber(element.elementTextTrim("symbol_produktu"), now);
+		Product product = getProductByCatalogNumber(productDetails.get("symbol_produktu"), now);
 
 		if (isNewProduct(product)) {
 			product.setVisible(true);
-			product.setName(element.elementTextTrim("nazwa_produktu"));
+			product.setName(productDetails.get("nazwa_produktu"));
 
-			String producerName = element.elementTextTrim("nazwa_producenta");
+			String producerName = productDetails.get("nazwa_producenta");
 
 			product.setManufacturer(resolveManufacturer(producerName));
-			addDescriptionsToProduct(element, product);
-			addPicturePath(element, product);
-			addProductCategory(element, product);
+			addDescriptionsToProduct(productDetails, product);
+			addPicturePath(productDetails, product);
+			addProductCategory(productDetails, product);
 			product.setManualAvailability(product.getCategory().getDefaultManualAvailability());
 			product.setWeight(product.getCategory().getWeight());
 			// TODO What about existing products which matching catalogNumebr and source != INCOM ??
@@ -115,8 +123,8 @@ public class IncomImportService {
 
 		boolean productWasAvailableYesterday = product.wasAvailableYesterday();
 
-		setPrice(product, element, marginAndVatScaleFactor);
-		addQuantityStock(element, product);
+		setPrice(product, productDetails, marginAndVatScaleFactor);
+		addQuantityStock(productDetails, product);
 		product.setLastUpdate(now);
 		product.addDefaultSkuIfNecessary();
 		if (product.getQuantityInStock() == 0 && productWasAvailableYesterday) {
@@ -135,8 +143,8 @@ public class IncomImportService {
 		return manufacturer;
 	}
 
-	private boolean isValidProduct(Element element) {
-		String price = element.elementTextTrim("cena");
+	private boolean isValidProduct(Map<String, String> productDetails) {
+		String price = productDetails.get("cena");
 		return price != null && price.contains(",");
 
 	}
@@ -150,16 +158,16 @@ public class IncomImportService {
 
 	}
 
-	private void setPrice(Product product, Element element, BigDecimal globalMarginAndVatScaleFactor) {
-		BigDecimal netPriceValue = new BigDecimal(element.elementTextTrim("cena").replace(",", "."));
+	private void setPrice(Product product, Map<String, String> element, BigDecimal globalMarginAndVatScaleFactor) {
+		BigDecimal netPriceValue = new BigDecimal(element.get("cena").replace(",", "."));
 		product.setWholesaleNetPrice(new Price(netPriceValue));
 		// TODO ziamplementowac multiply dla kalsy price. To multiply bedzie tez zwracalo obiekt kalsy price
 		BigDecimal grossPriceValue = product.getWholesaleNetPrice().getValue().multiply(globalMarginAndVatScaleFactor);
 		product.setRetailGrossPrice(new Price(grossPriceValue));
 	}
 
-	private void addProductCategory(Element element, Product product) {
-		String categoryExternalId = element.elementTextTrim("grupa_towarowa");
+	private void addProductCategory(Map<String, String> element, Product product) {
+		String categoryExternalId = element.get("grupa_towarowa");
 		Category category = categoryDao.findByExternalId(categoryExternalId);
 		if (null == category) {
 			throw new RuntimeException("Missing Category: " + categoryExternalId);
@@ -168,23 +176,23 @@ public class IncomImportService {
 		product.setCategory(category);
 	}
 
-	private void addQuantityStock(Element element, Product product) {
-		String quantityStock = element.elementTextTrim("stan_magazynowy");
+	private void addQuantityStock(Map<String, String> element, Product product) {
+		String quantityStock = element.get("stan_magazynowy");
 		if (quantityStock != null) {
 			product.setQuantityInStock(Long.valueOf(quantityStock));
 		}
 	}
 
-	private void addPicturePath(Element element, Product product) {
-		String externalurl = element.elementTextTrim("link_do_zdjecia_produktu");
+	private void addPicturePath(Map<String, String> element, Product product) {
+		String externalurl = element.get("link_do_zdjecia_produktu");
 		if (StringUtils.hasText(externalurl)) {
 			product.setExternalPictureUrl(externalurl);
 			product.setUseExternalPicture(true);
 		}
 	}
 
-	private void addDescriptionsToProduct(Element element, Product product) {
-		String productdescription = element.elementTextTrim("opis_produktu");
+	private void addDescriptionsToProduct(Map<String, String> element, Product product) {
+		String productdescription = element.get("opis_produktu");
 		if (productdescription == null) {
 			return;
 		}
