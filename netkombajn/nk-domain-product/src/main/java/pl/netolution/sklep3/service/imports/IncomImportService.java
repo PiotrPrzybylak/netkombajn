@@ -3,7 +3,6 @@ package pl.netolution.sklep3.service.imports;
 import com.netkombajn.store.domain.shared.price.Price;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
-import org.dom4j.Element;
 import org.springframework.mail.MailException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -17,11 +16,15 @@ import pl.netolution.sklep3.domain.Product.Availability;
 import pl.netolution.sklep3.service.EmailService;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class IncomImportService {
 
-	public interface Configuration {
+    private final IncomProductXmlParser incomProductXmlParser = new IncomProductXmlParser();
+
+    public interface Configuration {
 
 		int getProfitMargin();
 
@@ -49,17 +52,11 @@ public class IncomImportService {
 
 		long time = System.currentTimeMillis();
 
-		Element root = document.getRootElement();
-
 		Date now = new Date();
 
-		for (Iterator<Element> i = root.elementIterator(); i.hasNext();) {
+		for (Map<String, String> productDetails : incomProductXmlParser.convertXmlToListOfMaps(document)) {
 			importStatus.increaseProcessedElements();
-			Element element = i.next();
-
-            Map<String, String> productDetails = convertDomElementToHashMap(element);
 			saveProduct(marginAndVatScaleFactor, productDetails, now);
-
 		}
 
 		retireOldProducts(now);
@@ -74,19 +71,6 @@ public class IncomImportService {
 			importStatus.addError("Canot send email after import", ex);
 		}
 	}
-
-    private HashMap<String, String> convertDomElementToHashMap(Element element) {
-        final HashMap<String, String> productDetails = new HashMap<String, String>();
-        productDetails.put("cena", element.elementTextTrim("cena"));
-        productDetails.put("symbol_produktu", element.elementTextTrim("symbol_produktu"));
-        productDetails.put("nazwa_produktu", element.elementTextTrim("nazwa_produktu"));
-        productDetails.put("nazwa_producenta", element.elementTextTrim("nazwa_producenta"));
-        productDetails.put("grupa_towarowa", element.elementTextTrim("grupa_towarowa"));
-        productDetails.put("stan_magazynowy", element.elementTextTrim("stan_magazynowy"));
-        productDetails.put("link_do_zdjecia_produktu", element.elementTextTrim("link_do_zdjecia_produktu"));
-        productDetails.put("opis_produktu", element.elementTextTrim("opis_produktu"));
-        return productDetails;
-    }
 
     private BigDecimal getMarginAndVatScaleFactor(int marginInPercents) {
 		BigDecimal marginScaleFactor = new BigDecimal(100 + marginInPercents).divide(new BigDecimal(100));
