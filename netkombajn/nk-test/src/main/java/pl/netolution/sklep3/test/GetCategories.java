@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import pl.netolution.sklep3.service.imports.CategoriesInfo;
+import pl.netolution.sklep3.service.imports.IncomImportCategoriesService;
 import pl.netolution.sklep3.service.imports.IncomImportService;
 
 public class GetCategories {
@@ -34,8 +35,8 @@ public class GetCategories {
 		showCategory("", categoriesInfo.getCategories(), "", categoriesInfo.getNames());
 
 		ApplicationContext ap = new ClassPathXmlApplicationContext("applicationContext.xml");
-		IncomImportService incomImportService = (IncomImportService) ap.getBean("incomImportService");
-		incomImportService.mergeImportCategories(categoriesInfo.getCategories(), categoriesInfo.getNames());
+		IncomImportCategoriesService incomImportCategoriesService = ap.getBean(IncomImportCategoriesService.class);
+		incomImportCategoriesService.mergeImportCategories(categoriesInfo.getCategories(), categoriesInfo.getNames());
 
 	}
 
