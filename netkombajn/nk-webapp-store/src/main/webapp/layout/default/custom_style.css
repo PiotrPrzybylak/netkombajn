@@ -1,0 +1,212 @@
+#shoplogo a {
+	width: 788px;
+	margin: auto;
+	height: 151px;
+	background: url("img/powercomputer_logo.jpg") no-repeat center;
+}
+
+#header {
+	margin: 0 auto;
+	width: 936px;
+	height: auto;
+	padding-bottom: 10px;
+	background: none;
+}
+
+#hit {
+	width: 100%;
+}
+
+#news li {
+	width: 292px;
+	height: 250px;	
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+#productsList {
+	width: 570px;
+}
+
+#main {
+
+}
+
+#sidebar {
+	width: 310px;;
+}
+
+#content-two-column{
+	float: right;
+	width: 620px;
+}
+
+#categories li a {
+	background-repeat: repeat-x;
+}
+
+#news .box-content {
+	padding: 10px;
+	padding-bottom: 0;
+}
+
+#news img {
+	max-height: 135px;
+	max-width: 250px;
+}
+
+
+#categories li {
+	background-position: 0 4px;;
+}
+
+.productNameCell{
+	height: 70px;	
+}
+
+.productListing-data .productName {
+	left: 125px;
+}
+
+#categories li {
+	font-weight: normal;
+}
+
+#categories > .box-content > ul > li > ul > li {
+	display: none;
+}
+
+#categories > .box-content > ul > li.chosenRootCategory li{
+	display: block;
+}
+
+.content-two-column{
+	margin: 0px;
+	padding: 0px;
+	clear:both;	
+}
+
+/***************common************/
+.important{
+	font-weight: bold;	
+}
+
+/****************shopping**************/
+#orderCostSum {
+	margin: 10px 0 0;
+	padding-top:5px;
+	border-top: 1px solid black;
+}
+
+/*****************Composite product ****************/
+
+
+.forwardButton{
+	background: url("../sklep/resources/layout/saitek/img/forward.png") no-repeat center;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+.backwardButton{
+	background: url("../sklep/resources/layout/saitek/img/backward.png") no-repeat center;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;	
+}
+
+.product-small-picture img{
+	max-width: 115px;
+	max-height: 115px;	
+}
+
+.compositeProduct{
+	display: table;
+	border: 1px solid #bdbed6;
+	margin: 10px 0;
+	width: 100%;
+}
+
+.compositeProduct > div{
+	display: table-row;	
+}
+
+.compositeProduct > div >div{
+	display: table-cell;
+	padding: 5px;	
+}
+
+.compositePicture{
+	width:150px;
+	height:100px;
+	background: url("../sklep/resources/layout/saitek/img/zestaw.jpg") no-repeat center;	
+}
+
+.compositeProductName{
+	font-weight: bold;
+	margin-bottom: 10px;	
+}
+
+
+.compositeProductDescription{
+	min-height: 80px;	
+}
+
+.compositeLinkToDetails{
+	text-align: right;
+	padding-right: 15px;
+	padding-bottom: 5px;	
+}
+
+#compositeProductDetails h3{
+	display: block;
+	margin:10px 0;
+}
+
+.compositeProductPart{
+		border: 1px solid #bdbed6;
+		padding: 5px;
+		width: 100%;
+		display: table;
+}
+
+.hidden{
+	display: none;	
+}
+
+.compositeProductPart > div{
+		display: table-row;
+}
+
+.compositeProductPart > div > div{
+		display: table-cell;
+		vertical-align: top;
+}
+
+
+.compositeProductPart h4{
+		margin:5px 0;
+		display: block;
+		width: 100%;
+		text-align: center;
+}
+.compositeProductPartInfo{
+	padding-left: 10px;
+}
+
+.compositeProductPart > div > div.compositeNavigation{
+	vertical-align: middle;
+	width: 30px;	
+}
+
+#compositePrice{
+	font-weight: bold;
+	margin-bottom: 15px;	
+}
+
+#compositeProductToCart{
+	margin-top: 10px;	
+}
+
+
+
