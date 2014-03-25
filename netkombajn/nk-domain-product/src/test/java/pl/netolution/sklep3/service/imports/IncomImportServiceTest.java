@@ -221,17 +221,8 @@ public class IncomImportServiceTest extends TestCase {
 		service.setEmailService(emailService);
 
 		
-		Map<String, String> productDetails1 = createWarehouseProduct();	
-		productDetails1.put("symbol_produktu", CATALOG_ID_1);
-		productDetails1.put("nazwa_produktu", "Produkt testowy Nowy");
-		Map<String, String> productDetails2 = createWarehouseProduct();	
-		Map<String, String> productDetails3 = createWarehouseProduct();	
-		productDetails3.put("cena", "tel");
-		Map<String, String> productDetails4 = createWarehouseProduct();	
-		productDetails4.remove("cena");
-		
-		List<Map<String, String>> asList = Arrays.asList(productDetails1, productDetails2, productDetails3, productDetails4);
-		productsFromXml = asList;
+		List<Map<String, String>> productsFromXml2 = createProductsLikeInIntegrationTest();
+		productsFromXml = productsFromXml2;
 
 		when(configuration.getProfitMargin()).thenReturn(50);
 
@@ -252,6 +243,20 @@ public class IncomImportServiceTest extends TestCase {
 		when(manufacturerDao.findByName(Matchers.anyString())).thenReturn(null);
 
 		importStatus = new ImportStatus();
+	}
+
+	private List<Map<String, String>> createProductsLikeInIntegrationTest() {
+		Map<String, String> productDetails1 = createWarehouseProduct();	
+		productDetails1.put("symbol_produktu", CATALOG_ID_1);
+		productDetails1.put("nazwa_produktu", "Produkt testowy Nowy");
+		Map<String, String> productDetails2 = createWarehouseProduct();	
+		Map<String, String> productDetails3 = createWarehouseProduct();	
+		productDetails3.put("cena", "tel");
+		Map<String, String> productDetails4 = createWarehouseProduct();	
+		productDetails4.remove("cena");
+		
+		List<Map<String, String>> productsFromXml2 = Arrays.asList(productDetails1, productDetails2, productDetails3, productDetails4);
+		return productsFromXml2;
 	}
 
 	private Map<String, String> createWarehouseProduct() {
