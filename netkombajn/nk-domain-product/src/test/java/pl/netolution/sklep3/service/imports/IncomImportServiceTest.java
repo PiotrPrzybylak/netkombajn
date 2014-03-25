@@ -76,11 +76,7 @@ public class IncomImportServiceTest extends TestCase {
 		// given
 		createProductImportMocks();
 
-		Map<String, String> productDetails = new HashMap<String, String>();
-		productDetails.put("symbol_produktu", "CATALOG_ID_2");
-		productDetails.put("stan_magazynowy", "2000");
-		productDetails.put("cena", "2000,00");
-		productDetails.put("grupa_towarowa", "1985");	
+		Map<String, String> productDetails = createWarehouseProduct();	
 		
 		productsFromXml = Arrays.asList(productDetails);
 		
@@ -225,8 +221,17 @@ public class IncomImportServiceTest extends TestCase {
 		service.setEmailService(emailService);
 
 		
+		Map<String, String> productDetails1 = createWarehouseProduct();	
+		productDetails1.put("symbol_produktu", CATALOG_ID_1);
+		productDetails1.put("nazwa_produktu", "Produkt testowy Nowy");
+		Map<String, String> productDetails2 = createWarehouseProduct();	
+		Map<String, String> productDetails3 = createWarehouseProduct();	
+		productDetails3.put("cena", "tel");
+		Map<String, String> productDetails4 = createWarehouseProduct();	
+		productDetails4.remove("cena");
 		
-        productsFromXml = new ArrayList<Map<String,String>>();
+		List<Map<String, String>> asList = Arrays.asList(productDetails1, productDetails2, productDetails3, productDetails4);
+		productsFromXml = asList;
 
 		when(configuration.getProfitMargin()).thenReturn(50);
 
@@ -247,5 +252,14 @@ public class IncomImportServiceTest extends TestCase {
 		when(manufacturerDao.findByName(Matchers.anyString())).thenReturn(null);
 
 		importStatus = new ImportStatus();
+	}
+
+	private Map<String, String> createWarehouseProduct() {
+		Map<String, String> productDetails = new HashMap<String, String>();
+		productDetails.put("symbol_produktu", "CATALOG_ID_2");
+		productDetails.put("stan_magazynowy", "2000");
+		productDetails.put("cena", "2000,00");
+		productDetails.put("grupa_towarowa", "1985");
+		return productDetails;
 	}
 }
