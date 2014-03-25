@@ -1,0 +1,16 @@
+.shipmentAddress-step .breadcrumbs-shipmentAddress,
+.shipmentOption-step .breadcrumbs-shipmentOption,
+.paymentOption-step .breadcrumbs-paymentOption,
+.confirmOrder-step .breadcrumbs-confirmOrder
+{
+       font-weight: bold;
+}
+
+
+.bread-crumbs a {
+	text-decoration: underline;
+}
+
+.bread-crumbs {
+	margin-bottom: 10px;
+}
