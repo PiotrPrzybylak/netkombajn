@@ -95,9 +95,8 @@ public class IncomSingleProductImportService {
 	private void setPrice(Product product, Map<String, String> element, BigDecimal globalMarginAndVatScaleFactor) {
 		BigDecimal netPriceValue = new BigDecimal(element.get("cena").replace(",", "."));
 		product.setWholesaleNetPrice(new Price(netPriceValue));
-		// TODO ziamplementowac multiply dla kalsy price. To multiply bedzie tez zwracalo obiekt kalsy price
-		BigDecimal grossPriceValue = product.getWholesaleNetPrice().getValue().multiply(globalMarginAndVatScaleFactor);
-		product.setRetailGrossPrice(new Price(grossPriceValue));
+		Price grossPrice = product.getWholesaleNetPrice().multiply(globalMarginAndVatScaleFactor);
+		product.setRetailGrossPrice(grossPrice);
 	}
 
 	private void addProductCategory(Map<String, String> element, Product product) {
