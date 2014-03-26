@@ -51,7 +51,8 @@ public class IncomImportService {
 
 		for (Map<String, String> productDetails : products) {
 			importStatus.increaseProcessedElements();
-			new IncomSingleProductImportService(productDao, manufacturerDao, categoryDao).saveProduct(marginAndVatScaleFactor, productDetails, now);
+			WarehouseProductDto warehouseProductDto = convertToDto(productDetails);
+			new IncomSingleProductImportService(productDao, manufacturerDao, categoryDao).saveProduct(marginAndVatScaleFactor, warehouseProductDto , now);
 		}
 
 		retireOldProducts(now);
@@ -65,6 +66,22 @@ public class IncomImportService {
 			log.fatal("Canot send email after import", ex);
 			importStatus.addError("Canot send email after import", ex);
 		}
+	}
+
+	private WarehouseProductDto convertToDto(Map<String, String> productDetails) {
+		WarehouseProductDto warehouseProductDto = new WarehouseProductDto();
+		String price = productDetails.get("cena");
+		if (price != null && price.contains(",")) {
+			warehouseProductDto.price = new BigDecimal(price.replace(",", "."));			
+		}
+		warehouseProductDto.symbol = productDetails.get("symbol_produktu");
+		warehouseProductDto.name = productDetails.get("nazwa_produktu");
+		warehouseProductDto.description = productDetails.get("opis_produktu");
+		warehouseProductDto.manufacturerName = productDetails.get("nazwa_producenta");
+		warehouseProductDto.category = productDetails.get("grupa_towarowa");
+		warehouseProductDto.quantityInStock = productDetails.get("stan_magazynowy") != null ? Long.valueOf(productDetails.get("stan_magazynowy")): null;
+		warehouseProductDto.pictureUrl = productDetails.get("link_do_zdjecia_produktu");
+		return warehouseProductDto;
 	}
 
     static BigDecimal getMarginAndVatScaleFactor(int marginInPercents) {
