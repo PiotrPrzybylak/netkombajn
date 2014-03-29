@@ -9,7 +9,8 @@ public class IncomProductXmlParser {
 
     public List<Map<String, String>> convertXmlToListOfMaps(Document document) {
         final List<Map<String, String>> products = new ArrayList<Map<String, String>>();
-        for (Iterator<Element> i = document.getRootElement().elementIterator(); i.hasNext(); ) {
+        for (@SuppressWarnings("unchecked")
+		Iterator<Element> i = document.getRootElement().elementIterator(); i.hasNext(); ) {
             products.add(convertDomElementToHashMap(i.next()));
         }
         return products;
