@@ -3,9 +3,10 @@ package pl.netolution.sklep3.web.jsf;
 import org.apache.log4j.Logger;
 import org.apache.myfaces.trinidad.model.BoundedRangeModel;
 
+import com.netkombajn.eshop.product.imports.ImportStatus;
+import com.netkombajn.eshop.product.imports.PicturesImportService;
+
 import pl.netolution.sklep3.domain.Import;
-import pl.netolution.sklep3.service.imports.ImportStatus;
-import pl.netolution.sklep3.service.imports.PicturesImportService;
 
 public class GlobalImportBackingBean {
 

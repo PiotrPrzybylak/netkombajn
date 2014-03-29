@@ -8,6 +8,12 @@ import org.dom4j.io.SAXReader;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
+
+import com.netkombajn.eshop.product.imports.ImportStatus;
+import com.netkombajn.eshop.product.imports.IncomImportService;
+import com.netkombajn.eshop.product.imports.IncomProductXmlParser;
+import com.netkombajn.eshop.product.imports.IncomImportService.Configuration;
+
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.dao.ManufacturerDao;
 import pl.netolution.sklep3.dao.ProductDao;
@@ -15,7 +21,6 @@ import pl.netolution.sklep3.domain.Category;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.domain.Product.Availability;
 import pl.netolution.sklep3.service.EmailService;
-import pl.netolution.sklep3.service.imports.IncomImportService.Configuration;
 
 import java.util.*;
 

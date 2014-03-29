@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.service.imports;
+package com.netkombajn.eshop.product.imports;
 
 import com.netkombajn.store.domain.shared.price.Price;
 import org.apache.log4j.Logger;

@@ -4,10 +4,12 @@ import org.apache.log4j.Logger;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.dom4j.Document;
 import org.dom4j.io.SAXReader;
+
+import com.netkombajn.eshop.product.imports.*;
+
 import pl.netolution.sklep3.configuration.Configuration;
 import pl.netolution.sklep3.dao.ImportDao;
 import pl.netolution.sklep3.domain.Import;
-import pl.netolution.sklep3.service.imports.*;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;

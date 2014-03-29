@@ -3,8 +3,9 @@ package pl.netolution.sklep3.test;
 import java.io.IOException;
 import java.net.URL;
 
+import com.netkombajn.eshop.product.imports.DownloadService;
+
 import junit.framework.TestCase;
-import pl.netolution.sklep3.service.imports.DownloadService;
 
 public class DownloadServiceTest extends TestCase {
 
