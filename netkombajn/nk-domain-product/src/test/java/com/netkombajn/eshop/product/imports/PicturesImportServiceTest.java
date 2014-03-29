@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.service.imports;
+package com.netkombajn.eshop.product.imports;
 
 import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.same;
