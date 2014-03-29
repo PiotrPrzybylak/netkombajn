@@ -115,7 +115,7 @@
 
 	<bean id="randomService" class="pl.netolution.sklep3.service.RandomService" />
 
-	<bean id="incomImportService" class="pl.netolution.sklep3.service.imports.IncomImportService">
+	<bean id="incomImportService" class="com.netkombajn.eshop.product.imports.IncomImportService">
 		<property name="categoryDao" ref="categoryDao" />
 		<property name="configuration" ref="adminConfigurationService" />
 		<property name="productDao" ref="productDao" />
@@ -123,7 +123,7 @@
 		<property name="manufacturerDao" ref="manufacturerDao"></property>
 	</bean>
 
-    <bean id="incomImportCategoriesService" class="pl.netolution.sklep3.service.imports.IncomImportCategoriesServiceImpl">
+    <bean id="incomImportCategoriesService" class="com.netkombajn.eshop.product.imports.IncomImportCategoriesServiceImpl">
         <constructor-arg ref="categoryDao" />
     </bean>
 
@@ -155,10 +155,10 @@
 		class="pl.netolution.sklep3.service.pictures.StandardPictureFileNameGenerator" />
 
 
-	<bean name="downloadService" class="pl.netolution.sklep3.service.imports.DownloadService" />
+	<bean name="downloadService" class="com.netkombajn.eshop.product.imports.DownloadService" />
 
 	<bean id="picturesImportService"
-		class="pl.netolution.sklep3.service.imports.PicturesImportService">
+		class="com.netkombajn.eshop.product.imports.PicturesImportService">
 		<property name="downloadService" ref="downloadService" />
 		<property name="pictureManager" ref="pictureManager" />
 		<property name="productDao" ref="productDao" />
