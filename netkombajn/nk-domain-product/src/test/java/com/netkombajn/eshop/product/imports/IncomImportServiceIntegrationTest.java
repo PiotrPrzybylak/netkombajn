@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.service.imports;
+package com.netkombajn.eshop.product.imports;
 
 import junit.framework.TestCase;
 import org.apache.log4j.Logger;
@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 
 import com.netkombajn.eshop.product.imports.ImportStatus;
 import com.netkombajn.eshop.product.imports.IncomImportService;
+import com.netkombajn.eshop.product.imports.IncomProductXmlParser;
 import com.netkombajn.eshop.product.imports.IncomImportService.Configuration;
 
 import pl.netolution.sklep3.dao.CategoryDao;
@@ -25,8 +26,8 @@ import java.util.*;
 
 import static org.mockito.Mockito.*;
 
-public class IncomImportServiceTest extends TestCase {
-    private static final Logger log = Logger.getLogger(IncomImportServiceTest.class);
+public class IncomImportServiceIntegrationTest extends TestCase {
+    private static final Logger log = Logger.getLogger(IncomImportServiceIntegrationTest.class);
 
 	private static final String SOME_OLD_DESCRIPTION = "SOME OLD DESCRIPTION";
 
@@ -39,6 +40,8 @@ public class IncomImportServiceTest extends TestCase {
 	private IncomImportService service = new IncomImportService();
 
 	private Category category;
+
+	private Category oldCategory;
 
 	private List<Product> oldProducts;
 
@@ -80,15 +83,9 @@ public class IncomImportServiceTest extends TestCase {
 		// given
 		createProductImportMocks();
 
-		Map<String, String> productDetails = createWarehouseProduct();	
-		
-		productsFromXml = Arrays.asList(productDetails);
-		
-		Category oldCategory = new Category();
 		existingProduct.setCategory(oldCategory);
 		existingProduct.setName("Stara nazwa");
 		existingProduct.setDescription(SOME_OLD_DESCRIPTION);
-		existingProduct.setQuantityInStock(0L);
 
 		// when 
 		service.importProducts(productsFromXml, importStatus);
@@ -98,8 +95,6 @@ public class IncomImportServiceTest extends TestCase {
 		assertEquals(oldCategory, existingProduct.getCategory());
 		assertEquals("Stara nazwa", existingProduct.getName());
 		assertEquals(SOME_OLD_DESCRIPTION, existingProduct.getDescription());
-		assertEquals(Availability.HIGH, existingProduct.getAvailability());
-		//assertEquals((Long)10L, existingProduct.getQuantityInStock());
 	}
 
 	public void test_shouldSetVisibleFalseForProductsNotFoundInXmlAnymore() {
@@ -136,6 +131,13 @@ public class IncomImportServiceTest extends TestCase {
 		assertEquals(100, importStatus.getProgressInPrecents());
 	}
 
+	private Document getProductsImportDocument() {
+        try {
+            return new SAXReader().read(Thread.currentThread().getContextClassLoader().getResourceAsStream("cennik_maly.xml"));
+        } catch (DocumentException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 	public void test_shouldSetDefaultCategoryManualAvailabilityForNewProducts() {
 		// given
@@ -216,59 +218,35 @@ public class IncomImportServiceTest extends TestCase {
 
 	private void createProductImportMocks() {
 
-		CategoryDao categoryDao = mock(CategoryDao.class);
-		ManufacturerDao manufacturerDao = mock(ManufacturerDao.class);
-		service.setConfiguration(configuration);
-		service.setCategoryDao(categoryDao);
-		service.setProductDao(productDao);
-		service.setManufacturerDao(manufacturerDao);
-		service.setEmailService(emailService);
-
-		
-		List<Map<String, String>> productsFromXml2 = createProductsLikeInIntegrationTest();
-		productsFromXml = productsFromXml2;
+        productsFromXml = new IncomProductXmlParser().convertXmlToListOfMaps(getProductsImportDocument());
 
 		when(configuration.getProfitMargin()).thenReturn(50);
 
+		service.setConfiguration(configuration);
 
+		CategoryDao categoryDao = mock(CategoryDao.class);
 		category = new Category();
 		when(categoryDao.findByExternalId(CATEGORY_EXTERNAL_ID)).thenReturn(category);
 
+		service.setCategoryDao(categoryDao);
 		
 		when(productDao.findByCatalogNumber(CATALOG_ID_1)).thenReturn(null);
 		existingProduct = new Product(1);
+		oldCategory = new Category();
 		when(productDao.findByCatalogNumber(CATALOG_ID_2)).thenReturn(existingProduct);
+		//productDao.makePersistent(existingProduct);
 
 		oldProducts = new ArrayList<Product>();
 
 		when(productDao.getRetiredProducts(Mockito.eq("INCOM"), Mockito.any(Date.class))).thenReturn(oldProducts);
+		service.setProductDao(productDao);
 
+		service.setEmailService(emailService);
 
+		ManufacturerDao manufacturerDao = mock(ManufacturerDao.class);
 		when(manufacturerDao.findByName(Matchers.anyString())).thenReturn(null);
+		service.setManufacturerDao(manufacturerDao);
 
 		importStatus = new ImportStatus();
-	}
-
-	private List<Map<String, String>> createProductsLikeInIntegrationTest() {
-		Map<String, String> productDetails1 = createWarehouseProduct();	
-		productDetails1.put("symbol_produktu", CATALOG_ID_1);
-		productDetails1.put("nazwa_produktu", "Produkt testowy Nowy");
-		Map<String, String> productDetails2 = createWarehouseProduct();	
-		Map<String, String> productDetails3 = createWarehouseProduct();	
-		productDetails3.put("cena", "tel");
-		Map<String, String> productDetails4 = createWarehouseProduct();	
-		productDetails4.remove("cena");
-		
-		List<Map<String, String>> productsFromXml2 = Arrays.asList(productDetails1, productDetails2, productDetails3, productDetails4);
-		return productsFromXml2;
-	}
-
-	private Map<String, String> createWarehouseProduct() {
-		Map<String, String> productDetails = new HashMap<String, String>();
-		productDetails.put("symbol_produktu", "CATALOG_ID_2");
-		productDetails.put("stan_magazynowy", "2000");
-		productDetails.put("cena", "2000,00");
-		productDetails.put("grupa_towarowa", "1985");
-		return productDetails;
 	}
 }
