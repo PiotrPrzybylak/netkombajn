@@ -11,9 +11,10 @@ import org.dom4j.io.SAXReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import pl.netolution.sklep3.service.imports.CategoriesInfo;
-import pl.netolution.sklep3.service.imports.IncomImportCategoriesService;
-import pl.netolution.sklep3.service.imports.IncomImportService;
+import com.netkombajn.eshop.product.imports.CategoriesInfo;
+import com.netkombajn.eshop.product.imports.IncomImportCategoriesService;
+import com.netkombajn.eshop.product.imports.IncomImportService;
+
 
 public class GetCategories {
 

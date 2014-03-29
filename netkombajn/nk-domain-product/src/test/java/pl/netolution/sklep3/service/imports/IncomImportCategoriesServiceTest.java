@@ -1,6 +1,10 @@
 package pl.netolution.sklep3.service.imports;
 
 import org.junit.Test;
+
+import com.netkombajn.eshop.product.imports.IncomImportCategoriesService;
+import com.netkombajn.eshop.product.imports.IncomImportCategoriesServiceImpl;
+
 import pl.netolution.sklep3.dao.CategoryDao;
 import pl.netolution.sklep3.domain.Category;
 

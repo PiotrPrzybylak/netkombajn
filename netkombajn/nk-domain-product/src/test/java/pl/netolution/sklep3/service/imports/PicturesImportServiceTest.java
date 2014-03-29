@@ -14,6 +14,10 @@ import junit.framework.TestCase;
 
 import org.mockito.Mockito;
 
+import com.netkombajn.eshop.product.imports.DownloadService;
+import com.netkombajn.eshop.product.imports.ImportStatus;
+import com.netkombajn.eshop.product.imports.PicturesImportService;
+
 import pl.netolution.sklep3.dao.ProductDao;
 import pl.netolution.sklep3.domain.Product;
 import pl.netolution.sklep3.service.PictureManager;

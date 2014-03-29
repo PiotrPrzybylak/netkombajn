@@ -5,9 +5,10 @@ import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import pl.netolution.sklep3.service.imports.ImportStatus;
-import pl.netolution.sklep3.service.imports.IncomImportService;
-import pl.netolution.sklep3.service.imports.IncomProductXmlParser;
+
+import com.netkombajn.eshop.product.imports.ImportStatus;
+import com.netkombajn.eshop.product.imports.IncomImportService;
+import com.netkombajn.eshop.product.imports.IncomProductXmlParser;
 
 import java.net.MalformedURLException;
 import java.net.URL;

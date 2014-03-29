@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.service.imports;
+package com.netkombajn.eshop.product.imports;
 
 import org.dom4j.Document;
 import org.dom4j.Element;

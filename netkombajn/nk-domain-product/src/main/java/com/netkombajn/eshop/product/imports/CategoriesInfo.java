@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.service.imports;
+package com.netkombajn.eshop.product.imports;
 
 import java.util.ArrayList;
 import java.util.HashMap;

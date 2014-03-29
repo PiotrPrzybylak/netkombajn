@@ -1,4 +1,4 @@
-package pl.netolution.sklep3.service.imports;
+package com.netkombajn.eshop.product.imports;
 
 import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
