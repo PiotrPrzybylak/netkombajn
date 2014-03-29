@@ -1,23 +1,21 @@
 package com.netkombajn.eshop.product.imports;
 
-import com.netkombajn.store.domain.shared.price.Price;
-import org.apache.log4j.Logger;
-import org.springframework.mail.MailException;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
-import pl.netolution.sklep3.dao.CategoryDao;
-import pl.netolution.sklep3.dao.ManufacturerDao;
-import pl.netolution.sklep3.dao.ProductDao;
-import pl.netolution.sklep3.domain.Category;
-import pl.netolution.sklep3.domain.Manufacturer;
-import pl.netolution.sklep3.domain.Product;
-import pl.netolution.sklep3.domain.Product.Availability;
-import pl.netolution.sklep3.service.EmailService;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.springframework.mail.MailException;
+import org.springframework.transaction.annotation.Transactional;
+
+import pl.netolution.sklep3.dao.CategoryDao;
+import pl.netolution.sklep3.dao.ManufacturerDao;
+import pl.netolution.sklep3.dao.ProductDao;
+import pl.netolution.sklep3.domain.Product;
+import pl.netolution.sklep3.service.EmailService;
+
+import com.netkombajn.store.domain.shared.price.Price;
 
 public class IncomImportService {
 

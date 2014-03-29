@@ -14,11 +14,11 @@ public class CategoriesInfo {
 	private Map<String, List<String>> categories = new HashMap<String, List<String>>();
 	private Map<String, String> names = new HashMap<String, String>();
 
-	@SuppressWarnings("unchecked")
 	public CategoriesInfo(Document document) {
 		Element root = document.getRootElement();
 
-		for (Iterator i = root.elementIterator(); i.hasNext();) {
+		for (@SuppressWarnings("rawtypes")
+		Iterator i = root.elementIterator(); i.hasNext();) {
 			Element element = (Element) i.next();
 			String parentId = element.element("idh").getText();
 			names.put(element.elementText("id"), element.elementText("name"));
